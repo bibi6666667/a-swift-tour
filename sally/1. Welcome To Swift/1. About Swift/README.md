@@ -43,20 +43,20 @@ Swift has been years in the making, and it continues to evolve with new features
 
 </br>
 
-_\* whether : \~이든 아니든_
-_\* combine A with B : A와 B를 결합하다_
-_\* diverse : 다양한_
-_\* comproimie on : \~와 타협하다_
-_\* either : <부정문> 어느 쪽의 \~도 (아니다)_
-_\* as A as B : B 만큼이나 A 하다_
-_\* experiment with : \~을 시도하다_
-_\* define away : [참고](https://forum.wordreference.com/threads/define-away.2386502/)_
-_\* explicitly : 명시적으로_
-_\* obvious : 명백한, 분명한_
-_\* inference : 추론_
-_\* concise : 간결한_
-_\* manner : 방법_
-_\* as well : 또한_
-_\* in the making : 만드는 데_
-_\* capabilities : 가능성_
-_\* ambitious : 야심적인, 어마어마한_
+_\* whether : \~이든 아니든_</br>
+_\* combine A with B : A와 B를 결합하다_</br>
+_\* diverse : 다양한_</br>
+_\* comproimie on : \~와 타협하다_</br>
+_\* either : <부정문> 어느 쪽의 \~도 (아니다)_</br>
+_\* as A as B : B 만큼이나 A 하다_</br>
+_\* experiment with : \~을 시도하다_</br>
+_\* define away : [참고](https://forum.wordreference.com/threads/define-away.2386502/)_</br>
+_\* explicitly : 명시적으로_</br>
+_\* obvious : 명백한, 분명한_</br>
+_\* inference : 추론_</br>
+_\* concise : 간결한_</br>
+_\* manner : 방법_</br>
+_\* as well : 또한_</br>
+_\* in the making : 만드는 데_</br>
+_\* capabilities : 가능성_</br>
+_\* ambitious : 야심적인, 어마어마한_</br>
