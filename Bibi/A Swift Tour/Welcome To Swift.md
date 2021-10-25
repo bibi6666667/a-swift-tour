@@ -61,7 +61,7 @@ Swift는 수 년에 걸쳐 만들어져 왔으며, 새로운 특징 및 능력�
 - overhead
 - define 정의하다
   - define away?
-- adopt 적용하다?
+- adopt 채택하다
 - indice : index의 복수형
 - out-of-bound error
 - ensure 확실히 하다
