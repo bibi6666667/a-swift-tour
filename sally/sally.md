@@ -1,3 +1,0 @@
-# A Swift Tour
-
-> sally
