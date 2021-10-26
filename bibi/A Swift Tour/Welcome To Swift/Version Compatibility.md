@@ -61,7 +61,18 @@ Swift 5.5로 작성된 타겟은 Swift 4.2 또는 Swift 4로 작성된 타겟에
 
 ---
 
-- infer to be of the correct integer type.
+> Large integer literal initialization expressions are inferred to **be of** the correct integer type.
+
+- be of 명사 = be 형용사 로 해석한다.
+- 명사를 형용사로 꾸미고 싶을 때 사용하는 표현이다.
+  - be of help, be of use 등의 형태로 많이 사용 (= be helpful, be useful 의 의미)
+  - http://www.rainenglish.com/RainEnglishQandA12/2041
+  - https://blog.naver.com/PostView.naver?blogId=shy1004jh&logNo=221581686878&parentCategoryNo=&categoryNo=72&viewDate=&isShowPopularPosts=true&from=search
+- 문법적으로는 `주어 be (주어) of ...` 이 `주어 be of ...` 으로 표현(생략)된 것이라고 볼 수 있다.
+  - 즉 위 예문의 경우 Large integer literal initialization expressions are inferred to be expressions of the correct integer type. 과 같다고 볼 수 있다.
+  - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=koreiskii&logNo=220329948603
+
 - deployment target 배포 대상
+
 - one at a time 한 번에 하나씩.
   - one 목적어 at a time (목적어)를 한 번에 하나씩.
