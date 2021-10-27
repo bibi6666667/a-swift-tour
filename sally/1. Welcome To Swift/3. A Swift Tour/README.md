@@ -15,7 +15,7 @@ If you have written code in C or Objective-C, this syntax looks familiar to you�
 
 This tour gives you enough information to start writing code in Swift by showing you how to accomplish a variety of programming tasks. Don’t worry if you don’t understand something—everything introduced in this tour is explained in detail in the rest of this book.
 
-> NOTE
+> NOTE </br>
 	For the best experience, open this chapter as a playground in Xcode. Playgrounds allow you to edit the code listings and see the result immediately.
 
 ## 개요
@@ -30,7 +30,7 @@ print("Hello, world!")
 
 이 투어는 다양한 프로그래밍 과제를 해결하는 방법을 보여줌으로써 당신이 코딩을 시작하기에 충분한 정보를 줄 것입니다. 만약 이해하지 못한 것이 있더라도 걱정하지 마십시오. 이 투어에서 소개되는 모든 것들은 이 책의 나머지 부분에서 자세하게 설명할 것입니다. 
 
-> 노트
+> 노트 </br>
 	최고의 경험을 하기 위해 Xcode의 플레이그라운드로 이 챕터를 여십시오. 플레이그라운드를 이용하여 코드 목록들을 편집하고 그 결과를 바로 볼 수 있습니다. 
 
 
