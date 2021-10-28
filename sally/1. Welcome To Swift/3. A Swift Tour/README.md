@@ -18,6 +18,8 @@ This tour gives you enough information to start writing code in Swift by showing
 >
 > For the best experience, open this chapter as a playground in Xcode. Playgrounds allow you to edit the code listings and see the result immediately.
 
+--- 
+	
 ## 개요
 
 전통적으로 새로운 언어를 사용해서 작성하는 첫 번째 프로그램은 화면에 "Hello, world!"를 출력 하는 것이어야 합니다. 스위프트에서는 이것이 한 줄로 가능합니다:
@@ -33,8 +35,12 @@ print("Hello, world!")
 >
 > 최고의 경험을 하기 위해 Xcode의 플레이그라운드로 이 챕터를 여십시오. 플레이그라운드를 이용하여 코드 목록들을 편집하고 그 결과를 바로 볼 수 있습니다. 
 
+---
+
 _* — : dash (, 와 같은 의미)_
 
+---
+	
 </details>
 
 
@@ -77,6 +83,8 @@ let widthLabel = label + String(width)
 >
 > Try removing the conversion to `String` from the last line. What error do you get?
 
+---
+
 ## 간단한 값들
 
 상수를 만들기 위해 `let` 을 사용하고, 변수를 만들기 위해 `var` 를 사용하십시오. 상수의 값은 컴파일 타임에 알고 있을 필요는 없지만, 무조건 한번, 그것에 값을 할당해 주어야 합니다. 즉, 당신은 상수를 한번 정해서 여러 군데에서 사용하는 값에 이름을 붙이기 위해 사용할 수 있습니다. 
@@ -113,11 +121,15 @@ let widthLabel = label + String(width)
 >
 > 마지막 줄에서 `String` 으로 변환하는 것을 제거해 보십시오. 어떤 오류가 발생합니까?
 
+---
+
 _\* specify: 지정하다, 기입하다, 명시하다_
 
 _\* explicit: 명백한_
 
 _\* implicitly: 암묵적으로_
+
+---
 
 </details>
 
