@@ -121,12 +121,3 @@ _\* implicitly: 암묵적으로_
 
 </details>
 
-
-
-
-</br>
-
-_\* — : dash (== ,)_</br>
-
-</details>
-
