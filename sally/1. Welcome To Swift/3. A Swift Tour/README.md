@@ -3,7 +3,7 @@
 <details>
 	<summary>outline</summary>
 
-## [outline](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=ON%20THIS%20PAGE-,A%20Swift%20Tour,-Tradition%20suggests%20that)
+## [Outline](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=ON%20THIS%20PAGE-,A%20Swift%20Tour,-Tradition%20suggests%20that)
 
 Tradition suggests that the first program in a new language should print the words “Hello, world!” on the screen. In Swift, this can be done in a single line:
 ```swift
@@ -18,8 +18,8 @@ This tour gives you enough information to start writing code in Swift by showing
 >
 > For the best experience, open this chapter as a playground in Xcode. Playgrounds allow you to edit the code listings and see the result immediately.
 
---- 
-	
+---
+
 ## 개요
 
 전통적으로 새로운 언어를 사용해서 작성하는 첫 번째 프로그램은 화면에 "Hello, world!"를 출력 하는 것이어야 합니다. 스위프트에서는 이것이 한 줄로 가능합니다:
@@ -40,7 +40,7 @@ print("Hello, world!")
 _* — : dash (, 와 같은 의미)_
 
 ---
-	
+
 </details>
 
 
@@ -83,6 +83,10 @@ let widthLabel = label + String(width)
 >
 > Try removing the conversion to `String` from the last line. What error do you get?
 
+```swift
+error: binary operator '+' cannot be applied to operands of type 'String' and 'Int'
+```
+
 ---
 
 ## 간단한 값들
@@ -121,6 +125,10 @@ let widthLabel = label + String(width)
 >
 > 마지막 줄에서 `String` 으로 변환하는 것을 제거해 보십시오. 어떤 오류가 발생합니까?
 
+```swift
+오류: 이항 연산자 '+'는 'String'과 'Int' 타입의 피연산자에 적용할 수 없습니다.
+```
+
 ---
 
 _\* specify: 지정하다, 기입하다, 명시하다_
@@ -128,6 +136,10 @@ _\* specify: 지정하다, 기입하다, 명시하다_
 _\* explicit: 명백한_
 
 _\* implicitly: 암묵적으로_
+
+_\* binary operator: 이항 연산자_
+
+_\* operand: 피연산자_
 
 ---
 
