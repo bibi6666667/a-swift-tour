@@ -1,7 +1,8 @@
 # A Swift Tour
 
 <details>
-	<summary>outline</summary>
+	<summary>Outline</summary>
+
 
 ## [Outline](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=ON%20THIS%20PAGE-,A%20Swift%20Tour,-Tradition%20suggests%20that)
 
