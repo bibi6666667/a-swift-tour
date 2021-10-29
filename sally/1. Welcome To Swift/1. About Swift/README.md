@@ -1,4 +1,4 @@
-## [About Swift](https://docs.swift.org/swift-book/)
+# [About Swift](https://docs.swift.org/swift-book/)
 
 Swift is a fantastic way to write software, whether it’s for phones, desktops, servers, or anything else that runs code. It’s a safe, fast, and interactive programming language that combines the best in modern language thinking with wisdom from the wider Apple engineering culture and the diverse contributions from its open-source community. The compiler is optimized for performance and the language is optimized for development, without compromising on either.
 
@@ -9,7 +9,7 @@ Swift defines away large classes of common programming errors by adopting modern
 - Variables are always initialized before use.
 - Array indices are checked for out-of-bounds errors.
 - Integers are checked for overflow.
-- Optionals ensure that nil values are handled explicitly.
+- Optionals ensure that `nil` values are handled explicitly.
 - Memory is managed automatically.
 - Error handling allows controlled recovery from unexpected failures.
 
@@ -19,8 +19,10 @@ Swift combines powerful type inference and pattern matching with a modern, light
 
 Swift has been years in the making, and it continues to evolve with new features and capabilities. Our goals for Swift are ambitious. We can’t wait to see what you create with it.
 
+---
 
-## 스위프트에 대해서
+
+# 스위프트에 대해서
 
 스위프트는 소프트웨어를 작성하기 위한 환상적인 방법입니다. 그것이 코드로 작동하는 것이라면 핸드폰을 위한 것이든, 데스크탑, 서버, 혹은 어떤 것이라도 상관 없습니다. 그것은 현대 언어 사고 방식 중 최고의 것과, 폭 넓은 애플 엔지니어링 문화로 부터 오는 지혜와, 오픈 소스 커뮤니티의 다양한 기여들이 결합한, 안전하고 빠른 대화형 프로그래밍 언어입니다. 어느 쪽과도 타협하지 않고, 컴파일러는 성능에 최적화 되어 있고, 언어는 개발에 최적화 되어 있습니다. 
 
@@ -31,7 +33,7 @@ Swift has been years in the making, and it continues to evolve with new features
 - 변수들은 언제나 사용하기 전에 초기화 됩니다. 
 - 배열의 인덱스들은 범위 초과 에러를 위한 체크를 합니다. 
 - 정수는 오버플로우를 막기 위한 체크를 합니다. 
-- 옵셔널은 nil 값이 명시적으로 다뤄지는 것을 보증합니다. 
+- 옵셔널은 `nil` 값이 명시적으로 다뤄지는 것을 보증합니다. 
 - 메모리는 자동으로 관리됩니다.
 - 에러 핸들링은 예기치 못한 실패로부터, 제어된 복구를 허락합니다.
 
@@ -41,7 +43,7 @@ Swift has been years in the making, and it continues to evolve with new features
 
 스위프트는 만들어지는 데 몇년이 걸렸고, 새로운 기능과 가능성을 계속 개선 시키고 있습니다. 스위프트를 향한 우리의 목표는 어마어마 합니다. 우리는 당신이 그것으로 만들 것을 보고 싶어서 기다릴 수 없습니다. 
 
-</br>
+---
 
 _\* whether : \~이든 아니든_</br>
 _\* combine A with B : A와 B를 결합하다_</br>
@@ -60,3 +62,4 @@ _\* as well : 또한_</br>
 _\* in the making : 만드는 데_</br>
 _\* capabilities : 가능성_</br>
 _\* ambitious : 야심적인, 어마어마한_</br>
+
