@@ -277,11 +277,11 @@ Use `if` and `switch` to make conditionals, and use `for`-`in`, `while`, and `re
 let individualScores = [75, 43, 103, 87, 12]
 var teamScore = 0
 for score in individualScores {
-		if score > 50 {
-				teamScore += 3
-		} else {
-				teamScore += 1
-		}
+    if score > 50 {
+        teamScore += 3
+    } else {
+        teamScore += 1
+    }
 }
 print(teamScore)
 // Prints "11"
@@ -299,7 +299,7 @@ print(optionalString == nil)
 var optionalName: String? = "John Appleseed"
 var greeting = "Hello!"
 if let name = optionalName {
-		greeting = "Hello, \(name)"
+    greeting = "Hello, \(name)"
 }
 ```
 
@@ -311,9 +311,9 @@ if let name = optionalName {
 > var optionalName: String? = nil
 > var greeting = "Hello!"
 > if let name = optionalName {
-> 		greeting = "Hello, \(name)"
+>     greeting = "Hello, \(name)"
 > } else {
->   		greeting = "Hello, is anyone here?"
+>       greeting = "Hello, is anyone here?"
 > }
 > ```
 
@@ -362,11 +362,11 @@ default:
 let individualScores = [75, 43, 103, 87, 12]
 var teamScore = 0
 for score in individualScores {
-		if score > 50 {
-				teamScore += 3
-		} else {
-				teamScore += 1
-		}
+    if score > 50 {
+        teamScore += 3
+    } else {
+        teamScore += 1
+    }
 }
 print(teamScore)
 // "11" 출력
@@ -384,7 +384,7 @@ print(optionalString == nil)
 var optionalName: String? = "John Appleseed"
 var greeting = "Hello!"
 if let name = optionalName {
-		greeting = "Hello, \(name)"
+    greeting = "Hello, \(name)"
 }
 ```
 
@@ -396,9 +396,9 @@ if let name = optionalName {
 > var optionalName: String? = nil
 > var greeting = "Hello!"
 > if let name = optionalName {
-> 		greeting = "Hello, \(name)"
+>     greeting = "Hello, \(name)"
 > } else {
->   		greeting = "Hello, is anyone here?"
+>       greeting = "Hello, is anyone here?"
 > }
 > ```
 
