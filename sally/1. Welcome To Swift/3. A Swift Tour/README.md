@@ -3,7 +3,6 @@
 <details>
 	<summary>Outline</summary>
 
-
 ## [Outline](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=ON%20THIS%20PAGE-,A%20Swift%20Tour,-Tradition%20suggests%20that)
 
 Tradition suggests that the first program in a new language should print the words “Hello, world!” on the screen. In Swift, this can be done in a single line:
@@ -38,7 +37,7 @@ print("Hello, world!")
 
 ---
 
-_* — : dash (, 와 같은 의미)_
+_* — : dash (, 와 같은 의미)_</br>
 
 ---
 
@@ -88,6 +87,62 @@ let widthLabel = label + String(width)
 error: binary operator '+' cannot be applied to operands of type 'String' and 'Int'
 ```
 
+There’s an even simpler way to include values in strings: Write the value in parentheses, and write a backslash (`\`) before the parentheses. For example:
+
+```swift
+let apples = 3
+let oranges = 5
+let appleSummary = "I have \(apples) apples."
+let fruitSummary = "I have \(apples + oranges) pieces of fruit."
+```
+
+> EXPERIMENT
+>
+> Use `\()` to include a floating-point calculation in a string and to include someone’s name in a greeting.
+
+Use three double quotation marks (`"""`) for strings that take up multiple lines. Indentation at the start of each quoted line is removed, as long as it matches the indentation of the closing quotation marks. For example:
+
+```swift
+let quotation = """
+I said "I have \(apples) apples."
+And then I said "I have \(apples + oranges) pieces of fruit."
+"""
+```
+
+Create arrays and dictionaries using brackets (`[]`), and access their elements by writing the index or key in brackets. A comma is allowed after the last element.
+
+```swift
+var shoppingList = ["catfish", "water", "tulips"]
+shoppingList[1] = "bottle of water"
+
+var occupations = [
+    "Malcolm": "Captain",
+    "Kaylee": "Mechanic",
+]
+occupations["Jayne"] = "Public Relations"
+```
+
+Arrays automatically grow as you add elements.
+
+```swift
+shoppingList.append("blue paint")
+print(shoppingList)
+```
+
+To create an empty array or dictionary, use the initializer syntax.
+
+```swift
+let emptyArray: [String] = []
+let emptyDictionary: [String: Float] = [:]
+```
+
+If type information can be inferred, you can write an empty array as `[]` and an empty dictionary as `[:]`—for example, when you set a new value for a variable or pass an argument to a function.
+
+```swift
+shoppingList = []
+occupations = [:]
+```
+
 ---
 
 ## 간단한 값들
@@ -130,17 +185,73 @@ let widthLabel = label + String(width)
 오류: 이항 연산자 '+'는 'String'과 'Int' 타입의 피연산자에 적용할 수 없습니다.
 ```
 
+문자열에 값을 넣는 더 쉬운 방법이 있습니다. 괄호 안에 값을 적고, 괄호 앞에 백슬래시(`\`) 를 적으십시오. 예를 들어:
+
+```swift
+let apples = 3
+let oranges = 5
+let appleSummary = "I have \(apples) apples."
+let fruitSummary = "I have \(apples + oranges) pieces of fruit."
+```
+
+> 실험
+>
+> 문자열에 부동 소수점 계산을 넣고, 인사말에 누군가의 이름을 넣기 위해서 `\()` 를 사용하십시오.  
+
+여러 줄을 차지하는 문자열에서는 세 개의 쌍따옴표 (`"""`) 를 사용하십시오. 닫는 따옴표의 들여쓰기와 일치하는 한, 각 줄의 시작 부분의 들여쓰기는 제거됩니다. 예를 들어:
+
+```swift
+let quotation = """
+I said "I have \(apples) apples."
+And then I said "I have \(apples + oranges) pieces of fruit."
+"""
+```
+
+괄호 (`[]`)를 사용하여 배열과 딕셔너리를 만들고, 괄호 안에 인덱스나 키값을 적어서 그 인자들에 접근하십시오. 마지막 인자 뒤에 쉼표를 적어도 괜찮습니다. 
+
+```swift
+var shoppingList = ["catfish", "water", "tulips"]
+shoppingList[1] = "bottle of water"
+
+var occupations = [
+    "Malcolm": "Captain",
+    "Kaylee": "Mechanic",
+]
+occupations["Jayne"] = "Public Relations"
+```
+
+배열은 인자를 추가하는 만큼 자동으로 증가합니다. 
+
+```swift
+shoppingList.append("blue paint")
+print(shoppingList)
+```
+
+빈 배열이나 딕셔너리를 만드려면, 초기화 구문을 사용하십시오.
+
+```swift
+let emptyArray: [String] = []
+let emptyDictionary: [String: Float] = [:]
+```
+
+타입 정보를 유추할 수 있다면, 빈 배열을 `[]` 로 적을 수 있고, 빈 딕셔너리를 `[:]` 로 적을 수 있습니다. 예를 들어, 변수에 새로운 값을 설정하거나, 인수를 함수에 전달할 때입니다.
+
+```swift
+shoppingList = []
+occupations = [:]
+```
+
 ---
 
-_\* specify: 지정하다, 기입하다, 명시하다_
-
-_\* explicit: 명백한_
-
-_\* implicitly: 암묵적으로_
-
-_\* binary operator: 이항 연산자_
-
-_\* operand: 피연산자_
+_\* specify: 지정하다, 기입하다, 명시하다_</br>
+_\* explicit: 명백한</br>_
+_\* implicitly: 암묵적으로</br>_
+_\* binary operator: 이항 연산자</br>_
+_\* operand: 피연산자</br>_
+_\* parentheses: 괄호</br>_
+_\* floating-point: 부동 소수점</br>_
+_\* take up: 차지하다</br>_
+_\* as long as: ~하는 한</br>_
 
 ---
 
