@@ -70,6 +70,10 @@ let explicitDouble: Double = 70
 > EXPERIMENT
 >
 > Create a constant with an explicit type of `Float` and a value of `4`.
+>
+> ```swift
+> let a: Float = 4
+> ```
 
 Values are never implicitly converted to another type. If you need to convert a value to a different type, explicitly make an instance of the desired type.
 
@@ -82,10 +86,10 @@ let widthLabel = label + String(width)
 > EXPERIMENT
 >
 > Try removing the conversion to `String` from the last line. What error do you get?
-
-```swift
-error: binary operator '+' cannot be applied to operands of type 'String' and 'Int'
-```
+>
+> ```swift
+> error: binary operator '+' cannot be applied to operands of type 'String' and 'Int'
+> ```
 
 There’s an even simpler way to include values in strings: Write the value in parentheses, and write a backslash (`\`) before the parentheses. For example:
 
@@ -168,6 +172,10 @@ let explicitDouble: Double = 70
 > 실험
 >
 > `Float` 타입과  `4` 의 값을 가지는 상수를 생성하십시오.
+>
+> ```swift
+> let a: Float = 4
+> ```
 
 값은 결코 암묵적으로 다른 타입으로 변환되지 않습니다. 만약 값을 다른 타입으로 변환해야 한다면, 요구되는 타입의 인스턴스를 명시적으로 만드십시오.
 
@@ -180,10 +188,10 @@ let widthLabel = label + String(width)
 > 실험
 >
 > 마지막 줄에서 `String` 으로 변환하는 것을 제거해 보십시오. 어떤 오류가 발생합니까?
-
-```swift
-오류: 이항 연산자 '+'는 'String'과 'Int' 타입의 피연산자에 적용할 수 없습니다.
-```
+>
+> ```swift
+> 오류: 이항 연산자 '+'는 'String'과 'Int' 타입의 피연산자에 적용할 수 없습니다.
+> ```
 
 문자열에 값을 넣는 더 쉬운 방법이 있습니다. 괄호 안에 값을 적고, 괄호 앞에 백슬래시(`\`) 를 적으십시오. 예를 들어:
 
@@ -252,6 +260,190 @@ _\* parentheses: 괄호</br>_
 _\* floating-point: 부동 소수점</br>_
 _\* take up: 차지하다</br>_
 _\* as long as: ~하는 한</br>_
+
+---
+
+</details>
+
+
+<details>
+<summary>Control Flow</summary>
+
+## [Control Flow](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=occupations%20%3D%20%5B%3A%5D-,Control%20Flow,-Use%20if%20and)
+
+Use `if` and `switch` to make conditionals, and use `for`-`in`, `while`, and `repeat`-`while` to make loops. Parentheses around the condition or loop variable are optional. Braces around the body are required.
+
+```swift
+let individualScores = [75, 43, 103, 87, 12]
+var teamScore = 0
+for score in individualScores {
+		if score > 50 {
+				teamScore += 3
+		} else {
+				teamScore += 1
+		}
+}
+print(teamScore)
+// Prints "11"
+```
+
+In an `if` statement, the conditional must be a Boolean expression—this means that code such as `if score { ... }` is an error, not an implicit comparison to zero.
+
+You can use `if` and `let` together to work with values that might be missing. These values are represented as optionals. An optional value either contains a value or contains `nil` to indicate that a value is missing. Write a question mark (`?`) after the type of a value to mark the value as optional.
+
+```swift
+var optionalString: String? = "Hello"
+print(optionalString == nil)
+// Prints "false"
+
+var optionalName: String? = "John Appleseed"
+var greeting = "Hello!"
+if let name = optionalName {
+		greeting = "Hello, \(name)"
+}
+```
+
+> EXPERIMENT
+>
+> Change `optionalName` to `nil`. What greeting do you get? Add an `else` clause that sets a different greeting if `optionalName` is `nil`.
+>
+> ```swift
+> var optionalName: String? = nil
+> var greeting = "Hello!"
+> if let name = optionalName {
+> 		greeting = "Hello, \(name)"
+> } else {
+>   		greeting = "Hello, is anyone here?"
+> }
+> ```
+
+If the optional value is `nil`, the conditional is `false` and the code in braces is skipped. Otherwise, the optional value is unwrapped and assigned to the constant after `let`, which makes the unwrapped value available inside the block of code.
+
+Another way to handle optional values is to provide a default value using the `??` operator. If the optional value is missing, the default value is used instead.
+
+```swift
+let nickname: String? = nil
+let fullName: String = "John Appleseed"
+let informalGreeting = "Hi \(nickname ?? fullName)"
+```
+
+Switches support any kind of data and a wide variety of comparison operations—they aren’t limited to integers and tests for equality.
+
+```swift
+let vegetable = "red pepper"
+switch vegetable {
+case "celery":
+    print("Add some raisins and make ants on a log.")
+case "cucumber", "watercress":
+    print("That would make a good tea sandwich.")
+case let x where x.hasSuffix("pepper"):
+    print("Is it a spicy \(x)?")
+default:
+    print("Everything tastes good in soup.")
+}
+// Prints "Is it a spicy red pepper?"
+```
+
+> EXPERIMENT
+>
+> Try removing the default case. What error do you get?
+>
+> ```swift
+> error: switch must be exhaustive
+> ```
+
+---
+
+## 제어 흐름
+
+ `if` 와 `switch`를 사용하여 조건문을 만들고,  `for`-`in`, `while`, 과 `repeat`-`while` 을 사용하여 반복문을 만들 수 있습니다. 조건문과 반복문 변수를 괄호로 감싸는 것은 선택사항입니다. 바디는 반드시 중괄호로 감싸야 합니다. 
+
+```swift
+let individualScores = [75, 43, 103, 87, 12]
+var teamScore = 0
+for score in individualScores {
+		if score > 50 {
+				teamScore += 3
+		} else {
+				teamScore += 1
+		}
+}
+print(teamScore)
+// "11" 출력
+```
+
+`if` 문에서 조건은 반드시 boolean 표현식이어야 합니다. 이것은 `if score { ... }` 같은 코드가 0에 대한 암묵적인 비교가 아니라 오류임을 의미합니다. 
+
+없을지도 모르는 값을 사용하기 위해서 `if` 와 `let` 을 함께 사용할 수 있습니다. 이러한 값들을 옵셔널이라고 합니다. 옵셔널 값은 값을 포함하거나, 값이 없다는 것을 의미하는 `nil` 을 포함합니다. 값을 옵셔널로 표시하려면 값의 타입 뒤에 물음표 (`?`)를 적으십시오.
+
+```swift
+var optionalString: String? = "Hello"
+print(optionalString == nil)
+// "false" 출력
+
+var optionalName: String? = "John Appleseed"
+var greeting = "Hello!"
+if let name = optionalName {
+		greeting = "Hello, \(name)"
+}
+```
+
+> 실험
+>
+> `optionalName` 을 `nil`로 바꾸십시오. 어떤 인사말을 얻습니까? `optionalName` 이 `nil`일 때 다른 인사말을 설정하는  `else` 절을 추가하십시오.
+>
+> ```swift
+> var optionalName: String? = nil
+> var greeting = "Hello!"
+> if let name = optionalName {
+> 		greeting = "Hello, \(name)"
+> } else {
+>   		greeting = "Hello, is anyone here?"
+> }
+> ```
+
+옵셔널 값이 `nil` 이면, 조건은 `false` 이고 중괄호 안에 코드는 무시됩니다. 그렇지 않으면, 옵셔널 값은 언랩되고, `let` 뒤에서 상수로 할당되어 코드 블록 안에서 언랩된 값으로 사용할 수 있습니다. 
+
+옵셔널 값을 다루는 다른 방법은 `??` 연산자를 사용하여 디폴트 값을 제공하는 것입니다. 만약 옵셔널 값이 없으면 디폴트 값이 대신 사용됩니다. 
+
+```swift
+let nickname: String? = nil
+let fullName: String = "John Appleseed"
+let informalGreeting = "Hi \(nickname ?? fullName)"
+```
+
+스위치문은 모든 종류의 데이터와 넓은 범위의 비교 연산자들을 지원합니다. 그들은 정수와 같은 것을 비교하는 것에 국한되지 않습니다. 
+
+```swift
+let vegetable = "red pepper"
+switch vegetable {
+case "celery":
+    print("Add some raisins and make ants on a log.")
+case "cucumber", "watercress":
+    print("That would make a good tea sandwich.")
+case let x where x.hasSuffix("pepper"):
+    print("Is it a spicy \(x)?")
+default:
+    print("Everything tastes good in soup.")
+}
+// "Is it a spicy red pepper?" 출력
+```
+
+> 실험
+>
+> 디폴트 경우를 제거해 보십시오. 어떤 에러가 생깁니까?
+> ```swift
+> 오류: switch는 반드시 완전해야 합니다.
+> ```
+
+---
+
+_\* implicit: 절대적인, 함축적인, 암묵적인_</br>
+_\* comparison: 비교</br>_
+_\* clause: 절</br>_
+_\* Otherwise: 그렇지 않으면_</br>
+_\* make something available: ~을 사용할 수 있도록 해두다_</br>
+_\* exhaustive: 철저한, 완전한, 포괄적인</br>_
 
 ---
 
