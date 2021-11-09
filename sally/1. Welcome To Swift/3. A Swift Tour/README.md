@@ -313,7 +313,7 @@ if let name = optionalName {
 > if let name = optionalName {
 >     greeting = "Hello, \(name)"
 > } else {
->       greeting = "Hello, is anyone here?"
+>     greeting = "Hello, is anyone here?"
 > }
 > ```
 
@@ -398,7 +398,7 @@ if let name = optionalName {
 > if let name = optionalName {
 >     greeting = "Hello, \(name)"
 > } else {
->       greeting = "Hello, is anyone here?"
+>     greeting = "Hello, is anyone here?"
 > }
 > ```
 
