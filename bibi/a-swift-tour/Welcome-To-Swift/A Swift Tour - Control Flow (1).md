@@ -1,6 +1,6 @@
 # A Swift Tour - Control Flow (1)
 
->## Control Flow
+>## Control Flow 
 >
 >Use `if` and `switch` to make conditionals, and use `for`-`in`, `while`, and `repeat`-`while` to make loops. Parentheses around the condition or loop variable are optional. Braces around the body are required.
 >
@@ -8,11 +8,11 @@
 >let individualScores = [75, 43, 103, 87, 12]
 >var teamScore = 0
 >for score in individualScores {
->    if score > 50 {
->        teamScore += 3
->    } else {
->        teamScore += 1
->    }
+>if score > 50 {
+>   teamScore += 3
+>} else {
+>   teamScore += 1
+>}
 >}
 >print(teamScore)
 >// Prints "11"
@@ -30,14 +30,14 @@
 >var optionalName: String? = "John Appleseed"
 >var greeting = "Hello!"
 >if let name = optionalName {
->    greeting = "Hello, \(name)"
+>greeting = "Hello, \(name)"
 >}
 >```
 >
 >
 >
 >> EXPERIMENT
->>
+>
 >> Change `optionalName` to `nil`. What greeting do you get? Add an `else` clause that sets a different greeting if `optionalName` is `nil`.
 >
 >If the optional value is `nil`, the conditional is `false` and the code in braces is skipped. Otherwise, the optional value is unwrapped and assigned to the constant after `let`, which makes the unwrapped value available inside the block of code.
@@ -56,13 +56,13 @@
 >let vegetable = "red pepper"
 >switch vegetable {
 >case "celery":
->    print("Add some raisins and make ants on a log.")
+>   print("Add some raisins and make ants on a log.")
 >case "cucumber", "watercress":
->    print("That would make a good tea sandwich.")
+>   print("That would make a good tea sandwich.")
 >case let x where x.hasSuffix("pepper"):
->    print("Is it a spicy \(x)?")
+>   print("Is it a spicy \(x)?")
 >default:
->    print("Everything tastes good in soup.")
+>   print("Everything tastes good in soup.")
 >}
 >// Prints "Is it a spicy red pepper?"
 >```
@@ -72,6 +72,7 @@
 >> Try removing the default case. What error do you get?
 >>
 >> : `Switch must be exhaustive`
+>
 
 
 
