@@ -352,6 +352,65 @@ default:
 > error: switch must be exhaustive
 > ```
 
+Notice how `let` can be used in a pattern to assign the value that matched the pattern to a constant.
+
+After executing the code inside the switch case that matched, the program exits from the switch statement. Execution doesn’t continue to the next case, so you don’t need to explicitly break out of the switch at the end of each case’s code.
+
+You use `for`-`in` to iterate over items in a dictionary by providing a pair of names to use for each key-value pair. Dictionaries are an unordered collection, so their keys and values are iterated over in an arbitrary order.
+
+```swift
+let interestingNumbers = [
+    "Prime": [2, 3, 5, 7, 11, 13],
+    "Fibonacci": [1, 1, 2, 3, 5, 8],
+    "Square": [1, 4, 9, 16, 25],
+]
+var largest = 0
+for (_, numbers) in interestingNumbers {
+    for number in numbers {
+        if number > largest {
+            largest = number
+        }
+    }
+}
+print(largest)
+// Prints "25"
+```
+
+> EXPERIMENT
+>
+> Replace the `_` with a variable name, and keep track of which kind of number was the largest.
+
+Use `while` to repeat a block of code until a condition changes. The condition of a loop can be at the end instead, ensuring that the loop is run at least once.
+
+```swift
+var n = 2
+while n < 100 {
+    n *= 2
+}
+print(n)
+// Prints "128"
+
+var m = 2
+repeat {
+    m *= 2
+} while m < 100
+print(m)
+// Prints "128"
+```
+
+You can keep an index in a loop by using `..<` to make a range of indexes.
+
+```swift
+var total = 0
+for i in 0..<4 {
+    total += i
+}
+print(total)
+// Prints "6"
+```
+
+Use `..<` to make a range that omits its upper value, and use `...` to make a range that includes both values.
+
 ---
 
 ## 제어 흐름
@@ -436,6 +495,65 @@ default:
 > 오류: switch는 반드시 완전해야 합니다.
 > ```
 
+패턴과 일치하는 값을 상수에 할당시키기 위한 패턴에서 `let` 이 어떻게 사용되는지 주목하십시오.
+
+일치하는 switch case 내부의 코드가 실행된 후, 프로그램은 switch 문으로부터 탈출합니다. 다음 case로 연이어 실행되지 않기 때문에, 각 case 코드의 마지막에서 명시적으로 break를 할 필요 없습니다. 
+
+딕셔너리에서 아이템을 반복하기 위해, 각각의 키-값 쌍을 사용하기 위한 이름 쌍을 제공함으로써 `for`-`in` 을 사용합니다. 딕셔너리는 순서가 없는 집합이기 때문에, 그 키와 값들은 임의의 순서로 반복됩니다. 
+
+```swift
+let interestingNumbers = [
+    "Prime": [2, 3, 5, 7, 11, 13],
+    "Fibonacci": [1, 1, 2, 3, 5, 8],
+    "Square": [1, 4, 9, 16, 25],
+]
+var largest = 0
+for (_, numbers) in interestingNumbers {
+    for number in numbers {
+        if number > largest {
+            largest = number
+        }
+    }
+}
+print(largest)
+// "25" 출력
+```
+
+> EXPERIMENT
+>
+> `_`를 변수 이름으로 대체하고, 어떤 종류의 숫자가 가장 큰지 추적하십시오.
+
+조건이 변경될 때까지 코드 블럭을 반복하기 위해 `while` 을 사용하십시오. 반복문의 조건은 마지막에 있을 수 있고, 그것은 반복이 최소한 한번 실행된다는 것을 보장해줍니다.
+
+```swift
+var n = 2
+while n < 100 {
+    n *= 2
+}
+print(n)
+// "128" 출력
+
+var m = 2
+repeat {
+    m *= 2
+} while m < 100
+print(m)
+// "128" 출력
+```
+
+인덱스의 범위를 만드는 `..<` 를 사용하여 반복문의 인덱스를 유지시킬 수 있습니다. 
+
+```swift
+var total = 0
+for i in 0..<4 {
+    total += i
+}
+print(total)
+// "6" 출력
+```
+
+더 큰 값은 생략하는 범위를 만들려면 `..<` 을 사용하고, 양쪽 값을 포함하는 범위를 만들려면  `...` 을 사용하십시오.
+
 ---
 
 _\* implicit: 절대적인, 함축적인, 암묵적인_</br>
@@ -444,6 +562,10 @@ _\* clause: 절</br>_
 _\* Otherwise: 그렇지 않으면_</br>
 _\* make something available: ~을 사용할 수 있도록 해두다_</br>
 _\* exhaustive: 철저한, 완전한, 포괄적인</br>_
+_\* executing: 실행_</br>
+_\* iterate over: 반복하다_</br>
+_\* arbitrary: 임의의</br>_
+_\* omit: 생략하다_</br>
 
 ---
 
