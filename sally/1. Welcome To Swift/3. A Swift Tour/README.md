@@ -571,3 +571,293 @@ _\* omit: 생략하다_</br>
 
 </details>
 
+<details>
+	<summary>Functions and Closures</summary>
+
+
+## [Functions and Closures](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=includes%20both%20values.-,Functions%20and%20Closures,-Use%20func%20to)
+
+Use `func` to declare a function. Call a function by following its name with a list of arguments in parentheses. Use `->` to separate the parameter names and types from the function’s return type.
+
+```swift
+func greet(person: String, day: String) -> String {
+    return "Hello \(person), today is \(day)."
+}
+greet(person: "Bob", day: "Tuesday")
+```
+
+> EXPERIMENT
+>
+> Remove the `day` parameter. Add a parameter to include today’s lunch special in the greeting.
+>
+> ```swift
+> func greet(person: String, lunchSpecial: String) -> String {
+>  return "Hello \(person), today's lunch special is \(lunchSpecial)."
+> }
+> greet(person: "Bob", lunchSpecial: "Steak")
+> ```
+
+By default, functions use their parameter names as labels for their arguments. Write a custom argument label before the parameter name, or write `_` to use no argument label.
+
+```swift
+func greet(_ person: String, on day: String) -> String {
+    return "Hello \(person), today is \(day)."
+}
+greet("John", on: "Wednesday")
+```
+
+Use a tuple to make a compound value—for example, to return multiple values from a function. The elements of a tuple can be referred to either by name or by number.
+
+```swift
+func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+    var min = scores[0]
+    var max = scores[0]
+    var sum = 0
+  
+    for score in scores {
+        if score > max {
+            max = score
+        } else if score < min {
+            min = score
+        }
+        sum += score
+    }
+
+    return (min, max, sum)
+}
+let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
+print(statistics.sum)
+// Prints "120"
+print(statistics.2)
+// Prints "120"
+```
+
+Functions can be nested. Nested functions have access to variables that were declared in the outer function. You can use nested functions to organize the code in a function that’s long or complex.
+
+```swift
+func returnFifteen() -> Int {
+    var y = 10
+    func add() {
+        y += 5
+    }
+    add()
+    return y
+}
+returnFifteen()
+```
+
+Functions are a first-class type. This means that a function can return another function as its value.
+
+```swift
+func makeIncrementer() -> ((Int) -> Int) {
+    func addOne(number: Int) -> Int {
+        return 1 + number
+    }
+    return addOne
+}
+var increment = makeIncrementer()
+increment(7)
+```
+
+A function can take another function as one of its arguments.
+
+```swift
+func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
+    for item in list {
+        if condition(item) {
+            return true
+        }
+    }
+    return false
+}
+func lessThanTen(number: Int) -> Bool {
+    return number < 10
+}
+var numbers = [20, 19, 7, 12]
+hasAnyMatches(list: numbers, condition: lessThanTen)
+```
+
+Functions are actually a special case of closures: blocks of code that can be called later. The code in a closure has access to things like variables and functions that were available in the scope where the closure was created, even if the closure is in a different scope when it’s executed—you saw an example of this already with nested functions. You can write a closure without a name by surrounding code with braces (`{}`). Use `in` to separate the arguments and return type from the body.
+
+```swift
+numbers.map({ (number: Int) -> Int in
+    let result = 3 * number
+    return result
+})
+```
+
+> EXPERIMENT
+>
+> Rewrite the closure to return zero for all odd numbers.
+>
+> ```swift
+> numbers.map({ (number: Int) -> Int in
+>  return number % 2 == 0 ? number : 0
+> })
+> ```
+
+You have several options for writing closures more concisely. When a closure’s type is already known, such as the callback for a delegate, you can omit the type of its parameters, its return type, or both. Single statement closures implicitly return the value of their only statement.
+
+```swift
+let mappedNumbers = numbers.map({ number in 3 * number })
+print(mappedNumbers)
+// Prints "[60, 57, 21, 36]"
+```
+
+You can refer to parameters by number instead of by name—this approach is especially useful in very short closures. A closure passed as the last argument to a function can appear immediately after the parentheses. When a closure is the only argument to a function, you can omit the parentheses entirely.
+
+```swift
+let sortedNumbers = numbers.sorted { $0 > $1 }
+print(sortedNumbers)
+// Prints "[20, 19, 12, 7]"
+```
+
+---
+
+## 함수와 클로저
+
+`func` 를 사용하여 함수를 선언하십시오. 뒤이어 오는 그 이름과 괄호 안에 있는 인수 목록으로 함수를 호출하십시오. `->` 를 사용하여 매개변수의 이름과 타입을 함수의 반환 타입과 분리시키십시오.
+
+```swift
+func greet(person: String, day: String) -> String {
+    return "Hello \(person), today is \(day)."
+}
+greet(person: "Bob", day: "Tuesday")
+```
+
+> 실험
+>
+> 매개변수 `day` 를 지우십시오. 인사말에 오늘의 점심 스페셜을 포함시키기 위해 매개변수를 추가하십시오.
+>
+> ```swift
+> func greet(person: String, lunchSpecial: String) -> String {
+>  return "Hello \(person), today's lunch special is \(lunchSpecial)."
+> }
+> greet(person: "Bob", lunchSpecial: "Steak")
+> ```
+
+기본적으로 함수는 매개변수 이름을 인수의 라벨로 사용합니다. 매개변수 이름 앞에 커스텀 인수 라벨을 적거나, `_` 를 사용하여 인수 라벨을 사용하지 않을 수 있습니다. 
+
+```swift
+func greet(_ person: String, on day: String) -> String {
+    return "Hello \(person), today is \(day)."
+}
+greet("John", on: "Wednesday")
+```
+
+튜플을 사용하여 값 복합체를 만드십시오. 예를 들어, 함수로 부터 여러개의 값을 반환받기 위한 경우입니다. 튜플의 요소들은 이름이나 번호로 참조할 수 있습니다. 
+
+```swift
+func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
+    var min = scores[0]
+    var max = scores[0]
+    var sum = 0
+  
+    for score in scores {
+        if score > max {
+            max = score
+        } else if score < min {
+            min = score
+        }
+        sum += score
+    }
+
+    return (min, max, sum)
+}
+let statistics = calculateStatistics(scores: [5, 3, 100, 3, 9])
+print(statistics.sum)
+// "120" 출력
+print(statistics.2)
+// "120" 출력
+```
+
+함수는 중첩될 수 있습니다. 중첩된 함수는 외부에서 선언된 변수에 대한 접근 권한을 가집니다. 길거나 복잡한 함수의 코드를 구성하기 위해서 중첩된 함수를 사용할 수 있습니다. 
+
+```swift
+func returnFifteen() -> Int {
+    var y = 10
+    func add() {
+        y += 5
+    }
+    add()
+    return y
+}
+returnFifteen()
+```
+
+함수는 일급 시민입니다. 이 말은 함수가 다른 함수를 그것의 값으로써 반환할 수 있다는 것을 의미합니다. 
+
+```swift
+func makeIncrementer() -> ((Int) -> Int) {
+    func addOne(number: Int) -> Int {
+        return 1 + number
+    }
+    return addOne
+}
+var increment = makeIncrementer()
+increment(7)
+```
+
+함수는 다른 함수를 그것의 인수 중 하나로 가질 수 있습니다. 
+
+```swift
+func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
+    for item in list {
+        if condition(item) {
+            return true
+        }
+    }
+    return false
+}
+func lessThanTen(number: Int) -> Bool {
+    return number < 10
+}
+var numbers = [20, 19, 7, 12]
+hasAnyMatches(list: numbers, condition: lessThanTen)
+```
+
+사실 함수는 클로저의 특별한 한 종류입니다. 클로저는 이후에 호출 할 수 있는 코드 블럭입니다. 클로저의 코드는 실행 환경과 상관없이, 클로저가 처음 생성된 환경에서 접근 가능했던 변수와 함수 같은 것들에 접근할 수 있습니다. 이것의 예를 이미 중첩 함수에서 봤습니다. 중괄호(`{}`)로 코드를 감싸서 이름 없이 클로저를 작성할 수 있습니다. `in` 을 사용하여 인수와 반환 타입을 몸통으로 부터 분리시키십시오.
+
+```swift
+numbers.map({ (number: Int) -> Int in
+    let result = 3 * number
+    return result
+})
+```
+
+> 실험
+>
+> 모든 홀수에 대해 0을 반환하도록 클로저를 다시 작성하십시오.
+>
+> ```swift
+> numbers.map({ (number: Int) -> Int in
+>  return number % 2 == 0 ? number : 0
+> })
+> ```
+
+클로저를 더 간결하게 작성하는 여러가지 방법이 있습니다. 델리게이트의 콜백 같이 클로저의 타입을 이미 알고 있는 경우에는 변수의 타입과 반환 타입, 혹은 둘 다를 생략할 수 있습니다. 한 줄 짜리 클로저는 암묵적으로 오직 그 줄의 값을 반환합니다.
+
+```swift
+let mappedNumbers = numbers.map({ number in 3 * number })
+print(mappedNumbers)
+// "[60, 57, 21, 36]" 출력
+```
+
+이름 대신 번호를 통해 변수를 참조할 수 있습니다. 이런 식의 접근은 매우 짧은 클로저에서 특히 유용합니다. 함수에 마지막 인자로 전달된 클로저는 괄호 뒤에 바로 나타날 수 있습니다. 클로저가 함수의 유일한 인수일 때는 괄호를 완전히 생략할 수 있습니다. 
+
+```swift
+let sortedNumbers = numbers.sorted { $0 > $1 }
+print(sortedNumbers)
+// "[20, 19, 12, 7]" 출력
+```
+
+---
+
+_* refer: 참조하다_</br>
+_* nest: 중첩하다_</br>
+_* concisely: 간결하게_</br>
+
+---
+
+</details>
+
