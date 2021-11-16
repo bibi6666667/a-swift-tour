@@ -861,3 +861,329 @@ _* concisely: 간결하게_</br>
 
 </details>
 
+<details>
+	<summary>Objects and Classes</summary>
+
+
+## [Objects and Classes](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=19%2C%2012%2C%207%5D%22-,Objects%20and%20Classes,-Use%20class%20followed)
+
+Use `class` followed by the class’s name to create a class. A property declaration in a class is written the same way as a constant or variable declaration, except that it’s in the context of a class. Likewise, method and function declarations are written the same way.
+
+```swift
+class Shape {
+	var numberOfSides = 0
+    func simpleDescription() -> String {
+	    return "A shape with \(numberOfSides) sides."
+    }
+}
+```
+
+> EXPERIMENT
+>
+> Add a constant property with `let`, and add another method that takes an argument.
+
+Create an instance of a class by putting parentheses after the class name. Use dot syntax to access the properties and methods of the instance.
+
+```swift
+var shape = Shape()
+shape.numberOfSides = 7
+var shapeDescription = shape.simpleDescription()
+```
+
+This version of the `Shape` class is missing something important: an initializer to set up the class when an instance is created. Use `init` to create one.
+
+```swift
+class NamedShape {
+    var numberOfSides: Int = 0
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    func simpleDescription() -> String {
+        return "A shape with \(numberOfSides) sides."
+    }
+}
+```
+
+Notice how `self` is used to distinguish the `name` property from the `name` argument to the initializer. The arguments to the initializer are passed like a function call when you create an instance of the class. Every property needs a value assigned—either in its declaration (as with `numberOfSides`) or in the initializer (as with `name`).
+
+Use `deinit` to create a deinitializer if you need to perform some cleanup before the object is deallocated.
+
+Subclasses include their superclass name after their class name, separated by a colon. There’s no requirement for classes to subclass any standard root class, so you can include or omit a superclass as needed.
+
+Methods on a subclass that override the superclass’s implementation are marked with `override`—overriding a method by accident, without `override`, is detected by the compiler as an error. The compiler also detects methods with `override` that don’t actually override any method in the superclass.
+
+```swift
+class Square: NamedShape {
+    var sideLength: Double
+  
+    init(sideLength: Double, name: String) {
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 4
+    }
+  
+    func area() -> Double {
+        return sideLength * sideLength
+    }
+  
+    override func simpleDescription() -> String {
+        return "A square with sides of length \(sideLength)."
+    }
+}
+let test = Square(sideLength: 5.2, name: "my test square")
+test.area()
+test.simpleDescription()
+```
+
+> EXPERIMENT
+>
+> Make another subclass of `NamedShape` called `Circle` that takes a radius and a name as arguments to its initializer. Implement an `area()` and a `simpleDescription()` method on the `Circle` class.
+
+In addition to simple properties that are stored, properties can have a getter and a setter.
+
+```swift
+class EquilateralTriangle: NamedShape {
+    var sideLength: Double = 0.0
+  
+    init(sideLength: Double, name: String) {
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 3
+    }
+  
+    var perimeter: Double {
+        get {
+            return 3.0 * sideLength
+        }
+        set {
+            sideLength = newValue / 3.0
+        }
+    }
+  
+    override func simpleDescription() -> String {
+        return "An equilateral triangle with sides of length \(sideLength)."
+    }
+}
+var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
+print(triangle.perimeter)
+// Prints "9.3"
+triangle.perimeter = 9.9
+print(triangle.sideLength)
+// Prints "3.3000000000000003"
+```
+
+In the setter for `perimeter`, the new value has the implicit name `newValue`. You can provide an explicit name in parentheses after `set`.
+
+Notice that the initializer for the `EquilateralTriangle` class has three different steps:
+
+1. Setting the value of properties that the subclass declares.
+2. Calling the superclass’s initializer.
+3. Changing the value of properties defined by the superclass. Any additional setup work that uses methods, getters, or setters can also be done at this point.
+
+If you don’t need to compute the property but still need to provide code that’s run before and after setting a new value, use `willSet` and `didSet`. The code you provide is run any time the value changes outside of an initializer. For example, the class below ensures that the side length of its triangle is always the same as the side length of its square.
+
+```swift
+class TriangleAndSquare {
+    var triangle: EquilateralTriangle {
+        willSet {
+            square.sideLength = newValue.sideLength
+        }
+    }
+    var square: Square {
+        willSet {
+            triangle.sideLength = newValue.sideLength
+        }
+    }
+    init(size: Double, name: String) {
+        square = Square(sideLength: size, name: name)
+        triangle = EquilateralTriangle(sideLength: size, name: name)
+    }
+}
+
+var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
+print(triangleAndSquare.square.sideLength)
+// Prints "10.0"
+print(triangleAndSquare.triangle.sideLength)
+// Prints "10.0"
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
+print(triangleAndSquare.triangle.sideLength)
+// Prints "50.0"
+```
+
+When working with optional values, you can write `?` before operations like methods, properties, and subscripting. If the value before the `?` is `nil`, everything after the `?` is ignored and the value of the whole expression is `nil`. Otherwise, the optional value is unwrapped, and everything after the `?` acts on the unwrapped value. In both cases, the value of the whole expression is an optional value.
+
+```swift
+let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
+let sideLength = optionalSquare?.sideLength
+```
+
+---
+
+## 객체와 클래스
+
+`class` 뒤에 클래스의 이름을 붙여 클래스를 생성합니다. 클래스에서 속성은 클래스 내부에서라는 것만 제외하면, 상수나 변수와 같은 방식으로 선언됩니다. 마찬가지로, 메소드와 함수 또한 같은 방식으로 선언됩니다. 
+
+```swift
+class Shape {
+	var numberOfSides = 0
+    func simpleDescription() -> String {
+	    return "A shape with \(numberOfSides) sides."
+    }
+}
+```
+
+> 실험
+>
+> `let` 을 사용하여 상수 속성을 추가하고, 인수를 가지는 메소드를 추가하십시오.
+
+클래스의 이름 뒤에 괄호를 넣어서 클래스의 인스턴스를 생성합니다. 점 구문을 사용하여 인스턴스의 속성과 메소드에 접근할 수 있습니다. 
+
+```swift
+var shape = Shape()
+shape.numberOfSides = 7
+var shapeDescription = shape.simpleDescription()
+```
+
+이 버전의 `Shape` 클래스는 인스턴스가 생성될 때 클래스를 설정하기 위한 생성자라는 중요한 무언가가 빠져 있습니다. `init` 을 사용하여 생성합니다. 
+
+```swift
+class NamedShape {
+    var numberOfSides: Int = 0
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    func simpleDescription() -> String {
+        return "A shape with \(numberOfSides) sides."
+    }
+}
+```
+
+생성자의 인수 `name` 과 속성 `name` 을 구분하기 위해 `self` 가 어떻게 사용되는지에 주목하십시오. 클래스의 인스턴스를 생성할 때, 생성자의 인수는 함수 호출처럼 전달됩니다. 모든 속성에는 값이 할당되어야 합니다. `numberOfSides` 처럼 선언에서 던지, `name` 처럼 생성자에서 던지. 
+
+객체가 할당 해제되기 전에 약간의 정리가 필요하다면 `deinit` 을 사용하여 디이니셜라이저를 생성합니다.
+
+서브 클래스는 클래스 이름뒤에 콜론으로 구분하여 그들의 슈퍼 클래스의 이름을 포함합니다. 클래스가 어떤 표준 루트 클래스의 하위로 분류될 필요는 없기 때문에, 필요에 따라 슈퍼 클래스를 포함하거나 생략할 수 있습니다. 
+
+슈퍼 클래스의 구현을 재정의한 서브 클래스의 메소드는 `override` 로 표시됩니다. `override` 없이 우연히 메소드를 재정의 하면 컴파일러가 오류로 감지합니다. 또한, `override` 를 사용했지만 실제로는 슈퍼 클래스로의 어떠한 메소드도 재정의한 것이 아니라면 컴파일러가 감지합니다. 
+
+```swift
+class Square: NamedShape {
+    var sideLength: Double
+  
+    init(sideLength: Double, name: String) {
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 4
+    }
+  
+    func area() -> Double {
+        return sideLength * sideLength
+    }
+  
+    override func simpleDescription() -> String {
+        return "A square with sides of length \(sideLength)."
+    }
+}
+let test = Square(sideLength: 5.2, name: "my test square")
+test.area()
+test.simpleDescription()
+```
+
+> 실험
+>
+> 생성자에 반지름과 이름을 인수로 가지는, `Circle` 이라는 `NamedShape` 의 또 다른 서브 클래스를 생성하십시오. `Circle` 클래스에 `area()` 메소드와 `simpleDescription()` 메소드를 구현하십시오.
+
+프로퍼티는 단순한 저장 뿐만 아니라, 게터와 세터를 가질 수 있습니다. 
+
+```swift
+class EquilateralTriangle: NamedShape {
+    var sideLength: Double = 0.0
+  
+    init(sideLength: Double, name: String) {
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 3
+    }
+  
+    var perimeter: Double {
+        get {
+            return 3.0 * sideLength
+        }
+        set {
+            sideLength = newValue / 3.0
+        }
+    }
+  
+    override func simpleDescription() -> String {
+        return "An equilateral triangle with sides of length \(sideLength)."
+    }
+}
+var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
+print(triangle.perimeter)
+// "9.3" 출력
+triangle.perimeter = 9.9
+print(triangle.sideLength)
+// "3.3000000000000003" 출력
+```
+
+`perimeter` 의 세터에서 새로운 값은 암묵적으로 `newValue` 라는 이름을 가집니다. `set` 뒤의 괄호 안에 명시적인 이름을 줄 수도 있습니다. 
+
+`EquilateralTriangle` 클래스의 생성자가 가지고 있는 세가지 다른 단계를 주목하십시오:
+
+1. 서브 클래스가 선언한 속성의 값들을 설정합니다.
+2. 서브 클래스의 생성자를 호출합니다.
+3. 슈퍼 클래스에서 정의된 속성의 값들을 변경합니다. 메소드, 게터, 혹은 세터를 사용하는 여러 추가적인 설정 작업들 또한 이 시점에 모두 완료할 수 있습니다.
+
+만약 속성을 계산할 필요는 없지만, 여전히 새로운 값을 설정하기 전이나 후에 실행되는 코드를 제공해야 한다면, `willSet` 과 `didSet` 을 사용하십시오. 제공한 코드는 생성자 외부에서 값이 변화할 때마다 실행됩니다. 예를 들어, 아래에 있는 클래스는 삼각형의 빗변의 길이와 사각형의 빗변의 길이가 항상 같다는 것을 보증해줍니다. 
+
+```swift
+class TriangleAndSquare {
+    var triangle: EquilateralTriangle {
+        willSet {
+            square.sideLength = newValue.sideLength
+        }
+    }
+    var square: Square {
+        willSet {
+            triangle.sideLength = newValue.sideLength
+        }
+    }
+    init(size: Double, name: String) {
+        square = Square(sideLength: size, name: name)
+        triangle = EquilateralTriangle(sideLength: size, name: name)
+    }
+}
+
+var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
+print(triangleAndSquare.square.sideLength)
+// "10.0" 출력
+print(triangleAndSquare.triangle.sideLength)
+// "10.0" 출력
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
+print(triangleAndSquare.triangle.sideLength)
+// "50.0" 출력
+```
+
+옵셔널 값을 사용할 때, 메소드, 속성, 그리고 서브스크립팅 같은 작업들 앞에 `?` 를 사용할 수 있습니다. `?` 앞의 값이 `nil` 이면, `?` 뒤의 모든 것들을 무시하고 그 전체 표현식 또한 `nil` 입니다. 그게 아니라 옵셔널 값이 언랩 됐다면 `?` 뒤의 모든 것들은 그 언랩된 값에 대해 실행됩니다. 두 경우 모두 전체 표현식의 값은 옵셔널 값입니다. 
+
+```swift
+let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
+let sideLength = optionalSquare?.sideLength
+```
+
+---
+
+_* deallocate : 할당 해제하다_</br>
+_* implementation : 구현_</br>
+_* In addition to : 게다가, 뿐만 아니라_</br>
+_* perimeter : 둘레_</br>
+
+---
+
+</details>
