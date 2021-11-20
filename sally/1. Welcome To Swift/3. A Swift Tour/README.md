@@ -574,7 +574,6 @@ _\* omit: 생략하다_</br>
 <details>
 	<summary>Functions and Closures</summary>
 
-
 ## [Functions and Closures](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=includes%20both%20values.-,Functions%20and%20Closures,-Use%20func%20to)
 
 Use `func` to declare a function. Call a function by following its name with a list of arguments in parentheses. Use `->` to separate the parameter names and types from the function’s return type.
@@ -863,7 +862,6 @@ _* concisely: 간결하게_</br>
 
 <details>
 	<summary>Objects and Classes</summary>
-
 
 ## [Objects and Classes](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=19%2C%2012%2C%207%5D%22-,Objects%20and%20Classes,-Use%20class%20followed)
 
@@ -1183,6 +1181,252 @@ _* deallocate : 할당 해제하다_</br>
 _* implementation : 구현_</br>
 _* In addition to : 게다가, 뿐만 아니라_</br>
 _* perimeter : 둘레_</br>
+
+---
+
+</details>
+
+<details>
+	<summary>Enumerations and Structures</summary>
+
+## [Enumerations and Structures](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=sideLength%20%3D%20optionalSquare%3F.sideLength-,Enumerations%20and%20Structures,-Use%20enum%20to)
+
+Use `enum` to create an enumeration. Like classes and all other named types, enumerations can have methods associated with them.
+
+```swift
+enum Rank: Int {
+    case ace = 1
+    case two, three, four, five, six, seven, eight, nine, ten
+    case jack, queen, king
+
+    func simpleDescription() -> String {
+        switch self {
+        case .ace:
+            return "ace"
+        case .jack:
+            return "jack"
+        case .queen:
+            return "queen"
+        case .king:
+            return "king"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+let ace = Rank.ace
+let aceRawValue = ace.rawValue
+```
+
+> EXPERIMENT
+>
+> Write a function that compares two `Rank` values by comparing their raw values.
+
+By default, Swift assigns the raw values starting at zero and incrementing by one each time, but you can change this behavior by explicitly specifying values. In the example above, `Ace` is explicitly given a raw value of `1`, and the rest of the raw values are assigned in order. You can also use strings or floating-point numbers as the raw type of an enumeration. Use the `rawValue` property to access the raw value of an enumeration case.
+
+Use the `init?(rawValue:)` initializer to make an instance of an enumeration from a raw value. It returns either the enumeration case matching the raw value or `nil` if there’s no matching `Rank`.
+
+```swift
+if let convertedRank = Rank(rawValue: 3) {
+    let threeDescription = convertedRank.simpleDescription()
+}
+```
+
+The case values of an enumeration are actual values, not just another way of writing their raw values. In fact, in cases where there isn’t a meaningful raw value, you don’t have to provide one.
+
+```swift
+enum Suit {
+    case spades, hearts, diamonds, clubs
+
+    func simpleDescription() -> String {
+        switch self {
+        case .spades:
+            return "spades"
+        case .hearts:
+            return "hearts"
+        case .diamonds:
+            return "diamonds"
+        case .clubs:
+            return "clubs"
+        }
+    }
+}
+let hearts = Suit.hearts
+let heartsDescription = hearts.simpleDescription()
+```
+
+> EXPERIMENT
+>
+> Add a `color()` method to `Suit` that returns “black” for spades and clubs, and returns “red” for hearts and diamonds.
+
+Notice the two ways that the `hearts` case of the enumeration is referred to above: When assigning a value to the `hearts` constant, the enumeration case `Suit.hearts` is referred to by its full name because the constant doesn’t have an explicit type specified. Inside the switch, the enumeration case is referred to by the abbreviated form `.hearts` because the value of `self` is already known to be a suit. You can use the abbreviated form anytime the value’s type is already known.
+
+If an enumeration has raw values, those values are determined as part of the declaration, which means every instance of a particular enumeration case always has the same raw value. Another choice for enumeration cases is to have values associated with the case—these values are determined when you make the instance, and they can be different for each instance of an enumeration case. You can think of the associated values as behaving like stored properties of the enumeration case instance. For example, consider the case of requesting the sunrise and sunset times from a server. The server either responds with the requested information, or it responds with a description of what went wrong.
+
+```swift
+enum ServerResponse {
+    case result(String, String)
+    case failure(String)
+}
+
+let success = ServerResponse.result("6:00 am", "8:09 pm")
+let failure = ServerResponse.failure("Out of cheese.")
+
+switch success {
+case let .result(sunrise, sunset)
+    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+case let .failure(message):
+    print("Failure...  \(message)")
+}
+// Prints "Sunrise is at 6:00 am and sunset is at 8:09 pm."
+```
+
+> EXPERIMENT
+>
+> Add a third case to `ServerResponse` and to the switch.
+
+Notice how the sunrise and sunset times are extracted from the `ServerResponse` value as part of matching the value against the switch cases.
+
+Use `struct` to create a structure. Structures support many of the same behaviors as classes, including methods and initializers. One of the most important differences between structures and classes is that structures are always copied when they’re passed around in your code, but classes are passed by reference.
+
+```swift
+struct Card {
+    var rank: Rank
+    var suit: Suit
+    func simpleDescription() -> String {
+        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+    }
+}
+let threeOfSpades = Card(rank: .three, suit: .spades)
+let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+```
+
+> EXPERIMENT
+>
+> Write a function that returns an array containing a full deck of cards, with one card of each combination of rank and suit.
+
+---
+
+## 열거형과 구조체
+
+`enum` 을 사용하여 열거형을 만듭니다. 클래스와 다른 모든 명명된 타입들처럼 열거형도 관련된 메소드를 가질 수 있습니다. 
+
+```swift
+enum Rank: Int {
+    case ace = 1
+    case two, three, four, five, six, seven, eight, nine, ten
+    case jack, queen, king
+
+    func simpleDescription() -> String {
+        switch self {
+        case .ace:
+            return "ace"
+        case .jack:
+            return "jack"
+        case .queen:
+            return "queen"
+        case .king:
+            return "king"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+let ace = Rank.ace
+let aceRawValue = ace.rawValue
+```
+
+> 실험
+>
+> 두 개의 `Rank` 값을 그들의 원시값으로 비교하는 함수를 작성하십시오.
+
+기본적으로, 스위프트는 0 부터 시작해서 1씩 증가하는 원시값을 할당하지만, 명시적으로 값을 지정해서 그 동작을 변경할 수 있습니다. 위의 예에서 `Ace` 는 명시적으로 1의 값이 주어졌고, 나머지 원시값들은 순서에 따라 할당됩니다. 또한 문자열이나 부동 소수점 숫자도 열거형의 원시 타입으로 사용할 수 있습니다. `rawValue` 속성을 사용하여 열거형 케이스의 원시값에 접근합니다. 
+
+`init?(rawValue:)` 생성자를 사용하여 원시값으로부터 열거형의 인스턴스를 만듭니다. 원시값과 일치하는 열거형 케이스를 반환하거나 만약 일치하는 `Rank` 가 없다면 `nil` 을 반환합니다. 
+
+```swift
+if let convertedRank = Rank(rawValue: 3) {
+    let threeDescription = convertedRank.simpleDescription()
+}
+```
+
+열거형의 케이스 값은 그들의 원시값을 작성하는 또 다른 방법이 아니라 실제 값입니다. 사실, 의미있는 원시값이 없다면 꼭 제공할 필요는 없습니다. 
+
+```swift
+enum Suit {
+    case spades, hearts, diamonds, clubs
+
+    func simpleDescription() -> String {
+        switch self {
+        case .spades:
+            return "spades"
+        case .hearts:
+            return "hearts"
+        case .diamonds:
+            return "diamonds"
+        case .clubs:
+            return "clubs"
+        }
+    }
+}
+let hearts = Suit.hearts
+let heartsDescription = hearts.simpleDescription()
+```
+
+> 실험
+>
+> `Suit` 에 스페이드와 클럽에는 "검정"을 반환하고, 하트와 다이아몬드에는 "빨강"을 반환하는 `color()` 메소드를 추가하십시오.
+
+위에서 열거형의 `hearts` 케이스를 참조하는 두 가지 방법에 주목하십시오: `hearts` 상수에 값을 할당할 때, 이 상수에 명시적인 타입이 지정되어 있지 않기 때문에, 열거형 케이스 `Suit.hearts` 는 풀네임으로 참조됩니다. 스위치문 내부에서 `self` 의 값은 이미 suit 라고 알려져 있기 때문에, 열거형 케이스는 축약된 `.hearts` 형태로 참조됩니다. 값의 타입을 이미 알고 있다면 언제나 축약된 형태를 사용할 수 있습니다. 
+
+열거형이 원시값을 가지고 있다면, 그 값들은 선언의 일부로써 결정됩니다. 그 말은 특정한 열거형 케이스의 모든 인스턴스들이 같은 원시값을 가진다는 의미입니다. 열거형 케이스에 대한 또 다른 선택은 그 케이스와 관련된 값을 가지는 것입니다. 이 값들은 인스턴스를 생성할 때 결정되고 열거형 케이스의 인스턴스 마다 다를 수 있습니다. 관련된 값들은 열거형 케이스 인스턴스의 저장 프로퍼티 같은 행동으로 생각할 수 있습니다. 예를 들어, 서버에 일출과 일몰 시간을 요청하는 경우를 생각해보십시오. 서버는 요청된 정보와 함께 응답하거나, 무엇이 잘못 되었는지에 대한 설명과 함께 응답합니다. 
+
+```swift
+enum ServerResponse {
+    case result(String, String)
+    case failure(String)
+}
+
+let success = ServerResponse.result("6:00 am", "8:09 pm")
+let failure = ServerResponse.failure("Out of cheese.")
+
+switch success {
+case let .result(sunrise, sunset)
+    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+case let .failure(message):
+    print("Failure...  \(message)")
+}
+// "Sunrise is at 6:00 am and sunset is at 8:09 pm." 출력
+```
+
+> 실험
+>
+> 세 번째 케이스를 `ServerResponse` 와 스위치문에 추가하십시오.
+
+스위치 케이스에 대하여 일치하는 값의 일부분으로써,  `ServerResponse` 값으로부터 일출과 일몰 시간이 어떻게 추출되는지에 주목하십시오.
+
+`struct` 를 사용하여 구조체를 만듭니다. 구조체는 메소드와 생성자를 포함하여 클래스와 동일한 행동을 많이 지원합니다. 구조체와 클래스의 가장 중요한 차이점 중 하나는 코드 안에서 주변으로 전달될 때, 구조체는 항상 복사되고 클래스는 참조로 전달된다는 것입니다. 
+
+```swift
+struct Card {
+    var rank: Rank
+    var suit: Suit
+    func simpleDescription() -> String {
+        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+    }
+}
+let threeOfSpades = Card(rank: .three, suit: .spades)
+let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+```
+
+> 실험
+>
+> 각각의 카드가 rank와 suit의 조합인 카드의 전체 덱을 포함하는 배열을 반환하는 함수를 작성하십시오.
+
+---
+
+_* enumeration : 열거_</br>
+_* abbreviated : 축약된_</br>
 
 ---
 
