@@ -1431,3 +1431,469 @@ _* abbreviated : 축약된_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Protocols and Extensions</summary>
+
+## [Protocols and Extensions](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=rank%20and%20suit.-,Protocols%20and%20Extensions,-Use%20protocol%20to)
+
+Use `protocol` to declare a protocol.
+
+```swift
+protocol ExampleProtocol {
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+```
+
+Classes, enumerations, and structs can all adopt protocols.
+
+```swift
+class SimpleClass: ExampleProtocol {
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    func adjust() {
+        simpleDescription += "  Now 100% adjusted."
+    }
+}
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+struct SimpleStructure: ExampleProtocol {
+    var simpleDescription: String = "A simple structure"
+    mutating func adjust() {
+        simpleDescription += " (adjusted)"
+    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+```
+
+> EXPERIMENT
+>
+> Add another requirement to `ExampleProtocol`. What changes do you need to make to `SimpleClass` and `SimpleStructure` so that they still conform to the protocol?
+
+Notice the use of the `mutating` keyword in the declaration of `SimpleStructure` to mark a method that modifies the structure. The declaration of `SimpleClass` doesn’t need any of its methods marked as mutating because methods on a class can always modify the class.
+
+Use `extension` to add functionality to an existing type, such as new methods and computed properties. You can use an extension to add protocol conformance to a type that’s declared elsewhere, or even to a type that you imported from a library or framework.
+
+```swift
+extension Int: ExampleProtocol {
+    var simpleDescription: String {
+        return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+}
+print(7.simpleDescription)
+// Prints "The number 7"
+```
+
+> EXPERIMENT
+>
+> Write an extension for the `Double` type that adds an `absoluteValue` property.
+
+You can use a protocol name just like any other named type—for example, to create a collection of objects that have different types but that all conform to a single protocol. When you work with values whose type is a protocol type, methods outside the protocol definition aren’t available.
+
+```swift
+let protocolValue: ExampleProtocol = a
+print(protocolValue.simpleDescription)
+// Prints "A very simple class.  Now 100% adjusted."
+// print(protocolValue.anotherProperty)  // Uncomment to see the error
+```
+
+Even though the variable `protocolValue` has a runtime type of `SimpleClass`, the compiler treats it as the given type of `ExampleProtocol`. This means that you can’t accidentally access methods or properties that the class implements in addition to its protocol conformance.
+
+---
+
+## 프로토콜과 익스텐션
+
+`protocol` 을 사용하여 프로토콜을 선언합니다.
+
+```swift
+protocol ExampleProtocol {
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+```
+
+클래스, 열거형, 구조체 모두 프로토콜을 채택할 수 있습니다. 
+
+```swift
+class SimpleClass: ExampleProtocol {
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    func adjust() {
+        simpleDescription += "  Now 100% adjusted."
+    }
+}
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+struct SimpleStructure: ExampleProtocol {
+    var simpleDescription: String = "A simple structure"
+    mutating func adjust() {
+        simpleDescription += " (adjusted)"
+    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+```
+
+> 실험
+>
+> `ExampleProtocol` 에 다른 요구사항을 추가하십시오. `SimpleClass` 와 `SimpleStructure` 가 여전히 프로토콜을 따르게 하기 위해서 어떤 변화가 필요합니까?
+
+`SimpleStructure` 의 선언에서 해당 구조체를 변경하는 메소드를 표시하기 위해 `mutating` 키워드를 사용하는 것에 주목하십시오. 클래스의 메소드는 언제나 해당 클래스를 변경시킬 수 있기 때문에, `SimpleClass` 의 선언에서는 어떠한 메소드에도 mutating 표시를 할 필요가 없습니다. 
+
+`extension` 을 사용하여 새 메소드나 계산 프로퍼티 같은 기능을 기존 타입에 추가합니다. 익스텐션을 사용하여 다른 곳에서 선언된 타입이나, 심지어 라이브러리나 프레임워크에서 임포트해 온 타입에도 프로토콜 적합성을 추가할 수 있습니다. 
+
+```swift
+extension Int: ExampleProtocol {
+    var simpleDescription: String {
+        return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+}
+print(7.simpleDescription)
+// "The number 7" 출력
+```
+
+> 실험
+>
+> `absoluteValue` 속성을 추가하는 `Double` 타입의 익스텐션을 작성하십시오.
+
+다른 명명된 타입들 처럼 프로토콜 이름을 사용할 수 있습니다. 예를 들어, 다른 타입을 가지지만, 모두 단일 프로토콜을 준수하는 객체의 콜렉션을 생성하기 위해서 입니다. 타입이 프로토콜인 값을 사용할 때, 프로토콜 정의 외부의 메소드는 사용이 불가능합니다. 
+
+```swift
+let protocolValue: ExampleProtocol = a
+print(protocolValue.simpleDescription)
+// "A very simple class.  Now 100% adjusted." 출력
+// print(protocolValue.anotherProperty)  // 오류를 보려면 주석을 해제하십시오.
+```
+
+비록 `protocolValue` 변수가 `SimpleClass` 의 런타임 타입을 가지더라도, 컴파일러는 이것을 `ExampleProtocol`  타입으로 다룹니다. 즉, 프토토콜 적합성에 더하여 클래스가 구현하는 메소드나 프로퍼티에 우연히 접근할 수 없다는 의미입니다.
+
+---
+
+_* conform : 순응하다, 따르다, 따르게 하다_</br>
+_* functionality : 기능_</br>
+_* conformance : 적합성_</br>
+_* elsewhere : 다른 곳, 어떤 딴곳에_</br>
+_* even though : 일지라도, ~비록 ~할지라도_</br>
+_* implement : 구현하다_</br>
+
+---
+
+</details>
+
+<details>
+	<summary>Error Handling</summary>
+
+## [Error Handling](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=its%20protocol%20conformance.-,Error%20Handling,-You%20represent%20errors)
+
+You represent errors using any type that adopts the `Error` protocol.
+
+```swift
+enum PrinterError: Error {
+    case outOfPaper
+    case noToner
+    case onFire
+}
+```
+
+Use `throw` to throw an error and `throws` to mark a function that can throw an error. If you throw an error in a function, the function returns immediately and the code that called the function handles the error.
+
+```swift
+func send(job: Int, toPrinter printerName: String) throws -> String {
+    if printerName == "Never Has Toner" {
+        throw PrinterError.noToner
+    }
+    return "Job sent"
+}
+```
+
+There are several ways to handle errors. One way is to use `do`-`catch`. Inside the `do` block, you mark code that can throw an error by writing `try` in front of it. Inside the `catch` block, the error is automatically given the name `error` unless you give it a different name.
+
+```swift
+do {
+    let printerResponse = try send(job: 1040, toPrinter: "Bi Sheng")
+    print(printerResponse)
+} catch {
+    print(error)
+}
+// Prints "Job sent"
+```
+
+> EXPERIMENT
+>
+> Change the printer name to `"Never Has Toner"`, so that the `send(job:toPrinter:)` function throws an error.
+
+You can provide multiple `catch` blocks that handle specific errors. You write a pattern after `catch` just as you do after `case` in a switch.
+
+```swift
+do {
+    let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
+    print(printerResponse)
+} catch PrinterError.onFire {
+    print("I'll just put this over here, with the rest of the fire.")
+} catch let printerError as PrinterError {
+    print("Printer error: \(printerError).")
+} catch {
+    print(error)
+}
+// Prints "Job sent"
+```
+
+> EXPERIMENT
+>
+> Add code to throw an error inside the `do` block. What kind of error do you need to throw so that the error is handled by the first `catch` block? What about the second and third blocks?
+
+Another way to handle errors is to use `try?` to convert the result to an optional. If the function throws an error, the specific error is discarded and the result is `nil`. Otherwise, the result is an optional containing the value that the function returned.
+
+```swift
+let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
+let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
+```
+
+Use `defer` to write a block of code that’s executed after all other code in the function, just before the function returns. The code is executed regardless of whether the function throws an error. You can use `defer` to write setup and cleanup code next to each other, even though they need to be executed at different times.
+
+```swift
+var fridgeIsOpen = false
+let fridgeContent = ["milk", "eggs", "leftovers"]
+
+func fridgeContains(_ food: String) -> Bool {
+    fridgeIsOpen = true
+    defer {
+        fridgeIsOpen = false
+    }
+    
+    let result = fridgeContent.contains(food)
+    return result
+}
+fridgeContains("banana")
+print(fridgeIsOpen)
+// Prints "false"
+```
+
+---
+
+## 오류 처리
+
+`Error` 프로토콜을 채택한 어떤 타입이든 사용해서 오류를 표시할 수 있습니다. 
+
+```swift
+enum PrinterError: Error {
+    case outOfPaper
+    case noToner
+    case onFire
+}
+```
+
+`throw` 를 사용하여 오류를 던지고 `throws` 를 사용하여 오류를 던질 수 있는 함수를 표시합니다. 함수 안에서 오류를 던지면, 함수는 바로 반환되고 함수를 호출한 코드가 오류를 처리합니다. 
+
+```swift
+func send(job: Int, toPrinter printerName: String) throws -> String {
+    if printerName == "Never Has Toner" {
+        throw PrinterError.noToner
+    }
+    return "Job sent"
+}
+```
+
+오류를 처리하는 여러가지 방법이 있습니다. 한 가지 방법은  `do`-`catch` 를 사용하는 것입니다. `do` 블럭 안에서, 그 앞에 `try` 를 작성하여 오류를 던질 수 있는 코드를 표시합니다. `catch` 블럭 안에서, 다른 이름을 주지 않는 다면 오류는 자동으로 `error` 라는 이름을 가집니다. 
+
+```swift
+do {
+    let printerResponse = try send(job: 1040, toPrinter: "Bi Sheng")
+    print(printerResponse)
+} catch {
+    print(error)
+}
+// "Job sent" 출력
+```
+
+> 실험
+>
+> 프린터 이름을 `"Never Has Toner"` 로 바꾸어서 `send(job:toPrinter:)` 함수가 오류를 던지도록 해보십시오.
+
+여러 개의 `catch` 블럭을 제공해서 각각의 오류를 처리할 수 있습니다. 스위치 안의 `case` 뒤에 한 것처럼  `catch` 뒤에 패턴을 작성합니다. 
+
+```swift
+do {
+    let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
+    print(printerResponse)
+} catch PrinterError.onFire {
+    print("I'll just put this over here, with the rest of the fire.")
+} catch let printerError as PrinterError {
+    print("Printer error: \(printerError).")
+} catch {
+    print(error)
+}
+// "Job sent" 출력
+```
+
+> 실험
+>
+> `do` 블럭 안에서 오류를 발생시키기 위해 코드를 추가하십시오. 오류가 첫 번째 `catch` 블럭에서 처리되려면 어떤 종류의 오류를 발생시켜야 합니까? 두 번째와 세 번째에 대해서는 어떻게 해야합니까?
+
+오류를 처리하는 또 다른 방법은 `try?` 를 사용하여 결과를 옵셔널로 바꾸는 것입니다. 함수가 오류를 발생시키면, 특정 오류는 버려지고 결과는 `nil` 이 됩니다. 그렇지 않으면, 결과는 함수가 반환한 값을 포함하고 있는 옵셔널이 됩니다. 
+
+```swift
+let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
+let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
+```
+
+`defer` 를 사용하여, 함수가 반환되기 직전에, 함수의 다른 모든 코드 이후에 실행되는 코드 블럭을 작성할 수 있습니다. 함수가 오류를 발생시키는지 아닌지에 상관없이 코드가 실행됩니다. 다른 시간에 실행되어야 하더라도 `defer` 를 사용하여 셋업과 클린업 코드를 나란히 작성할 수 있습니다. 
+
+```swift
+var fridgeIsOpen = false
+let fridgeContent = ["milk", "eggs", "leftovers"]
+
+func fridgeContains(_ food: String) -> Bool {
+    fridgeIsOpen = true
+    defer {
+        fridgeIsOpen = false
+    }
+    
+    let result = fridgeContent.contains(food)
+    return result
+}
+fridgeContains("banana")
+print(fridgeIsOpen)
+// "false" 출력
+```
+
+---
+
+_* next to each other : 서로 옆에, 나란히_</br>
+
+---
+
+</details>
+
+<details>
+	<summary>Generics</summary>
+
+## [Generics](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=//%20Prints%20%22false%22-,Generics,-Write%20a%20name)
+
+Write a name inside angle brackets to make a generic function or type.
+
+```swift
+func makeArray<Item>(repeating item: Item, numberOfTimes: Int) -> [Item] {
+    var result: [Item] = []
+    for _ in 0..<numberOfTimes {
+        result.append(item)
+    }
+    return result
+}
+makeArray(repeating: "knock", numberOfTimes: 4)
+```
+
+You can make generic forms of functions and methods, as well as classes, enumerations, and structures.
+
+```swift
+// Reimplement the Swift standard library's optional type
+enum OptionalValue<Wrapped> {
+    case none
+    case some(Wrapped)
+}
+var possibleInteger: OptionalValue<Int> = .none
+possibleInteger = .some(100)
+```
+
+Use `where` right before the body to specify a list of requirements—for example, to require the type to implement a protocol, to require two types to be the same, or to require a class to have a particular superclass.
+
+```swift
+func anyCommonElements<T: Sequence, U: Sequence>(_ lhs: T, _ rhs: U) -> Bool
+    where T.Element: Equatable, T.Element == U.Element
+{
+    for lhsItem in lhs {
+        for rhsItem in rhs {
+            if lhsItem == rhsItem {
+                return true
+            }
+        }
+    }
+    return false
+}
+anyCommonElements([1, 2, 3], [3])
+```
+
+> EXPERIMENT
+>
+> Modify the `anyCommonElements(_:_:)` function to make a function that returns an array of the elements that any two sequences have in common.
+
+Writing `<T: Equatable>` is the same as writing `<T> ... where T: Equatable`.
+
+---
+
+## 제네릭
+
+꺽쇠 괄호 안에 이름을 작성하여 제네릭 함수와 타입을 만듭니다. 
+
+```swift
+func makeArray<Item>(repeating item: Item, numberOfTimes: Int) -> [Item] {
+    var result: [Item] = []
+    for _ in 0..<numberOfTimes {
+        result.append(item)
+    }
+    return result
+}
+makeArray(repeating: "knock", numberOfTimes: 4)
+```
+
+클래스, 열거형, 구조체는 물론 함수와 메소드의 제네릭 형태를 만들 수 있습니다. 
+
+```swift
+// 스위프트 표준 라이브러리의 옵셔널 타입 재구현
+enum OptionalValue<Wrapped> {
+    case none
+    case some(Wrapped)
+}
+var possibleInteger: OptionalValue<Int> = .none
+possibleInteger = .some(100)
+```
+
+본문 바로 직전에 `where` 를 사용하여 요구사항 목록을 지정하십시오. 예를 들어, 타입이 프로토콜을 구현하도록 요구하거나, 두 타입이 동일한 것을 요구하거나, 클래스가 특정한 슈퍼 클래스를 가지도록 요구합니다. 
+
+```swift
+func anyCommonElements<T: Sequence, U: Sequence>(_ lhs: T, _ rhs: U) -> Bool
+    where T.Element: Equatable, T.Element == U.Element
+{
+    for lhsItem in lhs {
+        for rhsItem in rhs {
+            if lhsItem == rhsItem {
+                return true
+            }
+        }
+    }
+    return false
+}
+anyCommonElements([1, 2, 3], [3])
+```
+
+> 실험
+>
+> `anyCommonElements(_:_:)` 함수가 어떤 두 시퀀스의 공통 요소 배열을 반환하는 함수가 되도록 수정하십시오.
+
+`<T: Equatable>` 을 쓰는 것은  `<T> ... where T: Equatable` 을 쓰는 것과 동일합니다. 
+
+---
+
+_* angle bracket : 꺽쇠 괄호_</br>
+_* as well as : 게다가_</br>
+_* reimplement : 재구현_</br>
+_* right before : 바로 직전_</br>
+
+---
+
+</details>
+
