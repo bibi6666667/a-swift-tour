@@ -1593,3 +1593,188 @@ _* implement : 구현하다_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Error Handling</summary>
+
+## [Error Handling](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=its%20protocol%20conformance.-,Error%20Handling,-You%20represent%20errors)
+
+You represent errors using any type that adopts the `Error` protocol.
+
+```swift
+enum PrinterError: Error {
+    case outOfPaper
+    case noToner
+    case onFire
+}
+```
+
+Use `throw` to throw an error and `throws` to mark a function that can throw an error. If you throw an error in a function, the function returns immediately and the code that called the function handles the error.
+
+```swift
+func send(job: Int, toPrinter printerName: String) throws -> String {
+    if printerName == "Never Has Toner" {
+        throw PrinterError.noToner
+    }
+    return "Job sent"
+}
+```
+
+There are several ways to handle errors. One way is to use `do`-`catch`. Inside the `do` block, you mark code that can throw an error by writing `try` in front of it. Inside the `catch` block, the error is automatically given the name `error` unless you give it a different name.
+
+```swift
+do {
+    let printerResponse = try send(job: 1040, toPrinter: "Bi Sheng")
+    print(printerResponse)
+} catch {
+    print(error)
+}
+// Prints "Job sent"
+```
+
+> EXPERIMENT
+>
+> Change the printer name to `"Never Has Toner"`, so that the `send(job:toPrinter:)` function throws an error.
+
+You can provide multiple `catch` blocks that handle specific errors. You write a pattern after `catch` just as you do after `case` in a switch.
+
+```swift
+do {
+    let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
+    print(printerResponse)
+} catch PrinterError.onFire {
+    print("I'll just put this over here, with the rest of the fire.")
+} catch let printerError as PrinterError {
+    print("Printer error: \(printerError).")
+} catch {
+    print(error)
+}
+// Prints "Job sent"
+```
+
+> EXPERIMENT
+>
+> Add code to throw an error inside the `do` block. What kind of error do you need to throw so that the error is handled by the first `catch` block? What about the second and third blocks?
+
+Another way to handle errors is to use `try?` to convert the result to an optional. If the function throws an error, the specific error is discarded and the result is `nil`. Otherwise, the result is an optional containing the value that the function returned.
+
+```swift
+let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
+let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
+```
+
+Use `defer` to write a block of code that’s executed after all other code in the function, just before the function returns. The code is executed regardless of whether the function throws an error. You can use `defer` to write setup and cleanup code next to each other, even though they need to be executed at different times.
+
+```swift
+var fridgeIsOpen = false
+let fridgeContent = ["milk", "eggs", "leftovers"]
+
+func fridgeContains(_ food: String) -> Bool {
+    fridgeIsOpen = true
+    defer {
+        fridgeIsOpen = false
+    }
+    
+    let result = fridgeContent.contains(food)
+    return result
+}
+fridgeContains("banana")
+print(fridgeIsOpen)
+// Prints "false"
+```
+
+---
+
+## 오류 처리
+
+`Error` 프로토콜을 채택한 어떤 타입이든 사용해서 오류를 표시할 수 있습니다. 
+
+```swift
+enum PrinterError: Error {
+    case outOfPaper
+    case noToner
+    case onFire
+}
+```
+
+`throw` 를 사용하여 오류를 던지고 `throws` 를 사용하여 오류를 던질 수 있는 함수를 표시합니다. 함수 안에서 오류를 던지면, 함수는 바로 반환되고 함수를 호출한 코드가 오류를 처리합니다. 
+
+```swift
+func send(job: Int, toPrinter printerName: String) throws -> String {
+    if printerName == "Never Has Toner" {
+        throw PrinterError.noToner
+    }
+    return "Job sent"
+}
+```
+
+오류를 처리하는 여러가지 방법이 있습니다. 한 가지 방법은  `do`-`catch` 를 사용하는 것입니다. `do` 블럭 안에서, 그 앞에 `try` 를 작성하여 오류를 던질 수 있는 코드를 표시합니다. `catch` 블럭 안에서, 다른 이름을 주지 않는 다면 오류는 자동으로 `error` 라는 이름을 가집니다. 
+
+```swift
+do {
+    let printerResponse = try send(job: 1040, toPrinter: "Bi Sheng")
+    print(printerResponse)
+} catch {
+    print(error)
+}
+// "Job sent" 출력
+```
+
+> 실험
+>
+> 프린터 이름을 `"Never Has Toner"` 로 바꾸어서 `send(job:toPrinter:)` 함수가 오류를 던지도록 해보십시오.
+
+여러 개의 `catch` 블럭을 제공해서 각각의 오류를 처리할 수 있습니다. 스위치 안의 `case` 뒤에 한 것처럼  `catch` 뒤에 패턴을 작성합니다. 
+
+```swift
+do {
+    let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
+    print(printerResponse)
+} catch PrinterError.onFire {
+    print("I'll just put this over here, with the rest of the fire.")
+} catch let printerError as PrinterError {
+    print("Printer error: \(printerError).")
+} catch {
+    print(error)
+}
+// "Job sent" 출력
+```
+
+> 실험
+>
+> `do` 블럭 안에서 오류를 발생시키기 위해 코드를 추가하십시오. 오류가 첫 번째 `catch` 블럭에서 처리되려면 어떤 종류의 오류를 발생시켜야 합니까? 두 번째와 세 번째에 대해서는 어떻게 해야합니까?
+
+오류를 처리하는 또 다른 방법은 `try?` 를 사용하여 결과를 옵셔널로 바꾸는 것입니다. 함수가 오류를 발생시키면, 특정 오류는 버려지고 결과는 `nil` 이 됩니다. 그렇지 않으면, 결과는 함수가 반환한 값을 포함하고 있는 옵셔널이 됩니다. 
+
+```swift
+let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
+let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
+```
+
+`defer` 를 사용하여, 함수가 반환되기 직전에, 함수의 다른 모든 코드 이후에 실행되는 코드 블럭을 작성할 수 있습니다. 함수가 오류를 발생시키는지 아닌지에 상관없이 코드가 실행됩니다. 다른 시간에 실행되어야 하더라도 `defer` 를 사용하여 셋업과 클린업 코드를 나란히 작성할 수 있습니다. 
+
+```swift
+var fridgeIsOpen = false
+let fridgeContent = ["milk", "eggs", "leftovers"]
+
+func fridgeContains(_ food: String) -> Bool {
+    fridgeIsOpen = true
+    defer {
+        fridgeIsOpen = false
+    }
+    
+    let result = fridgeContent.contains(food)
+    return result
+}
+fridgeContains("banana")
+print(fridgeIsOpen)
+// "false" 출력
+```
+
+---
+
+_* next to each other : 서로 옆에, 나란히_</br>
+
+---
+
+</details>
