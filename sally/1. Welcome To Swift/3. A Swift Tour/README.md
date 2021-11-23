@@ -1431,3 +1431,165 @@ _* abbreviated : 축약된_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Protocols and Extensions</summary>
+
+## [Protocols and Extensions](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html#:~:text=rank%20and%20suit.-,Protocols%20and%20Extensions,-Use%20protocol%20to)
+
+Use `protocol` to declare a protocol.
+
+```swift
+protocol ExampleProtocol {
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+```
+
+Classes, enumerations, and structs can all adopt protocols.
+
+```swift
+class SimpleClass: ExampleProtocol {
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    func adjust() {
+        simpleDescription += "  Now 100% adjusted."
+    }
+}
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+struct SimpleStructure: ExampleProtocol {
+    var simpleDescription: String = "A simple structure"
+    mutating func adjust() {
+        simpleDescription += " (adjusted)"
+    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+```
+
+> EXPERIMENT
+>
+> Add another requirement to `ExampleProtocol`. What changes do you need to make to `SimpleClass` and `SimpleStructure` so that they still conform to the protocol?
+
+Notice the use of the `mutating` keyword in the declaration of `SimpleStructure` to mark a method that modifies the structure. The declaration of `SimpleClass` doesn’t need any of its methods marked as mutating because methods on a class can always modify the class.
+
+Use `extension` to add functionality to an existing type, such as new methods and computed properties. You can use an extension to add protocol conformance to a type that’s declared elsewhere, or even to a type that you imported from a library or framework.
+
+```swift
+extension Int: ExampleProtocol {
+    var simpleDescription: String {
+        return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+}
+print(7.simpleDescription)
+// Prints "The number 7"
+```
+
+> EXPERIMENT
+>
+> Write an extension for the `Double` type that adds an `absoluteValue` property.
+
+You can use a protocol name just like any other named type—for example, to create a collection of objects that have different types but that all conform to a single protocol. When you work with values whose type is a protocol type, methods outside the protocol definition aren’t available.
+
+```swift
+let protocolValue: ExampleProtocol = a
+print(protocolValue.simpleDescription)
+// Prints "A very simple class.  Now 100% adjusted."
+// print(protocolValue.anotherProperty)  // Uncomment to see the error
+```
+
+Even though the variable `protocolValue` has a runtime type of `SimpleClass`, the compiler treats it as the given type of `ExampleProtocol`. This means that you can’t accidentally access methods or properties that the class implements in addition to its protocol conformance.
+
+---
+
+## 프로토콜과 익스텐션
+
+`protocol` 을 사용하여 프로토콜을 선언합니다.
+
+```swift
+protocol ExampleProtocol {
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+```
+
+클래스, 열거형, 구조체 모두 프로토콜을 채택할 수 있습니다. 
+
+```swift
+class SimpleClass: ExampleProtocol {
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    func adjust() {
+        simpleDescription += "  Now 100% adjusted."
+    }
+}
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+struct SimpleStructure: ExampleProtocol {
+    var simpleDescription: String = "A simple structure"
+    mutating func adjust() {
+        simpleDescription += " (adjusted)"
+    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+```
+
+> 실험
+>
+> `ExampleProtocol` 에 다른 요구사항을 추가하십시오. `SimpleClass` 와 `SimpleStructure` 가 여전히 프로토콜을 따르게 하기 위해서 어떤 변화가 필요합니까?
+
+`SimpleStructure` 의 선언에서 해당 구조체를 변경하는 메소드를 표시하기 위해 `mutating` 키워드를 사용하는 것에 주목하십시오. 클래스의 메소드는 언제나 해당 클래스를 변경시킬 수 있기 때문에, `SimpleClass` 의 선언에서는 어떠한 메소드에도 mutating 표시를 할 필요가 없습니다. 
+
+`extension` 을 사용하여 새 메소드나 계산 프로퍼티 같은 기능을 기존 타입에 추가합니다. 익스텐션을 사용하여 다른 곳에서 선언된 타입이나, 심지어 라이브러리나 프레임워크에서 임포트해 온 타입에도 프로토콜 적합성을 추가할 수 있습니다. 
+
+```swift
+extension Int: ExampleProtocol {
+    var simpleDescription: String {
+        return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+}
+print(7.simpleDescription)
+// "The number 7" 출력
+```
+
+> 실험
+>
+> `absoluteValue` 속성을 추가하는 `Double` 타입의 익스텐션을 작성하십시오.
+
+다른 명명된 타입들 처럼 프로토콜 이름을 사용할 수 있습니다. 예를 들어, 다른 타입을 가지지만, 모두 단일 프로토콜을 준수하는 객체의 콜렉션을 생성하기 위해서 입니다. 타입이 프로토콜인 값을 사용할 때, 프로토콜 정의 외부의 메소드는 사용이 불가능합니다. 
+
+```swift
+let protocolValue: ExampleProtocol = a
+print(protocolValue.simpleDescription)
+// "A very simple class.  Now 100% adjusted." 출력
+// print(protocolValue.anotherProperty)  // 오류를 보려면 주석을 해제하십시오.
+```
+
+비록 `protocolValue` 변수가 `SimpleClass` 의 런타임 타입을 가지더라도, 컴파일러는 이것을 `ExampleProtocol`  타입으로 다룹니다. 즉, 프토토콜 적합성에 더하여 클래스가 구현하는 메소드나 프로퍼티에 우연히 접근할 수 없다는 의미입니다.
+
+---
+
+_* conform : 순응하다, 따르다, 따르게 하다_</br>
+_* functionality : 기능_</br>
+_* conformance : 적합성_</br>
+_* elsewhere : 다른 곳, 어떤 딴곳에_</br>
+_* even though : 일지라도, ~비록 ~할지라도_</br>
+_* implement : 구현하다_</br>
+
+---
+
+</details>
