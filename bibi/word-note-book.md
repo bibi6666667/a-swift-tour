@@ -9,7 +9,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 ## WELCOME TO SWIFT
 
 ### 211021. About Swift
-
 - combine 결합하다. 겸비하다.
   - combine A with B
 - diverse 다양한
@@ -44,7 +43,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - can't wait to V : 너무 ~하고 싶다. ~하면 정말 좋겠다.
 
 ### 211025. Version Compatibility
-
 - compatibility 호환성
   - compatible 호환이 되는.
 - compete 경쟁하다
@@ -69,11 +67,8 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - available to ... 가 이용 가능한.
 - runtime 실행 시간
 - target 대상
-
 ---
-
 > Large integer literal initialization expressions are inferred to **be of** the correct integer type.
-
 - be of 명사 = be 형용사 로 해석한다.
 - 명사를 형용사로 꾸미고 싶을 때 사용하는 표현이다.
   - be of help, be of use 등의 형태로 많이 사용 (= be helpful, be useful 의 의미)
@@ -82,14 +77,11 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - 문법적으로는 `주어 be (주어) of ...` 이 `주어 be of ...` 으로 표현(생략)된 것이라고 볼 수 있다.
   - 즉 위 예문의 경우 Large integer literal initialization expressions are inferred to be expressions of the correct integer type. 과 같다고 볼 수 있다.
   - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=koreiskii&logNo=220329948603
-
 - deployment target 배포 대상
-
 - one at a time 한 번에 하나씩.
   - one 목적어 at a time (목적어)를 한 번에 하나씩.
 
 ### 211027. A Swift Tour - Hello, world!
-
 - complete 완전한. 완벽한.
 - separate 분리된. 별개의.
 - statement 서술. 진술서. 표현.
@@ -101,7 +93,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - — : 대시.. 하이픈 아님 : 설명할 때 사용한다.
 
 ### 211028. A Swift Tour - Simple Values (1)
-
 - constant 상수
 - variable 변수
 - determine 결정하다
@@ -117,7 +108,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - operand (컴) 피연산자
 
 ### 211029. A Swift Tour - Simple Values (2)
-
 - parentheses 괄호. 특히 소괄호 () 의 복수형
   - parenthesis 단수형 표현
 - bracket 괄호. 특히 대괄호 [].
@@ -137,7 +127,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - argument (컴) 전달인자. value에 해당함
 
 ### 211105. A Swift Tour - Control Flow (1)
-
 - control flow 제어 흐름
 - conditional 조건부의 / 조건문
 - implicit 암시하는
@@ -152,7 +141,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - equality 동등성
 
 ### 211110. A Swift Tour - Control Flow (2)
-
 - execute 실행하다
 - execution 실행
 - iterate 반복하다
@@ -167,7 +155,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - assign A to B : A를 B에 할당하다
 
 ### 211112. A Swift Tour - Functions and Closures
-
 - argument 전달인자
 - argument label 전달인자 레이블
 - parameter name 매개변수 이름
@@ -186,7 +173,6 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - organize 정리하다. 체계화하다
 
 ### 211116. A Swift Tour - Objects and Classes
-
 - except -를 제외하고
 - context 맥락. 문맥.
 - likewise 비슷하게.
@@ -196,7 +182,7 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
   - allocate 할당하다
 - subclass 하위 클래스. 하위 분류 / (v) 하위 분류로 분류하다. (컴) 상속하다?
 - superclass 상위 클래스. 상위 분류
-- override ...보다 더 우선시하다. (컴) 오버라이드
+- override ...보다 더 우선시하다. (컴) 오버라이드하다. 재정의하다.
 - implementation 실행 (컴) 구현
   - implement 시행하다. (컴) 구현하다
 - detect 감지하다. 알아내다.
@@ -221,7 +207,62 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - operation 작업
   - operator 연산자
 
+
+### A Swift Tour - Enumerations and Structures
+- enumeration 열거. (컴) 열거형
+  - enumerate 열거하다
+- named 지명된 / 유명한
+- specify 지정하다
+- increment 증가
+- abbreviate 줄이다. 축약하다.
+- raw value 원시값
+- associated value 연관값
+- extract 추출(하다)
+- determine (...를) 결정하다
+- deck  덱. 한벌.
+- combination 조합
+- infer 추론하다
+- refer 참조하다
+
+### A Swift Tour - Protocols and Extensions
+- extension 확대 (컴) 익스텐션
+- adopt 입양하다 (컴) 채택하다
+- requirement 필요(조건). 요건
+- modify 수정하다
+- functionality 기능성. 기능.
+- computed property (컴) 연산 프로퍼티
+- conformance 일치. 부합. 적합
+- conform 따르다. 순응하다. 준수하다.
+- elsewhere 다른 곳에서
+- given 정해진. 특정한.
+
+### A Swift Tour - Error Handling
+- error handling 오류 처리
+- represent 대표하다. 해당하다.
+- discard 버리다
+- defer 미루다. 연기하다. ...의 결정을 맡기다. (컴)
+  - defer to sth : sth를 따르다. 좇다.
+- setup 설정
+- cleanup 청소
+- next to each other 서로 바로 옆에. = 나란히.
+- so that (목적)..하도록.
+
+### A Swift Tour - Generics
+- angle bracket 꺾쇠 괄호 (`<>`)
+- requirement 필요 조건
+- equatable 동일시할 수 있는
+  - equate 동일시하다
+- sequence 순서. 연속적인 것. (v) 차례로 배열하다.
+  - (컴) 순서가 있는 타입? 배열, 리스트 등.. (타입) 시퀀스(Sequence)
+- as well as ...에 더하여.
+- reimplement 재구현
+- modify A to B A를 B로 수정하다?
+
+
+
 ---
+
+
 
 ## LANGUAGE GUIDE
 
