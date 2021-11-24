@@ -12,10 +12,15 @@
   * [About Swift](#about-swift)
   * [Version Compatibility](#version-compatibility)
   * [A Swift Tour](#a-swift-tour)
-    + [Hello, world!](#hello--world-)
+    + [Hello, world!](#hello--world)
     + [Simple Values](#simple-values)
     + [Control Flow](#control-flow)
     + [Functions and Closures](#functions-and-closures)
+    + [Objects and Classes](#objects-and-classes)
+    + [Enumerations and Structures](#enumerations-and-structures)
+    + [Protocols and Extensions](#protocols-and-extensions)
+    + [Error Handling](#error-handling)
+    + [Generics](#generics)
 - [LANGUAGE GUIDE](#language-guide)
 
 ---
@@ -69,7 +74,7 @@ Swift 5.5로 작성된 타겟은 Swift 4.2 또는 Swift 4로 작성된 타겟에
 
 > https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html
 
-### Hello, world!
+### Hello, world
 
 전통적으로 새로운 언어의 첫 프로그램은 "Hello, world!"를 화면에 출력하는 것입니다. Swift에서, 이는 아래의 한 줄로 가능합니다 : 
 
@@ -448,9 +453,503 @@ print(sortedNumbers)
 // Prints "[20, 19, 12, 7]"
 ```
 
+### Objects and Classes
+
+객체와 클래스.
+
+클래스를 만들기 위해 `class`와 그 뒤에 클래스 이름을 사용하십시오. 클래스의 프로퍼티 선언은 클래스 맥락 안에 있다는 것만 제외하고는 상수나 변수 선언과 동일한 방식으로 작성됩니다. 비슷하게, 메서드와 함수 선언들도 동일한 방식으로 작성됩니다.
+
+``` swift
+class Shape {
+    var numberOfSides = 0
+    func simpleDescription() -> String {
+        return "A shape with \(numberOfSides) sides."
+    }
+}
+```
+
+> 실험
+>
+> `let` 으로 상수 프로퍼티를 추가하고, 전달인자를 받는 다른 메서드 하나를 추가해 보십시오.
+
+클래스 이름 뒤에 소괄호를 붙임으로써 클래스의 인스턴스를 만드십시오. 인스턴스의 프로퍼티와 메서드에 접근하기 위해 점(`.`) 문법을 사용하십시오.
+
+``` swift
+var shape = Shape()
+shape.numberOfSides = 7
+var shapeDescription = shape.simpleDescription()
+```
+
+이 `Shape` 클래스의 버전은 어떤 중요한 것이 빠져 있습니다 : 그것은 인스턴스가 생성될 때 클래스를 준비하기 위한 생성자입니다. 생성자를 만들기 위해 `init`을 사용하십시오.
+
+``` swift
+class NamedShape {
+    var numberOfSides: Int = 0
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    func simpleDescription() -> String {
+        return "A shape with \(numberOfSides) sides."
+    }
+}
+```
+
+`name` 프로퍼티와 생성자의 `name` 전달인자를 구별하기 위해 `self` 가 어떻게 사용되었는지에 주목하십시오. 클래스의 인스턴스를 만들 때 생성자를 위한 전달인자는 함수 호출처럼 전달됩니다. 모든 프로퍼티는 값이 할당될 필요가 있습니다 - 선언부(`numberOfSides`에서 그랬듯이) 또는 생성자(`name` 에서 그랬듯이) 중 한 곳에서 값이 반드시 할당되어야 합니다.
+
+객체가 메모리에서 해제되기 전에 청소를 수행해야 한다면 디이니셜라이저(소멸자)를 만들기 위해 `deinit`을 사용하십시오.
+
+하위 클래스는 자신의 클래스 이름 뒤에 콜론(`:`)으로 분리된 상위 클래스의 이름을 포함합니다. 클래스는 어떤 표준 루트 클래스도 상속하도록 요구하지 않습니다.* 따라서 필요한 대로 상위 클래스를 포함하거나 생략할 수 있습니다.
+
+상위 클래스의 구현을 오버라이딩한 하위 클래스의 메서드는 `override`로 표시됩니다 - `override` 없이 실수로 오버라이딩한 메서드는 컴파일러 에러로 감지됩니다. 컴파일러는 상위 클래스에서 어떤 메서드도 오버라이딩하지 않는데 `override`가 붙어 있는 메서드 또한 감지합니다.
+
+``` swift
+class Square: NamedShape {
+    var sideLength: Double
+
+    init(sideLength: Double, name: String) {
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 4
+    }
+
+    func area() -> Double {
+        return sideLength * sideLength
+    }
+
+    override func simpleDescription() -> String {
+        return "A square with sides of length \(sideLength)."
+    }
+}
+let test = Square(sideLength: 5.2, name: "my test square")
+test.area()
+test.simpleDescription()
+
+```
+
+> 실험
+>
+> `NamedShape`의 또 다른 하위 클래스인 `Circle`을 만들어 보십시오. 반지름을 가지고 생성자의 전달인자로서 이름을 가져야 합니다. `Circle`클래스의 메서드인 `area()` 와 `simpleDescription()`을 실행해 보십시오.
+
+단순한 저장 프로퍼티에 더해서, 프로퍼티는 접근자(getter)와 설정자(setter)를 가질 수 있습니다.
+
+``` swift
+class EquilateralTriangle: NamedShape {
+    var sideLength: Double = 0.0
+
+    init(sideLength: Double, name: String) {
+        self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 3
+    }
+
+    var perimeter: Double {
+        get {
+            return 3.0 * sideLength
+        }
+        set {
+            sideLength = newValue / 3.0
+        }
+    }
+
+    override func simpleDescription() -> String {
+        return "An equilateral triangle with sides of length \(sideLength)."
+    }
+}
+var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
+print(triangle.perimeter)
+// Prints "9.3"
+triangle.perimeter = 9.9
+print(triangle.sideLength)
+// Prints "3.3000000000000003"
+```
+
+`perimeter`의 설정자(setter)에서, 새로운 값은 `newValue`라는 암묵적 이름을 갖습니다. `set` 뒤의 소괄호 안에 명시적 이름을 지정할 수도 있습니다.
+
+`EquilateralTriangle` 클래스의 생성자가 세 가지의 서로 다른 단계를 갖는 것에 주목하십시오 :
+
+1. 하위 클래스가 선언한 프로퍼티의 값을 설정합니다. (`self.sideLength = sideLength`)
+2. 상위 클래스의 생성자를 호출합니다. (`super.init(name:name)`)
+3. 상위 클래스에 의해 정의된 프로퍼티의 값을 바꿉니다. 메서드/접근자(getter)/설정자(setter)를 사용하는 모든 추가적인 설정 작업 또한 이 시점에 이루어질 수 있습니다. (`numberOfSides = 3`)
+
+만약 프로퍼티를 계산할 필요가 없지만 새로운 값을 설정하기 전이나 후에 실행되어야 할 코드가 있다면, `willSet` 과 `didSet` 을 사용하십시오. 당신이 설정한 코드는 생성자 밖에서 그 값이 변경될 때 마다 실행될 것입니다. 예를 들어, 아래의 클래스는 삼각형의 옆면의 길이가 언제나 사각형의 옆면의 길이와 같도록 보장합니다.
+
+``` swift
+class TriangleAndSquare {
+    var triangle: EquilateralTriangle {
+        willSet {
+            square.sideLength = newValue.sideLength
+        }
+    }
+    var square: Square {
+        willSet {
+            triangle.sideLength = newValue.sideLength
+        }
+    }
+    init(size: Double, name: String) {
+        square = Square(sideLength: size, name: name)
+        triangle = EquilateralTriangle(sideLength: size, name: name)
+    }
+}
+var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
+print(triangleAndSquare.square.sideLength)
+// Prints "10.0"
+print(triangleAndSquare.triangle.sideLength)
+// Prints "10.0"
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
+print(triangleAndSquare.triangle.sideLength)
+// Prints "50.0"
+```
+
+옵셔널 값을 다룰 때는, 메서드/프로퍼티/서브스크립트와 같은 작업 앞에 `?` 을 사용할 수 있습니다. 만약 `?` 앞의 값이 nil이라면, `?` 뒤의 모든 것은 무시되고 그 표현식의 모든 값은 nil이 됩니다. 만약 그렇지 않으면, 옵셔널의 값이 벗겨지고 `?`뒤의 모든 것이 벗겨진 값으로서 실행됩니다. 두 경우 모두에서 전체 표현식의 값(`sideLength`)은 옵셔널 값입니다.
+
+```swift
+let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
+let sideLength = optionalSquare?.sideLength
+```
+
+### Enumerations and Structures
+
+열거형과 구조체
+
+열거형을 만들기 위해 `enum`을 사용하십시오. 클래스와 다른 지정된 타입들처럼, 열거형도 연관된 메서드를 가질 수 있습니다.
+
+``` swift
+enum Rank: Int {
+    case ace = 1
+    case two, three, four, five, six, seven, eight, nine, ten
+    case jack, queen, king
+
+    func simpleDescription() -> String {
+        switch self {
+        case .ace:
+            return "ace"
+        case .jack:
+            return "jack"
+        case .queen:
+            return "queen"
+        case .king:
+            return "king"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+let ace = Rank.ace
+let aceRawValue = ace.rawValue
+```
+
+> 실험
+>
+> 원시값을 비교함으로써 두 `Rank` 값을  비교하는 메서드를 작성해 보십시오.
+
+기본적으로, 스위프트는 원시값을 0부터 하나씩 증가하는 값으로 할당합니다. 하지만 특정 값을 명시적으로 지정함으로써 이 동작을 바꿀 수 있습니다. 위의 예시에서, `Ace`는 명시적으로 1의 원시값을 가지며, 나머지의 원시값은 순서대로 할당되었습니다. 또한 열거형의 원시값으로 문자열이나 부동소수점 숫자를 사용할 수도 있습니다. 열거형 케이스의 원시값에 접근하기 위해 `rawValue` 프로퍼티를 사용하십시오.
+
+원시값으로부터 열거형의 인스턴스를 만들기 위해 `init?(rawValue:)` 생성자를 사용하십시오. 원시값에 맞는 케이스가 있다면 그 열거형을 반환하거나, 맞는 케이스가 없다면 nil을 반환합니다.
+
+``` swift
+if let convertedRank = Rank(rawValue: 3) {
+    let threeDescription = convertedRank.simpleDescription() // three
+}
+```
+
+열거형의 케이스 값은 실제 값이며, 원시값을 다른 방식으로 작성한 것이 아닙니다. 사실, 의미 있는 원시값이 없는 케이스에는 원시값을 반드시 지정하지 않아도 됩니다.
+
+``` swift
+enum Suit {
+    case spades, hearts, diamonds, clubs
+
+    func simpleDescription() -> String {
+        switch self {
+        case .spades:
+            return "spades"
+        case .hearts:
+            return "hearts"
+        case .diamonds:
+            return "diamonds"
+        case .clubs:
+            return "clubs"
+        }
+    }
+}
+let hearts = Suit.hearts
+let heartsDescription = hearts.simpleDescription()
+```
+
+> 실험
+>
+> spades와 clubs에 대해 "black"을, hearts와 diamonds에 대해 "red"를 반환하는 `Suit`의 메서드 `color()` 를 추가하십시오.
+
+위처럼 열거형의 `hearts` 케이스가 두 방식으로 추론됨을 주목하십시오. `hearts` 상수에 값을 할당할 때, 열거형 케이스 `Suit.hearts`는 그것의 전체 이름으로 추론됩니다. 왜냐하면 상수가 지정된 명시적 타입이 없기 때문입니다. switch문에서는, 열거형의 케이스는 `.hearts`라는 축약된 형태로 추론됩니다. 왜냐하면 `self`의 값이 이미 `Suit`라고 알려져 있기 때문입니다. 값의 타입이 이미 알려져 있다면 언제나 축약된 형태를 사용할 수 있습니다.
+
+만약 열거형이 원시값을 가지고 있다면, 그 값들은 선언의 일부로 결정됩니다. 이는 특정 열거형 케이스의 모든 인스턴스가 항상 같은 원시값을 가짐을 의미합니다. 열거형 케이스에 대한 또 다른 선택은 케이스와 연관된 값(연관값)을 가지게 하는 것입니다 - 이 값들은 인스턴스를 만들 때 결정되며, 열거형 케이스의 인스턴스마다 다른 값을 가질 수 있습니다. 연관값은 열거형 케이스 인스턴스의 저장 프로퍼티와 같이 동작한다고 생각할 수 있습니다. 예를 들어, 서버로부터 일출과 일몰 시간을 요청하는 경우를 고려해 보십시오. 서버는 요청받은 정보를 응답하거나, 잘못되었을 때의 설명을 응답할 수 있습니다.
+
+``` swift
+enum ServerResponse {
+    case result(String, String)
+    case failure(String)
+}
+
+let success = ServerResponse.result("6:00 am", "8:09 pm")
+let failure = ServerResponse.failure("Out of cheese.")
+
+switch success {
+case let .result(sunrise, sunset): // 열거형의 연관값을 사용하기 위해 case let 사용하고 그 이름을 부여함
+    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+case let .failure(message):
+    print("Failure...  \(message)")
+}
+// Prints "Sunrise is at 6:00 am and sunset is at 8:09 pm."
+```
+
+> 실험
+>
+> `ServerResponse`와 switch 문에 세 번째 케이스를 추가해 보십시오.
+
+switch 케이스에 대해 맞는 값의 일부로서 일출과 일몰 시간이  `ServerResponse` 값으로부터 어떻게 추출되었는지 주목하십시오.
+
+구조체를 만들기 위해  `struct`를 사용하십시오. 구조체는 메서드와 생성자를 포함해 클래스처럼 많은 같은 동작을 지원합니다. 구조체와 클래스의 가장 중요한 차이점 중 하나는, 구조체는 코드에서 전달될 때 항상 복사되지만, 클래스는 참조로 전달된다는 것입니다.
+
+``` swift
+struct Card {
+    var rank: Rank
+    var suit: Suit
+    func simpleDescription() -> String {
+        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+    }
+}
+let threeOfSpades = Card(rank: .three, suit: .spades)
+let threeOfSpadesDescription = threeOfSpades.simpleDescription(
+```
+
+> 실험
+>
+> 카드 한 장 마다 Rank와 Suit의 조합을 갖는 모든 카드 덱의 배열을 반환하는 함수를 작성해 보십시오.
+
+
+### Protocols and Extensions
+
+프로토콜과 익스텐션
+
+프로토콜을 선언하기 위해 `protocol`을 사용하십시오.
+
+``` swift
+protocol ExampleProtocol {
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+```
+
+클래스, 열거형, 구조체 모두가 프로토콜을 채택할 수 있습니다.
+
+``` swift
+class SimpleClass: ExampleProtocol {
+    var simpleDescription: String = "A very simple class."
+    var anotherProperty: Int = 69105
+    func adjust() {
+        simpleDescription += "  Now 100% adjusted."
+    }
+}
+var a = SimpleClass()
+a.adjust()
+let aDescription = a.simpleDescription
+
+struct SimpleStructure: ExampleProtocol {
+    var simpleDescription: String = "A simple structure"
+    mutating func adjust() {
+        simpleDescription += " (adjusted)"
+    }
+}
+var b = SimpleStructure()
+b.adjust()
+let bDescription = b.simpleDescription
+```
+
+> 실험
+>
+> `ExampleProtocol`에 또다른 요건을 추가하십시오. 여전히 프로토콜을 따르기 위해 `SimpleClass` 와 `SimpleStructure`를 만들 때 어떤 변화가 필요합니까?
+
+`SimpleStructure`의 선언에 구조체를 수정하는 메서드를 표시하기 위해 `mutating`키워드를 사용한 것을 주목하십시오. `SimpleClass`선언의 메서드에는 mutating과 같은 어떤 표시도 필요하지 않습니다. 왜냐하면 클래스의 메서드는 항상 그 클래스를 수정하기 때문입니다.
+
+존재하는 타입에 새로운 메서드나 연산 프로퍼티와 같은 기능을 추가하기 위해 `extension`을 사용하십시오. 다른 곳에서 선언되었거나 라이브러리 또는 프레임워크에서 불러온 타입에 프로토콜 일치를 추가하기 위해 익스텐션을 사용할 수 있습니다.
+
+``` swift
+extension Int: ExampleProtocol {
+    var simpleDescription: String {
+        return "The number \(self)"
+    }
+    mutating func adjust() {
+        self += 42
+    }
+}
+print(7.simpleDescription)
+// Prints "The number 7"
+```
+
+> 실험
+>
+> Double타입에 absoluteValue 프로퍼티를 추가하는 익스텐션을 작성해 보십시오.
+
+다른 이름 있는 타입들과 마찬가지로 프로토콜 이름을 사용할 수 있습니다. 예를 들어, 한 프로토콜을 따르지만 다른 타입들을 가진 객체들의 컬렉션을 만들기 위해서 프로토콜 이름을 사용할 수 있습니다. 타입이 프로토콜 타입인 값을 다룰 때는, 프로토콜 밖의 메서드 선언은 사용할 수 없습니다.
+
+``` swift
+let protocolValue: ExampleProtocol = a
+print(protocolValue.simpleDescription)
+// Prints "A very simple class.  Now 100% adjusted."
+// print(protocolValue.anotherProperty)  // Uncomment to see the error
+
+// 프로토콜 타입인 값으로 프로토콜 자체를 넣을 순 없고, 그 프로토콜을 채택한 객체가 올 수 있다.
+// ExampleProtocol을 준수했다면 a 대신 다른 대상도 할당될 수 있다.
+// 하지만 protocolValue는 ExampleProtocol타입이기 때문에 프로토콜에 정의된 요건들만 사용할 수 있다.
+```
+
+변수 `protocolValue` 가 실행 시점에 `SimpleClass` 타입을 가짐에도 불구하고, 컴파일러는 그것을 `ExampleProtocol`의 정해진 타입으로 다룹니다. 이것은 당신이 우연히라도 프로토콜 요건 외에 클래스가 구현한 메서드나 프로퍼티에 접근할 수 없음을 의미합니다.
 
 
 
+### Error Handling
+
+에러 처리
+
+`Error` 프로토콜을 채택하는 어떤 타입이든 사용하여 에러를 나타낼 수 있습니다.
+
+``` swift
+enum PrinterError: Error {
+    case outOfPaper
+    case noToner
+    case onFire
+}
+```
+
+에러를 던지기 위해 `throw`를, 그리고 에러를 던질 수 있는 함수를 표시하기 위해 `throws`를 사용하십시오. 만약 함수에서 에러를 던진다면, 그 함수는 즉시 반환되며 그 함수를 호출한 코드에서 에러를 다루게 됩니다.
+
+``` swift
+func send(job: Int, toPrinter printerName: String) throws -> String {
+    if printerName == "Never Has Toner" {
+        throw PrinterError.noToner
+    }
+    return "Job sent"
+}
+```
+
+에러를 다루기 위한 몇 가지 방법이 있습니다. 하나는 `do-catch` 를 사용하는 것입니다. `do` 블럭 내에서, `try`를 앞에 작성함으로써 에러를 던질 수 있는 코드를 표시합니다. `catch`블럭 내에서, 에러는 다른 이름을 주지 않는 이상 자동적으로 `error`라는 정해진 이름 됩니다.
+
+``` swift
+do {
+    let printerResponse = try send(job: 1040, toPrinter: "Bi Sheng")
+    print(printerResponse)
+} catch {
+    print(error)
+}
+// Prints "Job sent"
+```
+
+> 실험
+>
+> `send(job:toPrinter:)`함수가 에러를 던지도록 프린터의 이름을 "Never Has Toner"로 바꿔 보십시오.
+
+특정 에러를 다루기 위해 여러 개의 `catch` 블럭을 사용할 수 있습니다. switch문에서 `case`뒤에 패턴을 사용하는 것처럼, `catch`뒤에도 패턴을 사용할 수 있습니다.
+
+```swift
+do {
+    let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
+    print(printerResponse)
+} catch PrinterError.onFire {
+    print("I'll just put this over here, with the rest of the fire.")
+} catch let printerError as PrinterError {
+    print("Printer error: \(printerError).")
+} catch {
+    print(error)
+}
+// Prints "Job sent"
+```
+
+> 실험
+>
+> `do` 블럭 내에 에러를 던지는 코드를 추가해 보십시오. 에러가 첫 번째 catch블럭에서 처리되기 위해 어떤 에러를 던져야 합니까? 두 번째와 세 번째 블럭은 어떠합니까?
+
+에러를 처리하는 또 다른 방법은 결과를 옵셔널로 바꾸기 위해 `try?`를 사용하는 것입니다. 만약 함수가 에러를 던진다면, 특정 에러는 버려지며 그 결과는 nil이 됩니다. 그렇지 않다면, 그 결과는 함수가 반환한 값을 담은 옵셔널이 됩니다.
+
+``` swift
+let printerSuccess = try? send(job: 1884, toPrinter: "Mergenthaler")
+let printerFailure = try? send(job: 1885, toPrinter: "Never Has Toner")
+```
+
+함수가 반환되기 직전에, 모든 다른 코드가 실행된 다음 실행되는 코드 블럭을 작성하기 위해 `defer`를 사용하십시오. 이 코드는 그 함수가 에러를 던지는지 여부와 관계없이 실행됩니다. 당신은 심지어 그것들이 다른 시점에 실행되어야 하더라도, 설정 및 정리 코드를 나란히 작성하기 위해 `defer`를 사용할 수 있습니다, 
+
+``` swift
+var fridgeIsOpen = false
+let fridgeContent = ["milk", "eggs", "leftovers"]
+
+func fridgeContains(_ food: String) -> Bool {
+    fridgeIsOpen = true
+    defer {
+        fridgeIsOpen = false
+    }
+
+    let result = fridgeContent.contains(food)
+    return result
+}
+fridgeContains("banana")
+print(fridgeIsOpen)
+// Prints "false"
+```
+
+
+### Generics
+
+제네릭
+
+제네릭 함수나 타입을 만들기 위해 꺾쇠 괄호 안에 이름을 작성하십시오.
+
+``` swift
+func makeArray<Item>(repeating item: Item, numberOfTimes: Int) -> [Item] {
+    var result: [Item] = []
+    for _ in 0..<numberOfTimes {
+        result.append(item)
+    }
+    return result
+}
+makeArray(repeating: "knock", numberOfTimes: 4)
+```
+
+함수와 메서드, 클래스, 열거형, 구조체의 제네릭 형태를 만들 수 있습니다.
+
+``` swift
+// Reimplement the Swift standard library's optional type
+enum OptionalValue<Wrapped> {
+    case none
+    case some(Wrapped)
+}
+var possibleInteger: OptionalValue<Int> = .none
+possibleInteger = .some(100)
+```
+
+코드 몸통(body) 바로 앞에 where를 사용해 요건 목록을 지정하십시오 - 예를 들어, 프로토콜을 구현하기 위한 타입을 요구하거나, 두 타입이 같기를 요구하거나, 클래스가 특정 상위 클래스를 갖도록 요구하기 위해 사용할 수 잆습니다.
+
+``` swift
+func anyCommonElements<T: Sequence, U: Sequence>(_ lhs: T, _ rhs: U) -> Bool
+    where T.Element: Equatable, T.Element == U.Element
+{
+    for lhsItem in lhs {
+        for rhsItem in rhs {
+            if lhsItem == rhsItem {
+                return true
+            }
+        }
+    }
+    return false
+}
+anyCommonElements([1, 2, 3], [3])
+```
+
+> 실험
+>
+> `anyCommonElements(_:_:)`함수가 어떤 두 시퀀스를 공통으로 갖는 요소의 배열을 반환하는 함수를 만들도록 수정하십시오.
+
+`<T: Equatable>`을 작성하는 것은 `<T> ... where T: Equatable`을 작성하는 것과 같습니다.
 
 
 
