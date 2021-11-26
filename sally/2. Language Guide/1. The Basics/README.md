@@ -45,3 +45,71 @@ _* expressive : 표현이 풍부한, 나타내는_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Constants and Variables</summary>
+
+
+## [Constants and Variables](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=ON%20THIS%20PAGE-,The%20Basics,-Swift%20is%20a)
+
+Constants and variables associate a name (such as `maximumNumberOfLoginAttempts` or `welcomeMessage`) with a value of a particular type (such as the number `10` or the string `"Hello"`). The value of a *constant* can’t be changed once it’s set, whereas a *variable* can be set to a different value in the future.
+
+#### Declaring Constants and Variables
+
+Constants and variables must be declared before they’re used. You declare constants with the `let` keyword and variables with the `var` keyword. Here’s an example of how constants and variables can be used to track the number of login attempts a user has made:
+
+```swift
+let maximumNumberOfLoginAttempts = 10
+var currentLoginAttempt = 0
+```
+
+This code can be read as:
+
+“Declare a new constant called `maximumNumberOfLoginAttempts`, and give it a value of `10`. Then, declare a new variable called `currentLoginAttempt`, and give it an initial value of `0`.”
+
+In this example, the maximum number of allowed login attempts is declared as a constant, because the maximum value never changes. The current login attempt counter is declared as a variable, because this value must be incremented after each failed login attempt.
+
+You can declare multiple constants or multiple variables on a single line, separated by commas:
+
+```swift
+var x = 0.0, y = 0.0, z = 0.0
+```
+
+> NOTE
+>
+> If a stored value in your code won’t change, always declare it as a constant with the `let` keyword. Use variables only for storing values that need to be able to change.
+
+---
+
+## 상수와 변수
+
+상수와 변수는 이름(예: `maximumNumberOfLoginAttempts` 혹은 `welcomeMessage`)과 특정한 타입의 값(예: 숫자 `10` 이나 문자열 `"Hello"`) 을 서로 연관 지어줍니다. *상수*의 값은 한번 할당하면 변경할 수 없지만, *변수*의 값은 나중에 다른 값을 할당할 수 있습니다. 
+
+#### 상수와 변수의 선언
+
+상수와 변수는 반드시 사용되기 전에 선언되어야 합니다. 상수는 `let` 키워드로 선언하고, 변수는 `var` 키워드로 선언합니다. 여기에 유저가 로그인을 시도하는 횟수를 추적하기 위해 상수와 변수를 어떻게 사용할 수 있는지에 대한 예가 있습니다:
+
+```swift
+let maximumNumberOfLoginAttempts = 10
+var currentLoginAttempt = 0
+```
+
+이 코드는 이런 식으로 해석할 수 있습니다:
+
+"`maximumNumberOfLoginAttempts` 라는 새로운 상수를 선언하고, `10` 을 할당합니다. 그리고, `currentLoginAttempt` 라는 새로운 변수를 선언하고, 초기값으로  `0` 을 할당합니다. "
+
+이 예에서, 최대값은 절대 변경되지 않기 때문에, 가능한 로그인 시도 횟수의 최대값은 상수로 선언되었습니다. 현재 로그인 시도 횟수는 로그인 시도가 실패할 때마다 증가해야 하기 때문에 변수로 선언되었습니다. 
+
+여러 개의 변수를 콤마로 구분하여 한 줄에서 선언할 수 있습니다:
+
+```swift
+var x = 0.0, y = 0.0, z = 0.0
+```
+
+> 노트
+>
+> 코드에 있는 저장 변수가 변하지 않는다면, 언제나 `let` 키워드를 사용하여 상수로 선언하십시오. 변할 필요가 있는 있는 저장 변수에만 변수를 사용하십시오. 
+
+---
+
+</details>
