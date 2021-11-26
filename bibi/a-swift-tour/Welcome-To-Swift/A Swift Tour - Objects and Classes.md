@@ -311,11 +311,7 @@ let optionalSquare: Square? = Square(sideLength: 2.5, name: "optional square")
 let sideLength = optionalSquare?.sideLength
 ```
 
-
-
-## 영단어 정리
-
-
+---
 
 ## 영단어 정리
 
