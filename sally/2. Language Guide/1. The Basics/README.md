@@ -79,6 +79,38 @@ var x = 0.0, y = 0.0, z = 0.0
 >
 > If a stored value in your code won’t change, always declare it as a constant with the `let` keyword. Use variables only for storing values that need to be able to change.
 
+#### Type Annotations
+
+You can provide a *type annotation* when you declare a constant or variable, to be clear about the kind of values the constant or variable can store. Write a type annotation by placing a colon after the constant or variable name, followed by a space, followed by the name of the type to use.
+
+This example provides a type annotation for a variable called `welcomeMessage`, to indicate that the variable can store `String` values:
+
+```swift
+var welcomeMessage: String
+```
+
+The colon in the declaration means “…of type…,” so the code above can be read as:
+
+“Declare a variable called `welcomeMessage` that’s of type `String`.”
+
+The phrase “of type `String`” means “can store any `String` value.” Think of it as meaning “the type of thing” (or “the kind of thing”) that can be stored.
+
+The `welcomeMessage` variable can now be set to any string value without error:
+
+```swift
+welcomeMessage = "Hello"
+```
+
+You can define multiple related variables of the same type on a single line, separated by commas, with a single type annotation after the final variable name:
+
+```swift
+var red, green, blue: Double
+```
+
+> NOTE
+>
+> It’s rare that you need to write type annotations in practice. If you provide an initial value for a constant or variable at the point that it’s defined, Swift can almost always infer the type to be used for that constant or variable, as described in [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322). In the `welcomeMessage` example above, no initial value is provided, and so the type of the `welcomeMessage` variable is specified with a type annotation rather than being inferred from an initial value.
+
 ---
 
 ## 상수와 변수
@@ -109,6 +141,42 @@ var x = 0.0, y = 0.0, z = 0.0
 > 노트
 >
 > 코드에 있는 저장 변수가 변하지 않는다면, 언제나 `let` 키워드를 사용하여 상수로 선언하십시오. 변할 필요가 있는 있는 저장 변수에만 변수를 사용하십시오. 
+
+#### 타입 어노테이션
+
+상수나 변수를 선언할 때, *type annotation* 를 사용하여 그것들에 저장할 수 있는 종류의 값들을 명확하게 할 수 있습니다. 타입 어노테이션을 작성하려면 상수나 변수 이름 뒤에 콜론을 적고, 한칸 띄우고 사용하려는 타입의 이름을 적으십시오. 
+
+이 예에서 타입 어노테이션은 `welcomeMessage` 라는 이름의 변수가 `String` 값을 저장할 수 있다는 것을 알려줍니다:
+
+```swift
+var welcomeMessage: String
+```
+
+저 선언에서 콜론은 "...타입의...," 라는 의미이기 때문에, 위의 코드는 이렇게 읽을 수 있습니다: 
+
+"`String` 타입의 `welcomeMessage` 이라는 이름의 변수 선언."
+
+"`String` 타입의” 라는 구절은 "어떠한 `String` 값이든 저장 가능" 이라는 뜻입니다. 저장할 수 있는 "어떤 것의 타입" (혹은 "어떤 것의 종류") 라는 의미라고 생각하십시오.
+
+이제 `welcomeMessage` 변수는 어떤 문자열 값이든 오류 없이 설정할 수 있습니다:
+
+```swift
+welcomeMessage = "Hello"
+```
+
+여러 개의 연관된 같은 타입 변수들을 한 줄에서 정의하려면, 콤마로 구분하고 마지막 변수 이름 뒤에 하나의 타입 어노테이션을 사용하십시오: 
+
+```swift
+var red, green, blue: Double
+```
+
+> 노트
+>
+> 실제로 타입 어노테이션을 작성해야할 필요가 있는 경우는 적습니다. 상수나 변수를 처음 정의할 때 초기값을 제공하면, [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322) 에서 설명하는 것 처럼, 스위프트가 거의 항상 그 타입을 추론할 수 있습니다. 위의 `welcomeMessage` 예에서는 초기값이 주어지지 않았기 때문에, `welcomeMessage` 변수의 타입은 초기값으로부터 추론하지 않고 타입 어노테이션으로 정해집니다. 
+
+---
+
+_* annotation : 주석_</br>
 
 ---
 
