@@ -111,6 +111,40 @@ var red, green, blue: Double
 >
 > It’s rare that you need to write type annotations in practice. If you provide an initial value for a constant or variable at the point that it’s defined, Swift can almost always infer the type to be used for that constant or variable, as described in [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322). In the `welcomeMessage` example above, no initial value is provided, and so the type of the `welcomeMessage` variable is specified with a type annotation rather than being inferred from an initial value.
 
+### Naming Constants and Variables
+
+Constant and variable names can contain almost any character, including Unicode characters:
+
+```swift
+let π = 3.14159
+let 你好 = "你好世界"
+let 🐶🐮 = "dogcow"
+```
+
+Constant and variable names can’t contain whitespace characters, mathematical symbols, arrows, private-use Unicode scalar values, or line- and box-drawing characters. Nor can they begin with a number, although numbers may be included elsewhere within the name.
+
+Once you’ve declared a constant or variable of a certain type, you can’t declare it again with the same name, or change it to store values of a different type. Nor can you change a constant into a variable or a variable into a constant.
+
+> NOTE
+>
+> If you need to give a constant or variable the same name as a reserved Swift keyword, surround the keyword with backticks (```) when using it as a name. However, avoid using keywords as names unless you have absolutely no choice.
+
+You can change the value of an existing variable to another value of a compatible type. In this example, the value of `friendlyWelcome` is changed from `"Hello!"` to `"Bonjour!"`:
+
+```swift
+var friendlyWelcome = "Hello!"
+friendlyWelcome = "Bonjour!"
+// friendlyWelcome is now "Bonjour!"
+```
+
+Unlike a variable, the value of a constant can’t be changed after it’s set. Attempting to do so is reported as an error when your code is compiled:
+
+```swift
+let languageName = "Swift"
+languageName = "Swift++"
+// This is a compile-time error: languageName cannot be changed.
+```
+
 ---
 
 ## 상수와 변수
@@ -174,9 +208,45 @@ var red, green, blue: Double
 >
 > 실제로 타입 어노테이션을 작성해야할 필요가 있는 경우는 적습니다. 상수나 변수를 처음 정의할 때 초기값을 제공하면, [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322) 에서 설명하는 것 처럼, 스위프트가 거의 항상 그 타입을 추론할 수 있습니다. 위의 `welcomeMessage` 예에서는 초기값이 주어지지 않았기 때문에, `welcomeMessage` 변수의 타입은 초기값으로부터 추론하지 않고 타입 어노테이션으로 정해집니다. 
 
+### 상수와 변수의 작명
+
+상수와 변수의 이름은 유니코드 문자를 포함하여 거의 모든 문자를 포함시킬 수 있습니다: 
+
+```swift
+let π = 3.14159
+let 你好 = "你好世界"
+let 🐶🐮 = "dogcow"
+```
+
+공백 문자, 수학 기호, 화살표, 개인용 유니코드 스칼라 값, 혹은 선 그리기 문자와 박스 그리기 문자는 상수와 변수의 이름에 포함될 수 없습니다. 또, 이름 안에 어디에든 숫자를 포함시킬 수 있지만, 숫자로 시작하는 것은 불가능합니다. 
+
+상수나 변수를 한번 특정한 타입으로 선언하면, 같은 이름으로 다시 선언하거나 다른 타입의 저장 변수로 변경하는 것은 불가능합니다. 상수를 변수로 변경하거나 변수를 상수로 변경하는 것도 불가능합니다. 
+
+> 노트
+>
+> 백틱(```)으로 키워드를 감싸면 상수나 변수에 스위프트의 예약어와 같은 이름을 줄 수 있습니다. 하지만, 다른 선택지가 전혀 없을 때를 제외하고는 예약어를 이름으로 사용하는 것은 피하십시오. 
+
+기존 변수의 값을 호환 가능한 타입의 다른 값으로 변경할 수 있습니다. 예를 들어, `friendlyWelcome` 의 값은  `"Hello!"` 에서 `"Bonjour!"` 으로 변경 되었습니다:
+
+```swift
+var friendlyWelcome = "Hello!"
+friendlyWelcome = "Bonjour!"
+// friendlyWelcome 은 이제 "Bonjour!" 입니다. 
+```
+
+변수와 달리, 상수의 값은 한번 설정된 후에는 변경할 수 없습니다. 그런 시도는 코드가 컴파일 될 때 오류로 보고 됩니다:
+
+```swift
+let languageName = "Swift"
+languageName = "Swift++"
+// 컴파일 타임 에러: languageName은 변경이 불가능 합니다. 
+```
+
 ---
 
 _* annotation : 주석_</br>
+_* mathematical symbol : 수학 기호_</br>
+_* private-use : 개인용_</br>
 
 ---
 
