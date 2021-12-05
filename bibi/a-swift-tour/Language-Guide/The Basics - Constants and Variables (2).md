@@ -65,7 +65,7 @@ welcomeMessage = "Hello"
 var red, green, blue: Double
 ```
 > 노트  
-> 실제로 타입 어노테이션을 작성해야 할 필요는 거의 없습니다. [타입 안전성과 타입 추론]([The Basics — The Swift Programming Language (Swift 5.5)](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322))에 설명된 것처럼, 만약 상수 또는 변수가 정의되는 시점에 초기값을 제공한다면 스위프트는 거의 항상 그 상수 또는 변수에서 사용될 타입을 추론합니다.  위의 `welcomeMessage` 예시에서, 초기값이 제공되지 않았고, 따라서`welcomeMessage` 변수의 타입은 초기값으로부터 추론되기보다는 타입 어노테이션으로 구체화됩니다.  
+> 실제로 타입 어노테이션을 작성해야 할 필요는 거의 없습니다. [타입 안전성과 타입 추론]([The Basics — The Swift Programming Language (Swift 5.5)](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322))에 설명된 것처럼, 만약 상수 또는 변수가 정의되는 시점에 초기값을 제공한다면 스위프트는 거의 항상 그 상수 또는 변수에서 사용될 타입을 추론합니다.  위의 `welcomeMessage` 예시에서, 초기값이 제공되지 않았고, 따라서 `welcomeMessage` 변수의 타입은 초기값으로부터 추론되기보다는 타입 어노테이션으로 구체화됩니다.  
 
 ### 상수 및 변수명 짓기
 상수와 변수의 이름은 유니코드 문자를 포함해 거의 모든 문자를 포함할 수 있습니다 : 
