@@ -49,7 +49,6 @@ _* expressive : 표현이 풍부한, 나타내는_</br>
 <details>
 	<summary>Constants and Variables</summary>
 
-
 ## [Constants and Variables](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=ON%20THIS%20PAGE-,The%20Basics,-Swift%20is%20a)
 
 Constants and variables associate a name (such as `maximumNumberOfLoginAttempts` or `welcomeMessage`) with a value of a particular type (such as the number `10` or the string `"Hello"`). The value of a *constant* can’t be changed once it’s set, whereas a *variable* can be set to a different value in the future.
@@ -144,6 +143,28 @@ let languageName = "Swift"
 languageName = "Swift++"
 // This is a compile-time error: languageName cannot be changed.
 ```
+
+### Printing Constants and Variables
+
+You can print the current value of a constant or variable with the `print(_:separator:terminator:)` function:
+
+```swift
+print(friendlyWelcome)
+// Prints "Bonjour!"
+```
+
+The `print(_:separator:terminator:)` function is a global function that prints one or more values to an appropriate output. In Xcode, for example, the `print(_:separator:terminator:)` function prints its output in Xcode’s “console” pane. The `separator` and `terminator` parameter have default values, so you can omit them when you call this function. By default, the function terminates the line it prints by adding a line break. To print a value without a line break after it, pass an empty string as the terminator—for example, `print(someValue, terminator: "")`. For information about parameters with default values, see [Default Parameter Values](https://docs.swift.org/swift-book/LanguageGuide/Functions.html#ID169).
+
+Swift uses *string interpolation* to include the name of a constant or variable as a placeholder in a longer string, and to prompt Swift to replace it with the current value of that constant or variable. Wrap the name in parentheses and escape it with a backslash before the opening parenthesis:
+
+```swift
+print("The current value of friendlyWelcome is \(friendlyWelcome)")
+// Prints "The current value of friendlyWelcome is Bonjour!"
+```
+
+> NOTE
+>
+> All options you can use with string interpolation are described in [String Interpolation](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID292).
 
 ---
 
@@ -242,11 +263,45 @@ languageName = "Swift++"
 // 컴파일 타임 에러: languageName은 변경이 불가능 합니다. 
 ```
 
+### 상수와 변수의 출력
+
+ `print(_:separator:terminator:)` 함수를 사용하여 상수나 변수의 현재 값을 출력할 수 있습니다: 
+
+```swift
+print(friendlyWelcome)
+// "Bonjour!" 출력
+```
+
+`print(_:separator:terminator:)`  함수는 하나 혹은 더 많은 값들을 적절한 결과값으로 출력하는 전역 함수입니다. Xcode에서, 예를 들어,  `print(_:separator:terminator:)` 함수는 Xcode의 "콘솔" 창에 결과값을 출력합니다. `separator` 와 `terminator` 매개변수는 기본값을 가지기 때문에, 이 함수를 호출할 때 생략할 수 있습니다. 기본적으로, 함수는 줄바꿈을 추가하여 출력하는 줄을 종료합니다. 뒤에 줄바꿈 없이 값을 출력하려면 `print(someValue, terminator: "")` 처럼 종료 매개변수로 빈 문자열을 넘겨주십시오. 기본값을 비롯하여 매개변수에 대한 정보는 [Default Parameter Values](https://docs.swift.org/swift-book/LanguageGuide/Functions.html#ID169) 에서 볼 수 있습니다. 
+
+스위프트는 문자열 보간을 사용하여 더 긴 문자열에 상수나 변수의 이름을 자리 표시자로 포함시킬 수 있고, 그 상수나 변수의 현재값으로 대체하도록 할 수 있습니다. 괄호로 이름을 감싸고, 여는 괄호 앞에 백슬래시를 넣어서 탈출합니다:
+
+```swift
+print("The current value of friendlyWelcome is \(friendlyWelcome)")
+// "The current value of friendlyWelcome is Bonjour!" 출력
+```
+
+> 노트
+>
+> 문자열 보간과 함께 사용할 수 있는 모든 옵션은 [String Interpolation](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID292) 에서 설명되어 있습니다. 
+
 ---
 
 _* annotation : 주석_</br>
 _* mathematical symbol : 수학 기호_</br>
 _* private-use : 개인용_</br>
+_* appropriate : 적절한_</br>
+_* pane : 창, 창유리_</br>
+_* terminate : 종료, 끝내다_</br>
+_* line break : 줄 바꿈_</br>
+_* interpolation : 보간, 삽입_</br>
+_* placeholder : 자리 표시자_</br>
+_* prompt : 자극하다, 즉각적인_</br>
+
+---
+
+</details>
+
 
 ---
 
