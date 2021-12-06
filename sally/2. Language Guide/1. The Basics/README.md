@@ -302,6 +302,68 @@ _* prompt : 자극하다, 즉각적인_</br>
 
 </details>
 
+<details>
+	<summary>Comments</summary>
+
+## [Comments](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=in%20String%20Interpolation.-,Comments,-Use%20comments%20to)
+
+Use comments to include nonexecutable text in your code, as a note or reminder to yourself. Comments are ignored by the Swift compiler when your code is compiled.
+
+Comments in Swift are very similar to comments in C. Single-line comments begin with two forward-slashes (`//`):
+
+```swift
+// This is a comment.
+```
+
+Multiline comments start with a forward-slash followed by an asterisk (`/*`) and end with an asterisk followed by a forward-slash (`*/`):
+
+```swift
+/* This is also a comment
+but is written over multiple lines. */
+```
+
+Unlike multiline comments in C, multiline comments in Swift can be nested inside other multiline comments. You write nested comments by starting a multiline comment block and then starting a second multiline comment within the first block. The second block is then closed, followed by the first block:
+
+```swift
+/* This is the start of the first multiline comment.
+ /* This is the second, nested multiline comment. */
+This is the end of the first multiline comment. */
+```
+
+Nested multiline comments enable you to comment out large blocks of code quickly and easily, even if the code already contains multiline comments.
+
+---
+
+## 주석
+
+노트로 사용하거나 스스로 리마인드 하기 위해 코드에서 실행하지 않는 텍스트를 주석처리 하십시오. 코드가 컴파일 될 때 스위프트 컴파일러는 주석을 무시합니다. 
+
+스위프트에서 주석은 C의 주석과 비슷합니다. 한 줄 짜리 주석은 두개의 슬래시 (`//`) 로 시작합니다: 
+
+```swift
+// 주석입니다. 
+```
+
+여러 줄의 주석은 슬래시와 별표 (`/*`) 로 시작하고, 별표와 슬래시 (`*/`) 로 끝납니다: 
+
+```swift
+/* 이것도 주석이지만
+여러 줄에 걸쳐 작성 되었습니다. */
+```
+
+C의 여러 줄 주석과 달리 스위프트에서는 주석 안에 다른 여러 줄 주석을 중첩시킬 수 있습니다. 중첩된 주석을 작성하기 위해서는 첫 번째 여러 줄 주석 블럭으로 시작하고, 그 안에서 두 번째 여러 줄 주석을 시작합니다. 그 후에 두 번째 블럭이 닫히고, 첫 번째 블럭이 닫힙니다:
+
+```swift
+/* 첫 번째 여러 줄 주석의 시작입니다. 
+ /* 두 번째인 중첩된 여러 줄 주석입니다. */
+첫 번째 여러 줄 주석의 끝입니다. */
+```
+
+여러 줄 주석 중첩은 이미 여러 줄 주석을 포함하고 있어도 많은 양의 코드를 빠르고 쉽게 주석처리 할 수 있게 해줍니다. 
+
+---
+
+_* asterisk : 별표_</br>
 
 ---
 
