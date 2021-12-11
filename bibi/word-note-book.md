@@ -240,7 +240,7 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - error handling 오류 처리
 - represent 대표하다. 해당하다.
 - discard 버리다
-- defer 미루다. 연기하다. ...의 결정을 맡기다. (컴)
+- defer 미루다. 연기하다. ...의 결정을 맡기다. (컴) 지연시키다
   - defer to sth : sth를 따르다. 좇다.
 - setup 설정
 - cleanup 청소
@@ -265,4 +265,54 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 
 
 ## LANGUAGE GUIDE
+
+
+### The Basics
+- nonetheless 그렇긴 하지만.
+- fundamental 근본적인. 핵심적인. / 기본 원칙. 핵심
+- textual 원문의. (컴) 텍스트의?
+- extensive 광범위한
+- compound 복합적인 / 복합체
+- absence 부재. 없음.
+- identify 식별하다
+- throughout ~내내. 처음부터 끝까지.
+- intent 몰두하는. 꾀하는. 전념하는 / 의도
+  - in intent 의도적으로
+- type safety 타입 안전성
+
+### The Basics - Constants and Variables (1)
+- whereas 반면
+- attempt 시도
+- associate 연관짓다
+
+### The Basics - Constants and Variables (2)
+- annotation 주석(을 달기)
+- in practice 실제는. 사실상.
+- nor (접속사/부사) ...도 아니다/없다.
+- compatible 호환이 되는
+- phrase 구절
+- think of it as ... ...라고 생각하다.
+- private use 사적 이용. 전용.
+
+### The Basics - Constants and Variables (3),  Comments
+- pane 판유리. 창. (컴) 창.
+- separator 구분자
+- terminator 종결자
+- global function 전역 함수
+- output 산출
+- line break 줄바꿈 문자
+- empty string 빈 문자열
+- interpolation 써넣음/써넣은 어구. 보간법.
+    - string interpolation 문자열 보간법
+- prompt (동) 촉발하다. ~하도록 하다. (형) 즉각적인
+- placeholder 플레이스 홀더
+- nonexecutable 비실행의. 실행할 수 없는.
+- reminder 상기시키는 것(편지/메모)
+- forward-slash (`/`)
+- backslash (`\`)
+- asterisk (`*`) 별표
+- within ~안에. ~이내에. (기간/거리)
+- multiline 여러 줄의 
+- comment out (컴) 주석 처리하다.
+    - uncomment (컴) 주석을 제거하다.
 
