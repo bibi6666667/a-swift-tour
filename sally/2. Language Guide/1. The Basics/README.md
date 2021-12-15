@@ -395,4 +395,97 @@ let cat = "🐱"; print(cat)
 ---
 
 </details>
+
+<details>
+	<summary>Integers</summary>
+
+## [Integers](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=//%20Prints%20%22%F0%9F%90%B1%22-,Integers,-Integers%20are%20whole)
+
+*Integers* are whole numbers with no fractional component, such as `42` and `-23`. Integers are either *signed* (positive, zero, or negative) or *unsigned* (positive or zero).
+
+Swift provides signed and unsigned integers in 8, 16, 32, and 64 bit forms. These integers follow a naming convention similar to C, in that an 8-bit unsigned integer is of type `UInt8`, and a 32-bit signed integer is of type `Int32`. Like all types in Swift, these integer types have capitalized names.
+
+### Integer Bounds
+
+You can access the minimum and maximum values of each integer type with its `min` and `max` properties:
+
+```swift
+let minValue = UInt8.min  // minValue is equal to 0, and is of type UInt8
+let maxValue = UInt8.max  // maxValue is equal to 255, and is of type UInt8
+```
+
+The values of these properties are of the appropriate-sized number type (such as `UInt8` in the example above) and can therefore be used in expressions alongside other values of the same type.
+
+### Int
+
+In most cases, you don’t need to pick a specific size of integer to use in your code. Swift provides an additional integer type, `Int`, which has the same size as the current platform’s native word size:
+
+- On a 32-bit platform, `Int` is the same size as `Int32`.
+- On a 64-bit platform, `Int` is the same size as `Int64`.
+
+Unless you need to work with a specific size of integer, always use `Int` for integer values in your code. This aids code consistency and interoperability. Even on 32-bit platforms, `Int` can store any value between `-2,147,483,648` and `2,147,483,647`, and is large enough for many integer ranges.
+
+### UInt
+
+Swift also provides an unsigned integer type, `UInt`, which has the same size as the current platform’s native word size:
+
+- On a 32-bit platform, `UInt` is the same size as `UInt32`.
+- On a 64-bit platform, `UInt` is the same size as `UInt64`.
+
+> NOTE
+>
+> Use `UInt` only when you specifically need an unsigned integer type with the same size as the platform’s native word size. If this isn’t the case, `Int` is preferred, even when the values to be stored are known to be nonnegative. A consistent use of `Int` for integer values aids code interoperability, avoids the need to convert between different number types, and matches integer type inference, as described in [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322).
+
+---
+
+## 정수
+
+*정수*는 42나 -23 처럼 분수 요소가 없는 통째의 숫자입니다. 정수는 *부호가 있거나* (양수, 0, 혹은 음수) *부호가 없습니다* (양수 혹은 0).
+
+스위프트는 부호가 있는 정수와 부호가 없는 정수를 8, 16, 32, 64 비트 형식으로 제공합니다. 이러한 정수들은 C 와 비슷한 네이밍 컨벤션을 따릅니다. 8 비트의 부호가 없는 정수의 타입은 `UInt8`, 32 비트의 부호가 있는 정수의 타입은 `Int32` 입니다. 스위프트의 모든 타입들 처럼, 이 정수 타입들의 이름은 대문자로 시작합니다. 
+
+### 정수 범위
+
+`min` 과 `max` 프로퍼티를 이용하여 각 정수의 최소값과 최대값에 접근할 수 있습니다:  
+
+```swift
+let minValue = UInt8.min  // minValue는 0이고, UInt8 타입입니다
+let maxValue = UInt8.max  // maxValue는 255이고, UInt8 타입입니다.
+```
+
+이러한 프로퍼티들의 값은 (위의 예의 `UInt8` 같은) 적절한 사이즈의 숫자 타입이므로, 표현식에서 같은 타입의 다른 값들과 나란히 사용될 수 있습니다. 
+
+### Int
+
+대부분의 경우, 코드에서 사용하기 위해 특정한 크기의 정수를 고를 필요는 없습니다. 스위프트는 현재 플랫폼의 기본 단어 크기와 같은 크기를 가지는 `Int` 라는 추가적인 정수 타입을 제공합니다:
+
+- 32-비트 플랫폼에서, `Int` 는 `Int32` 와 같은 크기를 가집니다.
+
+- 64-비트 플랫폼에서, `Int` 는 `Int64` 와 같은 크기를 가집니다.
+
+특정한 크기의 정수를 사용해야하는 경우를 제외하고는 코드에서 정수 값을 사용할 때 `Int` 를 사용하십시오. 이것이 코드가 일관적이고 상호 운용적이도록 도와줍니다. 32-비트 플랫폼에서도 `Int` 는 `-2,147,483,648` 와 `2,147,483,647` 사이의 어떤 값이라도 저장할 수 있고, 이것은 많은 정수 범위를 충분히 만족시킬 수 있습니다.
+
+### UInt
+
+또한 스위프트는 현재 플랫폼의 기본 단어 크기와 같은 크기를 가지는 `UInt` 라는 부호가 없는 정수 타입을 제공합니다:
+
+- 32-비트 플랫폼에서, `UInt` 는 `UInt32` 와 같은 크기를 가집니다.
+- 64-비트 플랫폼에서, `UInt` 는 `UInt64` 와 같은 크기를 가집니다.
+
+> 노트
+>
+> `UInt` 는 플랫폼의 기본 단어 크기와 같은 부호가 없는 정수 타입이 특별하게 필요할 때만 사용하십시오. 그렇지 않은 경우, 변수에 저장될 값이 음수가 아니라고 알려져 있더라도 `Int` 를 사용하는 것을 권장합니다. 정수 값으로 `Int` 를 일관되게 사용하는 것은 코드가 상호 운용적이게 도와주고, 다른 숫자 타입 사이에서 변환할 필요가 없게 해주고, [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322) 에서 묘사된 것처럼 정수 타입 추론을 맞춰줍니다.
+
+---
+
+_* fractional : 분수_</br>
+_* *sign* : 부호_</br>
+_* capitalized : 대문자, 대문자로 시작하다_</br>
+_* alongside : 나란히_</br>
+_* consistency : 일관성_</br>
+_* interoperability : 상호 운용성_</br>
+_* If this isn’t the case : 그렇지 않은 경우_</br>
+
+---
+
 </details>
