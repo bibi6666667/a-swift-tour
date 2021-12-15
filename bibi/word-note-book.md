@@ -316,3 +316,43 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - comment out (컴) 주석 처리하다.
     - uncomment (컴) 주석을 제거하다.
 
+### The Basics - Semicolons, Integers
+- fractional 부분의. (수학) 분수의.
+- bound 경계
+- component 구성 요소.
+- alongside 옆에. 나란히.
+- consistent 일관된. 한결같은.
+- consistency 일관성. 한결같음.
+- interoperability 상호 운용성
+- unsigned 부호가 없는
+- signed 부호가 있는
+- nonnegative 음이 아닌. (=0 또는 0보다 큰)
+- in that ...라는 점에서. ...이므로.
+- capitalize 대문자로 시작하다
+- appropriate 적절한
+- native 기본의. 타고난. 원래의. 출생지의.
+- aid 돕다.
+- word 단어
+- if this isn't the case 그렇지 않은 경우.
+
+### The Basics - Floating-Point Numbers, Type Safety and Type Inference
+- fractional 분수의. 아주 적은
+- precision 정확(성), 정밀(성)
+    - precisely 정확하게.
+- nature *특성. 본성.
+- encourage 격려하다. 장려하다.
+- flag (동사) 표시를 하다
+- literal 문자 그대로의. (컴) 리터럴. 상수에 넣는 변하지 않는 데이터의 값
+    - 상수는 변하지 않는 변수(메모리 위치)
+    - 리터럴은 변하지 않는 변수의 데이터 값(메모리 위치 안의 값)
+- combine 결합하다
+- presence 있음. 존재함.
+- decimal (형) 십진법의, (명) 소수
+    - decimal point 소수점
+- digit 숫자
+- mismatched 일치하지 않는
+- work out -를 계산하다
+- deduce 추론하다. 연역하다.
+- particularly 특히. 특별히.
+- be done 수행되다
+- in and of itself 그 자체로. 그것 자체는.
