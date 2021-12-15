@@ -368,3 +368,31 @@ _* asterisk : 별표_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Semicolons</summary>
+
+## [Semicolons](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=contains%20multiline%20comments.-,Semicolons,-Unlike%20many%20other)
+
+Unlike many other languages, Swift doesn’t require you to write a semicolon (`;`) after each statement in your code, although you can do so if you wish. However, semicolons *are* required if you want to write multiple separate statements on a single line:
+
+```swift
+let cat = "🐱"; print(cat)
+// Prints "🐱"
+```
+
+---
+
+## 세미콜론
+
+다른 여러 언어와 달리 스위프트는, 원한다면 가능하긴 하지만, 코드의 각 문장 뒤에 세미콜론을 작성할 필요가 없습니다. 그러나 한 줄에 여러 개의 분리된 문장을 작성하려면 세미콜론이 필요합니다:
+
+```swift
+let cat = "🐱"; print(cat)
+// "🐱" 출력
+```
+
+---
+
+</details>
+</details>
