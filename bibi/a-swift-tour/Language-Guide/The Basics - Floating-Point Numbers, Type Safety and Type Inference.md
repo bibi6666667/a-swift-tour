@@ -79,7 +79,7 @@ let anotherPi = 3 + 0.14159
 	- 리터럴은 변하지 않는 변수의 데이터 값(메모리 위치 안의 값)
 - combine 결합하다
 - presence 있음. 존재함.
-- decimal (형) 십진법의, (명) 소수
+- decimal (형) 십진법의, **(명) 소수**
 	- decimal point 소수점
 - digit 숫자
 - mismatched 일치하지 않는
