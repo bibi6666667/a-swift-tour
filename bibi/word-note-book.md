@@ -356,3 +356,45 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - particularly 특히. 특별히.
 - be done 수행되다
 - in and of itself 그 자체로. 그것 자체는.
+
+### The Basics - Numeric Literals
+- numeric (명) 수. 숫자.
+- decimal 십진법의
+- binary 이진법의
+- octal 8진법의
+- hexadecimal 16진법의
+- exponent (수학) 지수
+- base number (수학) 밑
+- indicated  표시된. 명시된.
+    - indicate 나타내다
+- formatting 서식 설정
+    - format 서식(을 만들다)
+- underscore 밑줄 (`_`). = underline.
+- underlying 밑에 있는. 근본적인.
+- notation 표기법
+    - decimal notation 십진법
+- decimal point 소수점
+- decimal float
+> Decimal floats can also have an optional exponent, indicated by an uppercase or lowercase e; hexadecimal floats must have an exponent, indicated by an uppercase or lowercase p.  
+
+### The Basics - Numeric Type Conversion
+- general-purpose 다목적의. 다용도의.
+- interoperable 상호운용적인
+- at hand 가까이에. 당면한.
+- opt 택하다
+    - opt in ... : ...에 참여(동의)하기로 하다
+    - opt-in 옵트인 / 사전동의 ?
+- case-by-case 개별적인
+- basis 근거. 이유.
+- truncate 자르다. 짧게 하다.
+- evaluate 평가하다
+- document (동사) 기록하다
+- in place of ... : ...를 대신해서.
+- behind the scene : 무대 뒤에서. 이면에서.
+- extend 확장하다
+- cover *다루다.
+- in place 제자리에(있는)
+- be of 추상명사 : of 추상명사 = 형용사 로 해석
+    - `pi equals 3.14159, and is inferred to be of type Double`  : pi는 3.14159와 같으며, Double타입의 것으로 추론됩니다.
+- combine 결합하다
+- in and of itself 그것 자체는
