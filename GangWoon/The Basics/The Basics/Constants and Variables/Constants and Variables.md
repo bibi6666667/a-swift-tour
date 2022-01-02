@@ -42,7 +42,7 @@ This code can be read as:
 
 “Declare a new constant called `maximumNumberOfLoginAttempts`, and give it a value of `10`. 
 
-키워드로 불리는 새로운 상수를 선언한다 그리고 10의 값을ㅈ ㅜㄴ다.
+키워드로 불리는 새로운 상수를 선언한다 그리고 10의 값을 준다.
 
 
 
