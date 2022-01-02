@@ -70,8 +70,7 @@ let oneMillion = 1_000_000
 let justOverOneMillion = 1_000_000.000_000_1
 ```
 - - - -
-## 
-단어 정리
+## 단어 정리
 - numeric (명) 수. 숫자.
 - decimal 십진법의
 - binary 이진법의
