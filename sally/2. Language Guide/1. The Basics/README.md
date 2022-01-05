@@ -528,4 +528,91 @@ _* nature : 특성_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Type Safety and Type Inference</summary>
+
+## [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=Double%20is%20preferred.-,Type%20Safety%20and%20Type%20Inference,-Swift%20is%20a)
+
+Swift is a *type-safe* language. A type safe language encourages you to be clear about the types of values your code can work with. If part of your code requires a `String`, you can’t pass it an `Int` by mistake.
+
+Because Swift is type safe, it performs *type checks* when compiling your code and flags any mismatched types as errors. This enables you to catch and fix errors as early as possible in the development process.
+
+Type-checking helps you avoid errors when you’re working with different types of values. However, this doesn’t mean that you have to specify the type of every constant and variable that you declare. If you don’t specify the type of value you need, Swift uses *type inference* to work out the appropriate type. Type inference enables a compiler to deduce the type of a particular expression automatically when it compiles your code, simply by examining the values you provide.
+
+Because of type inference, Swift requires far fewer type declarations than languages such as C or Objective-C. Constants and variables are still explicitly typed, but much of the work of specifying their type is done for you.
+
+Type inference is particularly useful when you declare a constant or variable with an initial value. This is often done by assigning a *literal value* (or *literal*) to the constant or variable at the point that you declare it. (A literal value is a value that appears directly in your source code, such as `42` and `3.14159` in the examples below.)
+
+For example, if you assign a literal value of `42` to a new constant without saying what type it is, Swift infers that you want the constant to be an `Int`, because you have initialized it with a number that looks like an integer:
+
+```swift
+let meaningOfLife = 42
+// meaningOfLife is inferred to be of type Int
+```
+
+Likewise, if you don’t specify a type for a floating-point literal, Swift infers that you want to create a `Double`:
+
+```swift
+let pi = 3.14159
+// pi is inferred to be of type Double
+```
+
+Swift always chooses `Double` (rather than `Float`) when inferring the type of floating-point numbers.
+
+If you combine integer and floating-point literals in an expression, a type of `Double` will be inferred from the context:
+
+```swift
+let anotherPi = 3 + 0.14159
+// anotherPi is also inferred to be of type Double
+```
+
+The literal value of `3` has no explicit type in and of itself, and so an appropriate output type of `Double` is inferred from the presence of a floating-point literal as part of the addition.
+
+---
+
+## 타입 안정성과 타입 추론
+
+스위프트는 *type-safe* 언어입니다. 타입 안정성 언어는 코드가 사용할 수 있는 값의 타입을 명확하게 하도록 합니다. 만약 코드의 일부분이 `String`을 요구한다면, 실수로 `Int`를 전달할 수 없습니다. 
+
+스위프트는 타입이 안전하기 때문에, 코드를 컴파일할 때 타입 체크를 실시하고, 모든 일치하지 않는 타입은 오류로 표시합니다. 이것으로 인해 개발 과정에서 가능한 한 빨리 오류를 발견하고 고칠 수 있습니다. 
+
+타입 체크는 다른 타입의 값들을 가지고 일할 때 오류를 피하도록 도와줍니다. 그러나, 이것이 선언한 모든 상수와 변수의 타입을 지정해줘야 한다는 의미는 아닙니다. 만약 필요한 값의 타입을 지정해주지 않는다면, 스위프트가 타입 추론을 이용하여 적절한 타입을 지정해줄 것입니다. 타입 추론을 사용하면 컴파일러는 코드를 컴파일 하는 과정에서 단순히 제공한 값을 검사하여 특정한 표현식의 타입을 자동적으로 추론할 수 있습니다. 
+
+타입 추론 덕분에, 스위프트는 C나 Objective-C 같은 언어보다 더 적게 타입 명시를 해도 됩니다. 상수와 변수는 여전히 명시적으로 타입이 지정되지만, 그 타입들을 지정하는 일의 대부분은 스위프트가 수행합니다.
+
+타입 추론은 특히 초기값과 함께 상수나 변수를 선언할 때 유용합니다. 이것은 가끔 상수나 변수를 선언할 때 그것에 리터럴 값 (또는 리터럴)을 할당하여 수행됩니다. (리터럴 값은 아래 예의  `42`와 `3.14159` 처럼 소스 코드에 직접적으로 나타나는 값입니다.)
+
+예를 들어, `42`의 리터럴 값을 타입 지정 없이 새로운 상수에 할당하면, 그것을 정수로 보이는 숫자와 함께 초기화했기 때문에, 스위프트는 당신이 그 상수가 `Int`가 되길 바라는 거라고 추론할 것입니다: 
+
+```swift
+let meaningOfLife = 42
+// meaningOfLife는 정수 타입으로 추론됩니다. 
+```
+
+마찬가지로, 만약 부동 소수점 리터럴에 타입을 지정하지 않으면, 스위프트는 `Double`을 생성하기를 원한다고 추론할 것입니다:
+
+```swift
+let pi = 3.14159
+// pi는 더블 타입으로 추론됩니다. 
+```
+
+스위프트는 부동 소수점 숫자의 타입을 추론할 때, 항상 (`Float` 보다는) `Double` 을 선택합니다.
+
+만약 한 표현식에서 정수와 부동 소수점 리터럴을 결합하면, 타입은 맥락상 `Double`로 추론될 것입니다:
+
+```swift
+let anotherPi = 3 + 0.14159
+// anotherPi 또한 더블로 추론됩니다.
+```
+
+리터럴 값 `3`은 그 스스로는 명시적인 타입을 가지고 있지 않으므로, `Double`의 적절한 출력 타입은 덧셈의 일부인 부동 소수점 리터럴의 존재로부터 추론됩니다. 
+
+---
+
+_* deduce : 추론하다_</br>
+
+---
+
+</details>
 </details>
