@@ -615,4 +615,113 @@ _* deduce : 추론하다_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Numeric Literals</summary>
+
+## [Numeric Literals](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=of%20the%20addition.-,Numeric%20Literals,-Integer%20literals%20can)
+
+Integer literals can be written as:
+
+- A *decimal* number, with no prefix
+- A *binary* number, with a `0b` prefix
+- An *octal* number, with a `0o` prefix
+- A *hexadecimal* number, with a `0x` prefix
+
+All of these integer literals have a decimal value of `17`:
+
+```swift
+let decimalInteger = 17
+let binaryInteger = 0b10001       // 17 in binary notation
+let octalInteger = 0o21           // 17 in octal notation
+let hexadecimalInteger = 0x11     // 17 in hexadecimal notation
+```
+
+Floating-point literals can be decimal (with no prefix), or hexadecimal (with a `0x` prefix). They must always have a number (or hexadecimal number) on both sides of the decimal point. Decimal floats can also have an optional *exponent*, indicated by an uppercase or lowercase `e`; hexadecimal floats must have an exponent, indicated by an uppercase or lowercase `p`.
+
+For decimal numbers with an exponent of `exp`, the base number is multiplied by 10<sup>exp</sup>:
+
+- `1.25e2` means 1.25 x 10<sup>2</sup>, or `125.0`.
+- `1.25e-2` means 1.25 x 10<sup>-2</sup>, or `0.0125`.
+
+For hexadecimal numbers with an exponent of `exp`, the base number is multiplied by 2<sup>exp</sup>:
+
+- `0xFp2` means 15 x 2<sup>2</sup>, or `60.0`.
+- `0xFp-2` means 15 x 2<sup>-2</sup>, or `3.75`.
+
+All of these floating-point literals have a decimal value of `12.1875`:
+
+```swift
+let decimalDouble = 12.1875
+let exponentDouble = 1.21875e1
+let hexadecimalDouble = 0xC.3p0
+```
+
+Numeric literals can contain extra formatting to make them easier to read. Both integers and floats can be padded with extra zeros and can contain underscores to help with readability. Neither type of formatting affects the underlying value of the literal:
+
+```swift
+let paddedDouble = 000123.456
+let oneMillion = 1_000_000
+let justOverOneMillion = 1_000_000.000_000_1
+```
+
+---
+
+## 숫자 리터럴
+
+정수 리터럴은 다음과 같이 쓸 수 있습니다:
+
+- 접두사가 없는 *10*진수
+- `0b` 접두사가 있는 *2*진수
+- `0o` 접두사가 있는 *8*진수
+- `0x` 접두사가 있는 *16*진수
+
+이 정수 리터럴 전부 `17`의 10진수 값을 가지고 있습니다:
+
+```swift
+let decimalInteger = 17
+let binaryInteger = 0b10001       // 2진수에 17의 표기법
+let octalInteger = 0o21           // 8진수에 17의 표기법
+let hexadecimalInteger = 0x11     // 16진수에 17의 표기법
+```
+
+부동 소수점 리터럴은 (접두사 없이) 10진수거나 (`0x` 접두가사 있는) 16진수일 수 있습니다. 그것들에는 언제나 소수점 양쪽에 숫자 (혹은 16진수 숫자)가 있어야 합니다. 10진수 부동 소수점은 대문자 혹은 소문자 `e`로 표현하는 선택적 지수를 가질 수도 있습니다; 16진수 부동 소수점은  대문자 혹은 소문자 `p`로 표현하는 지수를 반드시 가져야만 합니다. 
+
+지수가 `exp`인 10진수의 경우, 베이스 숫자에 10<sup>exp</sup>를 곱합니다:
+
+- `1.25e2`는 1.25 x 10<sup>2</sup>, 혹은 `125.0`를 의미합니다.
+- `1.25e-2`는 1.25 x 10<sup>2</sup>, 혹은 `0.0125`를 의미합니다.
+
+지수가 `exp`인 16진수의 경우, 베이스 숫자에 2<sup>exp</sup> 곱합니다:
+
+- `0xFp2` means 15 x 2<sup>2</sup>, or `60.0`.
+- `0xFp-2` means 15 x 2<sup>-2</sup>, or `3.75`.
+
+이 부동 소수점 리터럴 전부 `12.1875`의 10진수 값을 가지고 있습니다:
+
+```swift
+let decimalDouble = 12.1875
+let exponentDouble = 1.21875e1
+let hexadecimalDouble = 0xC.3p0
+```
+
+숫자 리터럴은 그것들을 더 읽기 쉽게 하기 위한 별도의 형식을 가지고 있을 수 있습니다. 가독성을 높이기 위해 정수와 부동 소수점은 추가적인 0을 넣거나, 밑줄을 포함할 수 있습니다. 두 형식 모두 리터럴의 기본 값에 영향을 주지 않습니다. 
+
+```swift
+let paddedDouble = 000123.456
+let oneMillion = 1_000_000
+let justOverOneMillion = 1_000_000.000_000_1
+```
+
+---
+
+_* notation : 표기법_</br>
+_* decimal point : 소수점_</br>
+_* *exponent* : 멱지수_</br>
+_* *pad* : 채워넣다_</br>
+_* *underlying* : 밑에 있는, 기본적인_</br>
+
+---
+
+</details>
 </details>
