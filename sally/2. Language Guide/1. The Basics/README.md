@@ -489,3 +489,43 @@ _* If this isn’t the case : 그렇지 않은 경우_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Floating-Point Numbers</summary>
+
+## [Floating-Point Numbers](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=and%20Type%20Inference.-,Floating-Point%20Numbers,-Floating-point%20numbers)
+
+*Floating-point numbers* are numbers with a fractional component, such as `3.14159`, `0.1`, and `-273.15`.
+
+Floating-point types can represent a much wider range of values than integer types, and can store numbers that are much larger or smaller than can be stored in an `Int`. Swift provides two signed floating-point number types:
+
+- `Double` represents a 64-bit floating-point number.
+- `Float` represents a 32-bit floating-point number.
+
+> NOTE
+>
+> `Double` has a precision of at least 15 decimal digits, whereas the precision of `Float` can be as little as 6 decimal digits. The appropriate floating-point type to use depends on the nature and range of values you need to work with in your code. In situations where either type would be appropriate, `Double` is preferred.
+
+---
+
+## 부동 소수점 숫자
+
+*부동 소수점 숫자*는  `3.14159`, `0.1`, 나 `-273.15` 등과 같이 분수 요소가 있는 숫자입니다. 
+
+부동 소수점 타입은 정수 타입 보다 더 넓은 범위의 값을 표현할 수 있고, `Int`에 저장할 수 있는 숫자보다 더 크거나 작은 숫자를 저장할 수 있습니다. 스위프트는 두 가지 부호가 있는 부동 소수점 숫자 타입을 제공합니다:
+
+- 64-비트 부동 소수점 숫자를 표현하는 `Double`.
+- 32-비트 부동 소수점 숫자를 표현하는 `Float`.
+
+> 노트
+>
+> `Double`의 정밀도는 최소 15자리 소수점 이하 자릿수인 반면, `Float`의 정밀도는 소수점 이하 6자리까지 가능합니다. 적절한 부동 소수점 타입을 사용하는 것은 코드에서 사용해야 하는 값의 특성과 범위에 달려있습니다. 두 타입 모두 적절한 경우에는 `Double`이 선호됩니다. 
+
+---
+
+_* nature : 특성_</br>
+
+---
+
+</details>
+</details>
