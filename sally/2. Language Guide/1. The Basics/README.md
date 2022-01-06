@@ -857,4 +857,54 @@ _* truncate : 자르다_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Type Aliases</summary>
+
+## [Type Aliases](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=by%20the%20compiler.-,Type%20Aliases,-Type%20aliases%20define)
+
+*Type aliases* define an alternative name for an existing type. You define type aliases with the `typealias` keyword.
+
+Type aliases are useful when you want to refer to an existing type by a name that’s contextually more appropriate, such as when working with data of a specific size from an external source:
+
+```swift
+typealias AudioSample = UInt16
+```
+
+Once you define a type alias, you can use the alias anywhere you might use the original name:
+
+```swift
+var maxAmplitudeFound = AudioSample.min
+// maxAmplitudeFound is now 0
+```
+
+Here, `AudioSample` is defined as an alias for `UInt16`. Because it’s an alias, the call to `AudioSample.min` actually calls `UInt16.min`, which provides an initial value of `0` for the `maxAmplitudeFound` variable.
+
+---
+
+## 타입 별칭
+
+*타입 별칭*은 기존 타입을 대체 이름을 정의합니다. `typealias` 키워드를 사용하여 타입 별칭을 정의합니다. 
+
+타입 별칭은 외부 소스로부터의 특정한 크기의 데이터를 사용할 때 같은, 맥락적으로 더 적절한 이름으로 기존의 타입을 참조하고 싶을 때 유용합니다:
+
+```swift
+typealias AudioSample = UInt16
+```
+
+한번 타입 별칭을 정의하면, 원래 이름을 사용했었을 어디에서나 별칭을 사용할 수 있습니다:
+
+```swift
+var maxAmplitudeFound = AudioSample.min
+// maxAmplitudeFound은 현재 0 입니다.
+```
+
+여기서,`AudioSample`은  `UInt16`의 별칭으로 정의되었습니다. 별칭이기 때문에, `AudioSample.min`을 호출하는 것은 실제로 `maxAmplitudeFound` 변수에 초기값 `0`을 제공하는, `UInt16.min`를 호출합니다.
+
+---
+
+_* alternative : 대안, 대체_</br>
+
+---
+
 </details>
