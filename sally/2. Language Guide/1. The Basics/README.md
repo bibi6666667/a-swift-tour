@@ -724,4 +724,137 @@ _* *underlying* : 밑에 있는, 기본적인_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Numeric Type Conversion</summary>
+
+## [Numeric Type Conversion](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=let%20justOverOneMillion%20%3D%201_000_000.000_000_1-,Numeric%20Type%20Conversion,-Use%20the%20Int)
+
+Use the `Int` type for all general-purpose integer constants and variables in your code, even if they’re known to be nonnegative. Using the default integer type in everyday situations means that integer constants and variables are immediately interoperable in your code and will match the inferred type for integer literal values.
+
+Use other integer types only when they’re specifically needed for the task at hand, because of explicitly sized data from an external source, or for performance, memory usage, or other necessary optimization. Using explicitly sized types in these situations helps to catch any accidental value overflows and implicitly documents the nature of the data being used.
+
+### Integer Conversion
+
+The range of numbers that can be stored in an integer constant or variable is different for each numeric type. An `Int8` constant or variable can store numbers between `-128` and `127`, whereas a `UInt8` constant or variable can store numbers between `0` and `255`. A number that won’t fit into a constant or variable of a sized integer type is reported as an error when your code is compiled:
+
+```swift
+let cannotBeNegative: UInt8 = -1
+// UInt8 can't store negative numbers, and so this will report an error
+let tooBig: Int8 = Int8.max + 1
+// Int8 can't store a number larger than its maximum value,
+// and so this will also report an error
+```
+
+Because each numeric type can store a different range of values, you must opt in to numeric type conversion on a case-by-case basis. This opt-in approach prevents hidden conversion errors and helps make type conversion intentions explicit in your code.
+
+To convert one specific number type to another, you initialize a new number of the desired type with the existing value. In the example below, the constant `twoThousand` is of type `UInt16`, whereas the constant `one` is of type `UInt8`. They can’t be added together directly, because they’re not of the same type. Instead, this example calls `UInt16(one)` to create a new `UInt16` initialized with the value of `one`, and uses this value in place of the original:
+
+```swift
+let twoThousand: UInt16 = 2_000
+let one: UInt8 = 1
+let twoThousandAndOne = twoThousand + UInt16(one)
+```
+
+Because both sides of the addition are now of type `UInt16`, the addition is allowed. The output constant (`twoThousandAndOne`) is inferred to be of type `UInt16`, because it’s the sum of two `UInt16` values.
+
+`SomeType(ofInitialValue)` is the default way to call the initializer of a Swift type and pass in an initial value. Behind the scenes, `UInt16` has an initializer that accepts a `UInt8` value, and so this initializer is used to make a new `UInt16` from an existing `UInt8`. You can’t pass in *any* type here, however—it has to be a type for which `UInt16` provides an initializer. Extending existing types to provide initializers that accept new types (including your own type definitions) is covered in [Extensions](https://docs.swift.org/swift-book/LanguageGuide/Extensions.html).
+
+### Integer and Floating-Point Conversion
+
+Conversions between integer and floating-point numeric types must be made explicit:
+
+```swift
+let three = 3
+let pointOneFourOneFiveNine = 0.14159
+let pi = Double(three) + pointOneFourOneFiveNine
+// pi equals 3.14159, and is inferred to be of type Double
+```
+
+Here, the value of the constant `three` is used to create a new value of type `Double`, so that both sides of the addition are of the same type. Without this conversion in place, the addition would not be allowed.
+
+Floating-point to integer conversion must also be made explicit. An integer type can be initialized with a `Double` or `Float` value:
+
+```swift
+let integerPi = Int(pi)
+// integerPi equals 3, and is inferred to be of type Int
+```
+
+Floating-point values are always truncated when used to initialize a new integer value in this way. This means that `4.75` becomes `4`, and `-3.9` becomes `-3`.
+
+> NOTE
+>
+> The rules for combining numeric constants and variables are different from the rules for numeric literals. The literal value `3` can be added directly to the literal value `0.14159`, because number literals don’t have an explicit type in and of themselves. Their type is inferred only at the point that they’re evaluated by the compiler.
+
+---
+
+## 숫자 타입 변환
+
+코드에서 일반적인 목적을 가지고 있는 모든 정수 상수와 변수의 타입은, 그것들이 음수가 아니라는 것을 알고 있더라도 `Int`를 사용하십시오. 모든 상황에서 기본 정수 타입을 사용하면 정수 상수와 변수가 코드 안에서 즉시 상호 운용할 수 있고, 정수 리털값을 유츄한 타입과 일치할 것입니다. 
+
+당면한 과제에 외부로부터의 명시적인 크기의 데이터가 있거나, 성능, 메모리 사용량, 혹은 다른 필요한 최적화 때문에 특별히 필요한 경우에만 다른 정수 타입을 사용하십시오. 이런 상황에서 명시적인 크기의 타입을 사용하는 것은, 갑작스러운 값 오버플로우를 잡는 것과, 사용되는 데이터의 특성을 암묵적으로 문서화하는데 도움이 됩니다. 
+
+### 정수 변환
+
+정수 상수나 변수에 저장할 수 있는 숫자의 법위는 각 숫자 타입에 따라 다릅니다. `Int8` 상수나 변수는 `-128`과 `127` 사이의 숫자를 저장할 수 있는 반면, `UInt8` 상수나 변수는 `0`과 `255` 사이의 숫자를 저장할 수 있습니다. 크기가 지정된 정수 타입의 상수나 변수에 맞지 않는 숫자는 코드가 컴파일 될 때 오류로 보고됩니다:
+
+```swift
+let cannotBeNegative: UInt8 = -1
+// UInt8은 음수를 저장할 수 없기 때문에, 오류로 보고될 것입니다
+let tooBig: Int8 = Int8.max + 1
+// Int8은 그 최대값보다 더 큰 숫자를 저장할 수 없기 때문에, 이것 또한 오류로 보고될 것입니다
+```
+
+각 숫자 타입은 저장할 수 있는 값의 범위가 다르기 때문에, 경우에 따라 숫자 타입 변환을 선택해야 합니다. 이런 옵트인 접근법은 숨겨진 전환 오류를 예방하고, 타입 변환의 의도가 코드에서 명시적이도록 해줍니다.
+
+하나의 특정한 숫자 타입을 다른 것으로 변환하기 위해서는, 기존값과 함께 요구되는 타입으로 새로운 숫자를 초기화해야 합니다. 아래 예에서, 정수 `twoThousand`는 `UInt16` 타입인 반면에 `one`은  `UInt8` 타입입니다. 그들은 같은 타입이 아니기 때문에 바로 더할 수는 없습니다. 대신에, 이 예는 값 `one`과 함께 초기화된 새로운 `UInt16`를 만들기 위해 `UInt16(one)`를 호출하고 원래 것 대신에 사용합니다. 
+
+```swift
+let twoThousand: UInt16 = 2_000
+let one: UInt8 = 1
+let twoThousandAndOne = twoThousand + UInt16(one)
+```
+
+덧셈의 양쪽이 현재 `UInt16` 타입이기 때문에, 덧셈은 허락됩니다. 결과 상수(`twoThousandAndOne`)는 두 개의 `UInt16` 값의 합이기 때문에 `UInt16` 타입으로 추론됩니다. 
+
+`SomeType(ofInitialValue)`은 스위프트 타입의 생성자를 호출하고 초기값을 전달하는 기본적인 방법입니다. 이면에서는, `UInt16`는 `UInt8` 값을 허용하는 생성자가 있으므로, 이 생성자는 기존의 `UInt8`로부터 새로운 `UInt16`를 만드는데 사용됩니다. 하지만, 여기에 *any* 타입을 전달할 수는 없습니다. `UInt16`가 생성자를 제공하는 타입이어야 합니다. (본인만의 타입 정의를 포함하여) 새로운 타입을 허용하는 생성자를 제공하기 위해 기존의 타입을 확장하는 것은 [Extensions](https://docs.swift.org/swift-book/LanguageGuide/Extensions.html)에서 다룹니다.
+
+### 정수와 부동 소수점 변환
+
+정수와 부동 소수점 숫자 타입 사이의 변환은 명시적으로 이루어져야 합니다:
+
+```swift
+let three = 3
+let pointOneFourOneFiveNine = 0.14159
+let pi = Double(three) + pointOneFourOneFiveNine
+// pi의 값은 3.14159이고 Double 타입으로 유추됩니다. 
+```
+
+여기서, 상수 `three`의 값은 새로운 `Double` 타입의 값을 만들기 위해 사용되었기 때문에, 더해지는 양쪽 모두 같은 타입이 됩니다. 이 변환이 없으면 더할 수 없습니다. 
+
+부동 소수점에서 정수로의 변환 또한 명시적으로 이루어져야 합니다. 정수 타입은 `Double` 혹은 `Float` 값으로 초기화될 수 있습니다:
+
+```swift
+let integerPi = Int(pi)
+// integerPi의 값은 3이고 Int 타입으로 유추됩니다. 
+```
+
+부동 소수점 값은 이런 식으로 새로운 정수 값을 초기화하는데 사용될 때, 항상 잘립니다. 이 말은 `4.75`는 `4`가 되고 `-3.9`는 `-3`이 된다는 의미입니다.
+
+> 노트
+>
+> 숫자 상수와 변수의 결합 규칙은 숫자 리러털에서의 규칙과 다릅니다. 숫자 리터럴은 그들 스스로는 명시적인 타입이 없기 때문에, 리터럴 값 `3`은 리터럴 값 `0.14159`와 바로 더해질 수 있습니다. 그들의 타입은 컴파일러에 의해 평가되는 시점에서만 유추됩니다. 
+
+---
+
+_* interoperable : 상호 운용 가능한_</br>
+_* at hand : 당면한_</br>
+_* opt : 고르다, 선택하다_</br>
+_* intention : 의도_</br>
+_* in place : 제자리에, 올바른 곳에_</br>
+_* truncate : 자르다_</br>
+
+---
+
+</details>
 </details>
