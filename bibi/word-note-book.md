@@ -240,7 +240,7 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 - error handling 오류 처리
 - represent 대표하다. 해당하다.
 - discard 버리다
-- defer 미루다. 연기하다. ...의 결정을 맡기다. (컴)
+- defer 미루다. 연기하다. ...의 결정을 맡기다. (컴) 지연시키다
   - defer to sth : sth를 따르다. 좇다.
 - setup 설정
 - cleanup 청소
@@ -266,3 +266,135 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
 
 ## LANGUAGE GUIDE
 
+
+### The Basics
+- nonetheless 그렇긴 하지만.
+- fundamental 근본적인. 핵심적인. / 기본 원칙. 핵심
+- textual 원문의. (컴) 텍스트의?
+- extensive 광범위한
+- compound 복합적인 / 복합체
+- absence 부재. 없음.
+- identify 식별하다
+- throughout ~내내. 처음부터 끝까지.
+- intent 몰두하는. 꾀하는. 전념하는 / 의도
+  - in intent 의도적으로
+- type safety 타입 안전성
+
+### The Basics - Constants and Variables (1)
+- whereas 반면
+- attempt 시도
+- associate 연관짓다
+
+### The Basics - Constants and Variables (2)
+- annotation 주석(을 달기)
+- in practice 실제는. 사실상.
+- nor (접속사/부사) ...도 아니다/없다.
+- compatible 호환이 되는
+- phrase 구절
+- think of it as ... ...라고 생각하다.
+- private use 사적 이용. 전용.
+
+### The Basics - Constants and Variables (3),  Comments
+- pane 판유리. 창. (컴) 창.
+- separator 구분자
+- terminator 종결자
+- global function 전역 함수
+- output 산출
+- line break 줄바꿈 문자
+- empty string 빈 문자열
+- interpolation 써넣음/써넣은 어구. 보간법.
+    - string interpolation 문자열 보간법
+- prompt (동) 촉발하다. ~하도록 하다. (형) 즉각적인
+- placeholder 플레이스 홀더
+- nonexecutable 비실행의. 실행할 수 없는.
+- reminder 상기시키는 것(편지/메모)
+- forward-slash (`/`)
+- backslash (`\`)
+- asterisk (`*`) 별표
+- within ~안에. ~이내에. (기간/거리)
+- multiline 여러 줄의 
+- comment out (컴) 주석 처리하다.
+    - uncomment (컴) 주석을 제거하다.
+
+### The Basics - Semicolons, Integers
+- fractional 부분의. (수학) 분수의.
+- bound 경계
+- component 구성 요소.
+- alongside 옆에. 나란히.
+- consistent 일관된. 한결같은.
+- consistency 일관성. 한결같음.
+- interoperability 상호 운용성
+- unsigned 부호가 없는
+- signed 부호가 있는
+- nonnegative 음이 아닌. (=0 또는 0보다 큰)
+- in that ...라는 점에서. ...이므로.
+- capitalize 대문자로 시작하다
+- appropriate 적절한
+- native 기본의. 타고난. 원래의. 출생지의.
+- aid 돕다.
+- word 단어
+- if this isn't the case 그렇지 않은 경우.
+
+### The Basics - Floating-Point Numbers, Type Safety and Type Inference
+- fractional 분수의. 아주 적은
+- precision 정확(성), 정밀(성)
+    - precisely 정확하게.
+- nature *특성. 본성.
+- encourage 격려하다. 장려하다.
+- flag (동사) 표시를 하다
+- literal 문자 그대로의. (컴) 리터럴. 상수에 넣는 변하지 않는 데이터의 값
+    - 상수는 변하지 않는 변수(메모리 위치)
+    - 리터럴은 변하지 않는 변수의 데이터 값(메모리 위치 안의 값)
+- combine 결합하다
+- presence 있음. 존재함.
+- decimal (형) 십진법의, (명) 소수
+    - decimal point 소수점
+- digit 숫자
+- mismatched 일치하지 않는
+- work out -를 계산하다
+- deduce 추론하다. 연역하다.
+- particularly 특히. 특별히.
+- be done 수행되다
+- in and of itself 그 자체로. 그것 자체는.
+
+### The Basics - Numeric Literals
+- numeric (명) 수. 숫자.
+- decimal 십진법의
+- binary 이진법의
+- octal 8진법의
+- hexadecimal 16진법의
+- exponent (수학) 지수
+- base number (수학) 밑
+- indicated  표시된. 명시된.
+    - indicate 나타내다
+- formatting 서식 설정
+    - format 서식(을 만들다)
+- underscore 밑줄 (`_`). = underline.
+- underlying 밑에 있는. 근본적인.
+- notation 표기법
+    - decimal notation 십진법
+- decimal point 소수점
+- decimal float
+> Decimal floats can also have an optional exponent, indicated by an uppercase or lowercase e; hexadecimal floats must have an exponent, indicated by an uppercase or lowercase p.  
+
+### The Basics - Numeric Type Conversion
+- general-purpose 다목적의. 다용도의.
+- interoperable 상호운용적인
+- at hand 가까이에. 당면한.
+- opt 택하다
+    - opt in ... : ...에 참여(동의)하기로 하다
+    - opt-in 옵트인 / 사전동의 ?
+- case-by-case 개별적인
+- basis 근거. 이유.
+- truncate 자르다. 짧게 하다.
+- evaluate 평가하다
+- document (동사) 기록하다
+- in place of ... : ...를 대신해서.
+- behind the scene : 무대 뒤에서. 이면에서.
+- extend 확장하다
+- cover *다루다.
+- in place 제자리에(있는)
+- be of 추상명사 : of 추상명사 = 형용사 로 해석
+    - `pi equals 3.14159, and is inferred to be of type Double`  : pi는 3.14159와 같으며, Double타입의 것으로 추론됩니다.
+- combine 결합하다
+- in and of itself 그것 자체는

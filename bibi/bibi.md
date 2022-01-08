@@ -12,7 +12,7 @@
   * [About Swift](#about-swift)
   * [Version Compatibility](#version-compatibility)
   * [A Swift Tour](#a-swift-tour)
-    + [Hello, world!](#hello--world)
+    + [Hello, world](#hello--world)
     + [Simple Values](#simple-values)
     + [Control Flow](#control-flow)
     + [Functions and Closures](#functions-and-closures)
@@ -22,6 +22,20 @@
     + [Error Handling](#error-handling)
     + [Generics](#generics)
 - [LANGUAGE GUIDE](#language-guide)
+  * [The Basics](#the-basics)
+    + [Constants and Variables](#constants-and-variables)
+      - [Declaring Constants and Variables](#declaring-constants-and-variables)
+      - [Type Annotations](#type-annotations)
+      - [Naming Constants and Variables](#naming-constants-and-variables)
+      - [Printing Constants and Variables](#printing-constants-and-variables)
+    + [Comments](#comments)
+    + [Semicolons](#semicolons)
+    + [Integers](#integers)
+      - [Integer Bounds](#integer-bounds)
+      - [Int](#int)
+      - [UInt](#uint)
+    + [Floating-Point Numbers](#floating-point-numbers)
+    + [Type Safety and Type Inference](#type-safety-and-type-inference)
 
 ---
 
@@ -957,13 +971,214 @@ anyCommonElements([1, 2, 3], [3])
 
 # LANGUAGE GUIDE
 
+## The Basics
+
+스위프트는 iOS, macOS, watchOS, tvOS 애플리케이션 개발을 위한 새로운 프로그래밍 언어입니다. 그렇긴 하지만, 스위프트의 많은 부분들은 C나 Objective-C 개발 경험으로부터 익숙할 것입니다.
+
+스위프트는 C 와 Objective-C의 핵심적인 타입을 고유의 버전으로 제공합니다. 이는 정수 값을 위해 `Int`를 , 부동소수점 값을 위해 `Double`과 `Float`를, 불리언 값을 위해 `Bool`을, 텍스트 데이터를 위해 `String`을 제공하는 것을 포함합니다. 스위프트는 또한 Collection Types에 서술된 것과 같이, 세 가지 주요 컬렉션 타입인 Array, Set, Dictionary의 강력한 버전을 제공합니다.
+
+C와 같이, 스위프트도 값을 저장하고 참조하기 위해 이름을 식별함으로써 변수를 사용합니다. 또한 스위프트는 값이 바뀔 수 없는 변수를 광범위하게 사용합니다. 이것은 상수라고도 알려져 있으며, C의 상수보다 훨씬 더 강력합니다. 상수는 당신이 변할 필요가 없는 값을 다룬다는 의도로 코드를 더 안전하고 명확하게 만들기 위해 스위프트 전체에 걸쳐 사용됩니다.
+
+친숙한 타입들에 더해, 스위프트는 튜플과 같이 Objective-C에서는 찾을 수 없는 발전된 타입들을 소개합니다. 튜플은 값을 묶어서 만들고 전달하는 것을 가능하게 합니다. 당신은 함수로부터 여러 값들을 반환하기 위해 하나의 복합적인 값으로서 튜플을 사용할 수 있습니다.
+
+스위프트는 또한 값의 없음을 다루는 옵셔널 타입을 소개합니다. 옵셔널은 "값이 있고, 그것은 x와 같다" 또는 "값이 전혀 없다"를 의미합니다. 옵셔널을 사용하는 것은 Objective-C에서 nil을 포인터와 함께 사용하는 것과 비슷하지만, 옵셔널은 클래스 뿐 아니라 어느 타입에나 사용할 수 있습니다. 옵셔널은 Objective-C의 nil포인터보다 더 안전하고 표현적일 뿐만 아니라, 스위프트의 많은 강력한 특성들의 핵심입니다.
+
+스위프트는 타입-안전(type-safe) 언어입니다. 이는 당신이 코드로 다루는 값의 타입이 명확하도록 언어가 돕는다는 것을 의미합니다. 만약 당신의 코드의 일부가 String을 요구한다면, 실수로 Int를 전달하지 않도록 타입 안전성(type-safety)이 막아 줄 것입니다. 마찬가지로, 타입 안전성은 String을 요구하는 코드에 우연히 옵셔널 String을 전달하는 것을 막아줍니다. 타입 안전성은 개발 프로세스에서 가능한 빠른 시점에 에러를 찾아내고 수정하는 것을 도와줍니다.
+
+### Constants and Variables
+상수와 변수
+
+상수와 변수는 이름 (예를 들어 `maximumNumberOfLoginAttempts` 이나 `welcomeMessage`) 과 특정한 타입의 값 (예를 들어 숫자 `10` 이나 문자열 `"Hello"`)을 연관짓습니다. 상수의 값은 한 번 설정되면 바뀔 수 없는 반면, 변수는 추후에 다른 값으로 설정될 수 있습니다.
+
+#### Declaring Constants and Variables
+상수와 변수 선언
+
+상수와 변수는 사용되기 전에 반드시 선언되어야 합니다. `let` 키워드로 상수를 선언하고 `var` 키워드로 변수를 선언하십시오. 여기에 유저가 만든 로그인 시도 횟수를 추적하는 데에 상수와 변수가 어떻게 사용될 수 있는지에 대한 예시가 있습니다 :
+
+``` swift
+let maximumNumberOfLoginAttempts = 10
+var currentLoginAttempt = 0
+```
+
+이 코드는 이렇게 읽을 수 있습니다 : 
+
+"`maximumNumberOfLoginAttempts`라는 새로운 상수 하나를 선언하고, 그 값을 `10`으로 한다. 그런 다음, `currentLoginAttempt`라는 새로운 변수 하나를 선언하고, 그 값을 `0`으로 한다."
+
+이 예시에서, 허용된 로그인 시도의 최대 횟수는 상수로 선언되었으며, 그 이유는 최대 값은 절대 변하지 않기 때문입니다. 현재 로그인 시도 카운터는 변수로 선언되었으며, 그 이유는 이 값은 로그인 시도가 실패할 때 마다 반드시 증가할 것이기 때문입니다.
+
+쉼표로 구분하여 여러 개의 변수 또는 여러 개의 상수를 한 줄에 선언할 수 있습니다 :
+
+``` swift
+var x = 0.0, y = 0.0, z = 0.0
+```
+
+> 노트
+>
+> 만약 당신의 코드에서 저장된 값이 바뀌지 않을 것이라면, 항상 `let` 키워드와 함께 상수로 선언하십시오. 오직 바뀔 수 있어야 하는 값을 저장할 때만 변수를 사용하십시오.
+
+#### Type Annotations
+타입 어노테이션 (타입 명시)
+
+상수 또는 변수가 저장할 수 있는 값의 유형을 명확히 하기 위해, 상수 또는 변수를 선언할 때 타입 어노테이션을 사용할 수 있습니다. 상수 또는 변수의 이름 뒤에 콜론(`:`)과 띄어쓰기, 사용할 타입의 이름을 작성함으로써 타입 어노테이션을 사용하십시오.
+이 예시는 이 변수가 `String`값을 저장할 수 있음을 나타내기 위해,  `welcomeMessage`라는 이름의 변수에 대해 타입 어노테이션을 제공합니다.
+``` swift
+var welcomeMessage: String
+```
+선언의 콜론은 "...는 ...타입이다"를 의미하며, 따라서 위의 코드는 다음과 같이 읽을 수 있습니다 : 
+" `String`타입인 `welcomeMessage`라는 이름의변수를 선언한다"
+"타입이 String인"이라는 구절은 "어떤 String값도 담을 수 있는"을 의미합니다. 저장될 수 있는 대상의 타입 (또는 대상의 종류)를 의미한다고 생각하십시오.
+`welcomeMessage` 변수는 에러 없이 어떤 문자열 값으로도 지정될 수 있습니다.
+``` swift
+welcomeMessage = "Hello"
+```
+동일한 타입의 여러 개의 관련된 변수를 한 줄로 정의할 수 있으며, 콤마(`,`)로 구분하고 마지막 변수명 뒤에 타입 어노테이션을 붙이면 됩니다.
+``` swift
+var red, green, blue: Double
+```
+> 노트  
+> 실제로 타입 어노테이션을 작성해야 할 필요는 거의 없습니다. [타입 안전성과 타입 추론]([The Basics — The Swift Programming Language (Swift 5.5)](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322))에 설명된 것처럼, 만약 상수 또는 변수가 정의되는 시점에 초기값을 제공한다면 스위프트는 거의 항상 그 상수 또는 변수에서 사용될 타입을 추론합니다.  위의 `welcomeMessage` 예시에서, 초기값이 제공되지 않았고, 따라서 `welcomeMessage` 변수의 타입은 초기값으로부터 추론되기보다는 타입 어노테이션으로 구체화됩니다.  
+
+#### Naming Constants and Variables
+상수 및 변수명 짓기
+
+상수와 변수의 이름은 유니코드 문자를 포함해 거의 모든 문자를 포함할 수 있습니다 : 
+``` swift
+let π = 3.14159
+let 你好 = "你好世界"
+let 🐶🐮 = "dogcow"
+```
+상수와 변수 이름은 공백문자, 수학 기호, 화살표, 전용 유니코드 스칼라 값, 선 그리기 또는 상자 그리기 문자를 포함할 수 없습니다. 또한 이름 안에 숫자를 포함할 수 있지만 숫자로 시작할 수는 없습니다.
+한 번 상수나 변수를 특정 타입으로 선언하면, 같은 이름으로 다시 선언하거나 다른 타입의 값을 담도록 바꿀 수 없습니다. 또한 상수를 변수로 바꾸거나 변수를 상수로 바꿀 수도 없습니다.
+> 노트  
+> 만약 상수나 변수에 스위프트 키워드와 같은 이름을 사용해야 한다면, 그것을 이름으로 사용할 때 키워드를 백틱(`)으로 감싸십시오. 하지만, 다른 방법이 전혀 없지 않은 한 키워드를 이름으로 사용하는 것을 피하십시오.  
+존재하는 변수의 값을 호환되는 타입의 다른 값으로 바꿀 수 있습니다. 이 예시에서, `friendlyWlecome`의 값은 `"Hello!"`에서 `"Bonjour!"`로 바뀌었습니다.
+``` swift
+var friendlyWelcome = "Hello!"
+friendlyWelcome = "Bonjour!"
+// friendlyWelcome is now "Bonjour!"
+```
+변수와 다르게, 상수의 값은 설정되고 난 뒤에는 바뀔 수 없습니다. 그렇게 바꾸기 위한 시도는 코드가 컴파일될 때 에러로 보고됩니다 :
+``` swift
+let languageName = "Swift"
+languageName = "Swift++"
+// This is a compile-time error: languageName cannot be changed.
+```
+
+#### Printing Constants and Variables
+변수와 상수 출력하기
+
+`print(_:separator:terminator:)` 함수로 현재의 상수 또는 변수의 값을 출력할 수 있습니다 :
+``` swift
+print(friendlyWelcome)
+// Prints "Bonjour!"
+```
+`print(_:separator:terminator:)` 함수는 하나 또는 여러 값들을 적절한 산출물로 출력하는 전역 함수입니다. Xcode에서는, 예를 들면, `print(_:separator:terminator:)` 함수는 산출물을 Xcode의 "콘솔" 창에 출력합니다. `separator`와 `terminator` 매개변수는 기본값을 가지고 있으므로, 이 함수를 호출할 때 생략할 수 있습니다. 기본적으로, 이 함수는 출력하는 줄 끝에 줄바꿈 문자를 더해 끝냅니다. 값의 끝에 줄바꿈 문자를 빼고 출력하기 위해서는, `terminator`로 빈 문자열을 전달하십시오 - 예를 들어, `print(someValue, terminator: "")`. 기본값을 가진 매개변수에 대한 더 많은 정보를 위해서는, [Default Parameter Values](https://docs.swift.org/swift-book/LanguageGuide/Functions.html#ID169) 를 참고하십시오.
+
+스위프트는 변수 또는 상수의 이름을 더 긴 문자열에 플레이스홀더로 포함시키기 위해, 그리고 스위프트가 그것을 상수 또는 변수의 현재 값으로 대체하도록 하기 위해 *문자열 보간법*을 사용합니다. 이름을 소괄호로 감싸고, 여는 소괄호 앞에 백슬래시를 붙여 빠져나오십시오 : 
+``` swift
+print("The current value of friendlyWelcome is \(friendlyWelcome)")
+// Prints "The current value of friendlyWelcome is Bonjour!"
+```
+
+> 노트  
+> 문자열 보간법에 사용할 수 있는 모든 옵션들은  [String Interpolation](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID292) 에 설명되어 있습니다.  
 
 
+### Comments
+주석
 
+코드에 실행할 수 없는 텍스트를 포함시키기 위해 주석을 사용하십시오. 메모 또는 리마인더로 사용할 수 있습니다. 주석은 코드가 컴파일 될 때 스위프트 컴파일러에 의해 무시됩니다.
+스위프트에서의 주석은 C언어의 주석과 매우 비슷합니다. 한 줄 주석은 두 개의 슬래시(`//`)로 시작합니다 :
+``` swift
+// This is a comment.
+```
+여러 줄 주석은 슬래시와 별표(`/*`)로 시작하고 별표와 슬래시(`*/`)로 끝납니다 :
+``` swift
+/* This is also a comment
+but is written over multiple lines. */
+```
 
+C언어의 여러 줄 주석과 다르게, 스위프트의 여러 줄 주석은 다른 여러 줄 주석과 중첩될 수 있습니다. 중첩 주석은 여러 줄 주석을 열고, 두 번째 여러 줄 주석을 첫 번째 블럭 안에서 열어 작성합니다. 그 뒤 두 번째 블럭이 닫히고, 첫 번째 블럭이 계속됩니다.
+``` swift
+/* This is the start of the first multiline comment.
+ /* This is the second, nested multiline comment. */
+This is the end of the first multiline comment. */
+```
+여러 줄 중첩 주석은 큰 코드 블럭이 이미 여러 줄 주석으로 포함하고 있더라도, 빠르고 쉽게 주석 처리하는 것을 가능하게 해 줍니다.
 
+### Semicolons
+세미콜론
 
+많은 다른 언어들과 다르게, 스위프트는 원한다면 쓸 수 있음에도 불구하고 코드의 각 구문 끝에 세미콜론(`;`)을 쓰도록 요구하지 않습니다. 하지만, 만약 한 줄에 여러 개의 구문을 적고 싶다면 세미콜론이 요구됩니다.
+``` swift
+let cat = "🐱"; print(cat)
+// "🐱"를 출력합니다.
+```
 
+### Integers
+정수형
 
+정수형은 `42`나 `-23`처럼 분수의 구성 요소가 없는 모든 숫자입니다. 정수형은 부호가 있거나(양수, 0 또는 음수) 또는 부호가 없습니다(양수 또는 0).
 
+ 스위프트는 8, 16, 32, 64 비트 형태로 부호가 있는 정수형과 부호가 없는 정수형을 제공합니다. 이러한 정수형은 8비트의 부호가 없는 정수형을 `UInt8`, 32비트의 부호가 있는 정수형을 `Int32`라고 한다는 점에서 C언어와 비슷한 네이밍 컨벤션을 따릅니다. 스위프트의 다른 모든 타입들처럼, 이러한 정수형 타입은 대문자로 시작하는 이름을 갖습니다.
 
+#### Integer Bounds
+정수 경계
+
+`min`과 `max` 프로퍼티로 각 정수 타입의 최소값과 최대값에 접근할 수 있습니다 :
+``` swift
+let minValue = UInt8.min  // minValue는 0과 같으며, 타입은 UInt8입니다.
+let maxValue = UInt8.max  // maxValue는 255와 같으며, 타입은 UInt8입니다.
+```
+이 프로퍼티들의 값은 적절한 크기의 숫자 값을 가지며(위 예시의 `UInt8`과 같이), 그렇기 때문에 같은 타입의 다른 값 표현에 나란히 사용될 수 있습니다.
+
+#### Int
+
+대부분의 경우에, 코드에서 특정한 크기의 정수형을 고를 필요가 없습니다. 스위프트는 추가적으로 `Int`라는 정수 타입을 제공하며, 이 타입은 현재 플랫폼의 기본 단어 크기와 같은 크기를 갖습니다 : 
+- 32비트 플랫폼에서, `Int`는 `Int32`와 같은 크기를 갖습니다.
+- 64비트 플랫폼에서, `Int`는 `Int64`와 같은 크기를 갖습니다.
+특정한 크기의 정수로 작업할 필요가 없는 한, 정수 값을 위해 항상 `Int`를 코드에 사용하십시오. 이것은 코드 일관성과 상호 운용성을 돕습니다. 심지어 32비트 플랫폼에서도, `Int`는  `-2,147,483,648` 와 
+`2,147,483,647`  사이의 어떤 값이든 담을 수 있으며, 많은 정수 범위에 대해 충분히 큽니다.
+
+#### UInt
+
+스위프트는 `UInt`라는 부호가 없는 정수 타입도 제공하며, 현재 플랫폼의 기본 단어 크기와 같은 크기를 갖습니다 :
+- 32비트 플랫폼에서, `UInt`는 `UInt32`와 같은 크기를 갖습니다.
+- 64비트 플랫폼에서, `UInt`는 `UInt64`와 같은 크기를 갖습니다.
+
+> 노트
+> 오직 플랫폼의 기본 단어 크기와 같은 크기의 부호가 없는 정수 타입이 특별히 필요할 때만 `UInt`를 사용하십시오. 만약 그런 경우가 아니라면, `Int`가 선호되며, 심지어 저장되어야 할 값들이 음수가 될 수 없다고 알고 있는 경우에도 그러합니다.  [Type Safety and Type Inference](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#ID322) 에 설명되어 있듯이, 정수 값에 대한 `Int`의 일관적인 사용은 코드 상호운용성을 돕고, 다른 숫자 타입끼리 변환할 필요가 없으며, 정수 타입 참조와도 맞습니다.
+
+### Floating-Point Numbers
+부동소수점 숫자
+부동소수점 숫자는 `3.14159`, `0.1`, `-273.15`와 같이 분수 요소가 있는 숫자입니다.
+부동소수점 타입은 정수 타입보다 훨씬 넓은 범위의 값을 나타낼 수 있으며, `Int`가 저장할 수 있는 것 보다 훨씬 크거나 작은 값을 저장할 수 있습니다. 스위프트는 두 개의 부호가 있는 부동소수점 숫자 타입을 제공합니다 :
+- `Double`은 64비트의 부동소수점 숫자를 나타냅니다.
+- `Float`는 32비트의 부동소수점 숫자를 나타냅니다.
+> 노트
+> `Float`의 정확도가 6개의 소수점 숫자만큼 작은 반면,  `Double`의 정확도는 최소 15개의 소수점 숫자를 가집니다. 사용할 적절한 부동소수점 타입은 코드에서 다뤄야 할 필요가 있는 값의 범위에 따라 달라집니다. 두 특성이 모두 적절할 수 있는 상황에서는, `Double`이 선호됩니다.
+
+### Type Safety and Type Inference
+스위프트는 *타입-안전* 언어입니다. 타입 안전 언어는 당신의 코드가 다루는 값의 타입이 명확해지도록 장려합니다. 만약 당신의 코드 일부가 String을 요구한다면, 그것에 실수로라도 Int를 전달할 수 없습니다.
+스위프트가 타입 안전 언어이기 때문에, 코드를 컴파일할 때 *타입 체크*를 수행하며 일치하지 않는 타입은 에러로 표시합니다. 이것은 개발 프로세스에서 당신이 에러를 가능한 일찍 찾아내고 고칠 수 있도록 합니다.
+타입 체크는 서로 다른 타입의 값을 다룰 때 에러를 피하도록 도와줍니다. 하지만, 이것은 당신이 선언하는 모든 상수와 변수의 타입을 명시해야 한다는 뜻은 아닙니다. 만약 필요한 값의 타입을 명시하지 않는다면, 스위프트는 적절한 타입을 계산하기 위해 *타입 추론*을 사용합니다. 타입 추론은 컴파일러가 당신의 코드를 컴파일할 때, 당신이 제공한 값을 간단히 검사함으로써 특정 표현의 타입을 자동으로 추론하도록 해 줍니다.
+
+타입 추론 덕분에, 스위프트는 C언어나 Objective-C같은 언어보다 타입 선언을 훨씬 적게 요구합니다. 상수와 변수는 여전히 명시적으로 타입이 지정되어야 하지만, 타입을 특정해야 하는 작업의 대부분은 당신을 위해 작업이 완료됩니다.
+타입 추론은 초기값이 있는 상수나 변수를 선언할 때 특히 유용합니다. 이것은 상수나 변수를 선언하는 시점에 리터럴 값 (또는 리터럴)을 할당함으로서 종종 수행됩니다. (리터럴 값은 아래 예시의 `42` 나 `3.14159` 처럼 소스 코드에 직접 나타난 값을 말합니다.)
+예를 들어, 만약 새로운 상수에 42라는 리터럴 값을 할당하며 그것이 어떤 타입인지 지정하지 않으면, 스위프트는 당신이 그 상수가 Int가 되길 원했을 것이라고 추론합니다. 왜냐하면 당신이 정수형처럼 보이는 숫자로 그 상수를 초기화했기 때문입니다 :
+``` swift
+let meaningOfLife = 42
+// meaningOfLife는 Int타입으로 추론됩니다.
+```
+마찬가지로, 만약 당신이 부동소수점 리터럴에 타입을 특정하지 않는다면, 스위프트는 당신이 Double을 만들고 싶었을 것이라고 추론합니다 :
+``` swift
+let pi = 3.14159
+// pi는 Double타입으로 추론됩니다.
+```
+스위프트는 부동소수점 숫자의 타입을 추론할 때 (Float보다는) 항상 Double을 선택합니다.
+만약 당신이 정수와 부동소수점 숫자를 조합해 표현한다면, 그 구문으로부터 Double 타입이 추론될 것입니다 :
+``` swift
+let anotherPi = 3 + 0.14159
+// anotherPi 역시 Double타입으로 추론됩니다.
+```
+3이라는 리터럴 값은 그 자체로 명시된 타입이 없고, 그렇기 때문에 적절한 타입 추론 결과는 더해진 부분으로서의 부동소수점 리터럴의 존재로부터 Double이 됩니다.
