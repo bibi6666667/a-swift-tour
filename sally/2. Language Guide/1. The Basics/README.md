@@ -1016,3 +1016,145 @@ _* intention : 의도_</br>
 
 </details>
 
+<details>
+	<summary>Tuples</summary>
+
+## [Tuples](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=is%20always%20clear.-,Tuples,-Tuples%20group%20multiple)
+
+*Tuples* group multiple values into a single compound value. The values within a tuple can be of any type and don’t have to be of the same type as each other.
+
+In this example, `(404, "Not Found")` is a tuple that describes an *HTTP status code*. An HTTP status code is a special value returned by a web server whenever you request a web page. A status code of `404 Not Found` is returned if you request a webpage that doesn’t exist.
+
+```swift
+let http404Error = (404, "Not Found")
+// http404Error is of type (Int, String), and equals (404, "Not Found")
+```
+
+The `(404, "Not Found")` tuple groups together an `Int` and a `String` to give the HTTP status code two separate values: a number and a human-readable description. It can be described as “a tuple of type `(Int, String)`”.
+
+You can create tuples from any permutation of types, and they can contain as many different types as you like. There’s nothing stopping you from having a tuple of type `(Int, Int, Int)`, or `(String, Bool)`, or indeed any other permutation you require.
+
+You can *decompose* a tuple’s contents into separate constants or variables, which you then access as usual:
+
+```swift
+let (statusCode, statusMessage) = http404Error
+print("The status code is \(statusCode)")
+// Prints "The status code is 404"
+print("The status message is \(statusMessage)")
+// Prints "The status message is Not Found"
+```
+
+If you only need some of the tuple’s values, ignore parts of the tuple with an underscore (`_`) when you decompose the tuple:
+
+```swift
+let (justTheStatusCode, _) = http404Error
+print("The status code is \(justTheStatusCode)")
+// Prints "The status code is 404"
+```
+
+Alternatively, access the individual element values in a tuple using index numbers starting at zero:
+
+```swift
+print("The status code is \(http404Error.0)")
+// Prints "The status code is 404"
+print("The status message is \(http404Error.1)")
+// Prints "The status message is Not Found"
+```
+
+You can name the individual elements in a tuple when the tuple is defined:
+
+```swift
+let http200Status = (statusCode: 200, description: "OK")
+```
+
+If you name the elements in a tuple, you can use the element names to access the values of those elements:
+
+```swift
+print("The status code is \(http200Status.statusCode)")
+// Prints "The status code is 200"
+print("The status message is \(http200Status.description)")
+// Prints "The status message is OK"
+```
+
+Tuples are particularly useful as the return values of functions. A function that tries to retrieve a web page might return the `(Int, String)` tuple type to describe the success or failure of the page retrieval. By returning a tuple with two distinct values, each of a different type, the function provides more useful information about its outcome than if it could only return a single value of a single type. For more information, see [Functions with Multiple Return Values](https://docs.swift.org/swift-book/LanguageGuide/Functions.html#ID164).
+
+> NOTE
+>
+> Tuples are useful for simple groups of related values. They’re not suited to the creation of complex data structures. If your data structure is likely to be more complex, model it as a class or structure, rather than as a tuple. For more information, see [Structures and Classes](https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html).
+
+---
+
+## 튜플
+
+*튜플*은 여러 개의 값을 하나의 혼합 값으로 묶습니다. 튜플안의 값들은 어떤 타입이어도 상관없고, 서로 같은 타입일 필요도 없습니다. 
+
+예를 들어, `(404, "Not Found")`는 *HTTP 상태 코드*를 설명하는 튜플입니다. HTTP 상태 코드는 웹 페이지를 요청할 때마다, 웹 서버로부터 반환되는 특별한 값입니다. 존재하지 않는 웹 페이지를 요청하면 상태 코드 `404 Not Found`가 반환됩니다. 
+
+```swift
+let http404Error = (404, "Not Found")
+// http404Error는 (Int, String) 타입이고, (404, "Not Found")의 값을 가집니다.
+```
+
+`(404, "Not Found")` 튜플은 HTTP 상태 코드에 두 개의 분리된 값(숫자와 사람이 읽을 수 있는 설명)을 주기 위해 `Int`와 `String`을 함께 묶습니다. 이것은 "`(Int, String)` 타입의 튜플" 이라고 말할 수 있습니다.
+
+어떤 타입의 순열로도 튜플을 만들 수 있고, 원하는 만큼 많은 다른 타입을 포함할 수 있습니다. `(Int, Int, Int)`, 혹은 `(String, Bool)`, 혹은 정말로 필요한 다른 어떤 순열의 타입으로 튜플을 만드는 것을 막을 수 있는 것은 없습니다. 
+
+튜플의 내용물을 분리된 상수와 변수로 *분해*한 후에, 평소처럼 접근할 수 있습니다:
+
+```swift
+let (statusCode, statusMessage) = http404Error
+print("The status code is \(statusCode)")
+// "The status code is 404" 출력
+print("The status message is \(statusMessage)")
+// "The status message is Not Found" 출력
+```
+
+만약 튜플의 값 중 일부만 필요하다면, 튜플을 분해할 때 밑줄 (`_`)을 사용하여 튜플의 일부분을 무시하십시오:
+
+```swift
+let (justTheStatusCode, _) = http404Error
+print("The status code is \(justTheStatusCode)")
+// "The status code is 404" 출력
+```
+
+다른 방법으로, 0 부터 시작하는 인덱스 숫자를 이용하여 튜플의 개별 요소 값에 접근하십시오:
+
+```swift
+print("The status code is \(http404Error.0)")
+// Prints "The status code is 404"
+print("The status message is \(http404Error.1)")
+// Prints "The status message is Not Found"
+```
+
+튜플이 정의될 때, 튜플의 개별 요소에 이름을 붙일 수 있습니다:
+
+```swift
+let http200Status = (statusCode: 200, description: "OK")
+```
+
+튜플의 요소에 이름을 붙이면, 그 요소의 이름을 통해 해당 요소의 값에 접근할 수 있습니다:
+
+```swift
+print("The status code is \(http200Status.statusCode)")
+// "The status code is 200" 출력
+print("The status message is \(http200Status.description)")
+// "The status message is OK" 출력
+```
+
+튜플은 함수의 반환 값으로 특히 유용합니다. 웹 페이지에 검색을 시도하는 함수는, 페이지 검색의 성공 혹은 실패를 설명하기 위해 `(Int, String)` 튜플 타입을 반환할 것입니다. 각각 다른 타입을 가지고 있는, 두 개별 값으로 튜플을 반환함으로써, 함수는 단일 타입의 단일 값만을 반환하는 것보다, 그것의 결과에 대해 더 유용한 정보를 제공합니다. 더 많은 정보는 [Functions with Multiple Return Values](https://docs.swift.org/swift-book/LanguageGuide/Functions.html#ID164)를 보십시오.
+
+> 노트
+>
+> 튜플은 연관된 값의 간단한 그룹에 유용합니다. 그것들은 복잡한 데이터 구조 생성에 적합하지 않습니다. 만약 데이터 구조가 더 복잡할 것 같다면, 튜플 보다는 클래스나 구조체로 그것을 모델링 하십시오. 더 많은 정보는  [Structures and Classes](https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html)를 보십시오.
+
+---
+
+_* permutation : 순열_</br>
+_* indeed : 실제로, 참으로_</br>
+_* *decompose* : 분해하다_</br>
+_* *as usual* : 평소처럼_</br>
+_* *retrieve* : 검색하다_</br>
+
+---
+
+</details>
