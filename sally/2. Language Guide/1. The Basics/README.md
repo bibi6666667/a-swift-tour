@@ -1158,3 +1158,56 @@ _* *retrieve* : 검색하다_</br>
 ---
 
 </details>
+
+<details>
+	<summary>Optionals</summary>
+
+## [Optionals](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html#:~:text=Structures%20and%20Classes.-,Optionals,-You%20use%20optionals)
+
+You use *optionals* in situations where a value may be absent. An optional represents two possibilities: Either there *is* a value, and you can unwrap the optional to access that value, or there *isn’t* a value at all.
+
+> NOTE
+>
+> The concept of optionals doesn’t exist in C or Objective-C. The nearest thing in Objective-C is the ability to return `nil` from a method that would otherwise return an object, with `nil` meaning “the absence of a valid object.” However, this only works for objects—it doesn’t work for structures, basic C types, or enumeration values. For these types, Objective-C methods typically return a special value (such as `NSNotFound`) to indicate the absence of a value. This approach assumes that the method’s caller knows there’s a special value to test against and remembers to check for it. Swift’s optionals let you indicate the absence of a value for *any type at all*, without the need for special constants.
+
+Here’s an example of how optionals can be used to cope with the absence of a value. Swift’s `Int` type has an initializer which tries to convert a `String` value into an `Int` value. However, not every string can be converted into an integer. The string `"123"` can be converted into the numeric value `123`, but the string `"hello, world"` doesn’t have an obvious numeric value to convert to.
+
+The example below uses the initializer to try to convert a `String` into an `Int`:
+
+```swift
+let possibleNumber = "123"
+let convertedNumber = Int(possibleNumber)
+// convertedNumber is inferred to be of type "Int?", or "optional Int"
+```
+
+Because the initializer might fail, it returns an *optional* `Int`, rather than an `Int`. An optional `Int` is written as `Int?`, not `Int`. The question mark indicates that the value it contains is optional, meaning that it might contain *some* `Int` value, or it might contain *no value at all*. (It can’t contain anything else, such as a `Bool` value or a `String` value. It’s either an `Int`, or it’s nothing at all.)
+
+---
+
+## 옵셔널
+
+옵셔널은 값이 없을 수도 있는 상황에서 사용합니다. 옵셔널은 두가지 가능성을 나타냅니다: 값이 있고, 그 값에 접근하기 위해 옵셔널을 벗길 수 있거나, 혹은 값이 아예 없는 것입니다. 
+
+> 노트
+>
+> 옵셔널의 개념은 C나 Objective-C에는 없습니다. Objective-C에서 가장 비슷한 것은, 객체를 반환할 메소드로부터 `nil`을 반환하는 기능입니다. `nil`은 "유요한 객체의 부재"를 의미합니다. 그러나, 이것은 객체에만 적용되고, 구조체, 기본 C 타입들, 혹은 열거형 값들에는 적용되지 않습니다. 이러한 타입들을 위해서 Objective-C 메소드는 값의 부재를 알리기 위해 일반적으로 (`NSNotFound` 같은) 특별한 값을 반환합니다. 이러한 접근법은 메소드 호출자가 테스트할 특별한 값이 있다는 것을 알고, 그것을 체크하는 것을 기억한다고 가정합니다. 스위프트의 옵셔널은 특별한 상수의 도움 없이도, 모든 타입에 대해 값의 부재를 나타낼 수 있습니다.
+
+여기 값의 부재에 대처하기 위해 옵셔널이 어떻게 사용되는지에 대한 예가 있습니다. 스위프트의 `Int` 타입은 `String` 값에서  `Int` 값으로의 변환을 시도하는 이니셜라이저를 가지고 있습니다. 그러나, 모든 문자열이 정수로 변환될 수 있는 것은 아닙니다. 문자열 `"123"`은  숫자 값 `123`으로 변환될 수 있지만, 문자열 `"hello, world"`는 변환될 명백한 숫자 값이 없습니다. 
+
+아래의 예는 `String`에서 `Int`로의 변환을 시도하기 위해 이니셜라이저를 사용합니다:
+
+```swift
+let possibleNumber = "123"
+let convertedNumber = Int(possibleNumber)
+// convertedNumber은 "Int?", 혹은 "optional Int" 타입으로 추론됩니다. 
+```
+
+이니셜라이저가 실패할 수 있기 때문에, `Int`가 아니라 *옵셔널* `Int`를 반환합니다. 옵셔널 `Int`는 `Int`이 아니라  `Int?`라고 씁니다. 물음표는 그것이 포함하고 있는 값이 옵셔널이라는 것을 알려줍니다. 그것이 *어떤* `Int` 값을 포함할 수도 있고, 전혀 값을 포함하지 않을 수도 있다는 것을 의미합니다. (그것은 `Bool` 값이나 `String` 값 같은 다른 것을 포함할 수는 없습니다. `Int`이거나 아무것도 아닙니다.)
+
+---
+
+_* cope : 대처하다_</br>
+
+---
+
+</details>
