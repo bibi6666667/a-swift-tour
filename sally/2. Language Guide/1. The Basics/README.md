@@ -1182,6 +1182,60 @@ let convertedNumber = Int(possibleNumber)
 
 Because the initializer might fail, it returns an *optional* `Int`, rather than an `Int`. An optional `Int` is written as `Int?`, not `Int`. The question mark indicates that the value it contains is optional, meaning that it might contain *some* `Int` value, or it might contain *no value at all*. (It can’t contain anything else, such as a `Bool` value or a `String` value. It’s either an `Int`, or it’s nothing at all.)
 
+### nil
+
+You set an optional variable to a valueless state by assigning it the special value `nil`:
+
+```swift
+var serverResponseCode: Int? = 404
+// serverResponseCode contains an actual Int value of 404
+serverResponseCode = nil
+// serverResponseCode now contains no value
+```
+
+> NOTE
+>
+> You can’t use `nil` with non-optional constants and variables. If a constant or variable in your code needs to work with the absence of a value under certain conditions, always declare it as an optional value of the appropriate type.
+
+If you define an optional variable without providing a default value, the variable is automatically set to `nil` for you:
+
+```swift
+var surveyAnswer: String?
+// surveyAnswer is automatically set to nil
+```
+
+> NOTE
+>
+> Swift’s `nil` isn’t the same as `nil` in Objective-C. In Objective-C, `nil` is a pointer to a nonexistent object. In Swift, `nil` isn’t a pointer—it’s the absence of a value of a certain type. Optionals of *any* type can be set to `nil`, not just object types.
+
+### If Statements and Forced Unwrapping
+
+You can use an `if` statement to find out whether an optional contains a value by comparing the optional against `nil`. You perform this comparison with the “equal to” operator (`==`) or the “not equal to” operator (`!=`).
+
+If an optional has a value, it’s considered to be “not equal to” `nil`:
+
+```swift
+if convertedNumber != nil {
+    print("convertedNumber contains some integer value.")
+}
+// Prints "convertedNumber contains some integer value."
+```
+
+Once you’re sure that the optional *does* contain a value, you can access its underlying value by adding an exclamation point (`!`) to the end of the optional’s name. The exclamation point effectively says, “I know that this optional definitely has a value; please use it.” This is known as *forced unwrapping* of the optional’s value:
+
+```swift
+if convertedNumber != nil {
+    print("convertedNumber has an integer value of \(convertedNumber!).")
+}
+// Prints "convertedNumber has an integer value of 123."
+```
+
+For more about the `if` statement, see [Control Flow](https://docs.swift.org/swift-book/LanguageGuide/ControlFlow.html).
+
+> NOTE
+>
+> Trying to use `!` to access a nonexistent optional value triggers a runtime error. Always make sure that an optional contains a non-`nil` value before using `!` to force-unwrap its value.
+
 ---
 
 ## 옵셔널
@@ -1190,7 +1244,7 @@ Because the initializer might fail, it returns an *optional* `Int`, rather than 
 
 > 노트
 >
-> 옵셔널의 개념은 C나 Objective-C에는 없습니다. Objective-C에서 가장 비슷한 것은, 객체를 반환할 메소드로부터 `nil`을 반환하는 기능입니다. `nil`은 "유요한 객체의 부재"를 의미합니다. 그러나, 이것은 객체에만 적용되고, 구조체, 기본 C 타입들, 혹은 열거형 값들에는 적용되지 않습니다. 이러한 타입들을 위해서 Objective-C 메소드는 값의 부재를 알리기 위해 일반적으로 (`NSNotFound` 같은) 특별한 값을 반환합니다. 이러한 접근법은 메소드 호출자가 테스트할 특별한 값이 있다는 것을 알고, 그것을 체크하는 것을 기억한다고 가정합니다. 스위프트의 옵셔널은 특별한 상수의 도움 없이도, 모든 타입에 대해 값의 부재를 나타낼 수 있습니다.
+> 옵셔널의 개념은 C나 Objective-C에는 없습니다. Objective-C에서 가장 비슷한 것은, 객체를 반환할 메소드로부터 `nil`을 반환하는 기능입니다. `nil`은 "유효한 객체의 부재"를 의미합니다. 그러나, 이것은 객체에만 적용되고, 구조체, 기본 C 타입들, 혹은 열거형 값들에는 적용되지 않습니다. 이러한 타입들을 위해서 Objective-C 메소드는 값의 부재를 알리기 위해 일반적으로 (`NSNotFound` 같은) 특별한 값을 반환합니다. 이러한 접근법은 메소드 호출자가 테스트할 특별한 값이 있다는 것을 알고, 그것을 체크하는 것을 기억한다고 가정합니다. 스위프트의 옵셔널은 특별한 상수의 도움 없이도, 모든 타입에 대해 값의 부재를 나타낼 수 있습니다.
 
 여기 값의 부재에 대처하기 위해 옵셔널이 어떻게 사용되는지에 대한 예가 있습니다. 스위프트의 `Int` 타입은 `String` 값에서  `Int` 값으로의 변환을 시도하는 이니셜라이저를 가지고 있습니다. 그러나, 모든 문자열이 정수로 변환될 수 있는 것은 아닙니다. 문자열 `"123"`은  숫자 값 `123`으로 변환될 수 있지만, 문자열 `"hello, world"`는 변환될 명백한 숫자 값이 없습니다. 
 
@@ -1204,9 +1258,64 @@ let convertedNumber = Int(possibleNumber)
 
 이니셜라이저가 실패할 수 있기 때문에, `Int`가 아니라 *옵셔널* `Int`를 반환합니다. 옵셔널 `Int`는 `Int`이 아니라  `Int?`라고 씁니다. 물음표는 그것이 포함하고 있는 값이 옵셔널이라는 것을 알려줍니다. 그것이 *어떤* `Int` 값을 포함할 수도 있고, 전혀 값을 포함하지 않을 수도 있다는 것을 의미합니다. (그것은 `Bool` 값이나 `String` 값 같은 다른 것을 포함할 수는 없습니다. `Int`이거나 아무것도 아닙니다.)
 
+### 닐
+
+특별한 값인 `nil`을 할당하여, 옵셔널 변수를 값이 없는 상태로 설정할 수 있습니다:
+
+```swift
+var serverResponseCode: Int? = 404
+// serverResponseCode는 진짜 정수값 404를 포함합니다. 
+serverResponseCode = nil
+// serverResponseCode는 이제 값이 없습니다. 
+```
+
+> 노트
+>
+> `nil`은 옵셔널이 아닌 상수, 변수와 함께 사용할 수 없습니다. 코드 안에 잇는 상수나 변수가 특정한 조건 하에서 값의 부재를 사용해야 한다면, 항상 그것을 적절한 타입의 옵셔널 값으로 선언하십시오.
+
+옵셔널 값에 디폴트 값을 제공하지 않고 정의했다면, 변수는 자동적으로 `nil`로 설정됩니다:
+
+```swift
+var surveyAnswer: String?
+// surveyAnswer는 자동적으로 nil로 설정됩니다. 
+```
+
+> 노트
+>
+> 스위프트의 `nil`은 Objective-C의 `nil`과 다릅니다. Objective-C에서 `nil`은 존재하지 않는 객체의 포인터입니다. 스위프트에서 `nil`은 포인터가 아니고, 특정한 타입의 값의 부재입니다. *어떤* 타입의 옵셔널도 객체 타입 뿐만 아니라 `nil`로 설정할 수 있습니다. 
+
+### If문과 강제 언래핑
+
+`if`문을 사용하여 옵셔널을 `nil`에 대해 비교해서 옵셔널이 값을 포함하고 있는지 알아낼 수 있습니다. "일치" 연산자(`==`) 혹은 "불일치"연산자(`!=`)로 이 비교를 수행합니다.
+
+옵셔널이 값을 가지고 있다면, 그것은 `nil`에 대해 "불일치"라고 여겨집니다:
+
+```swift
+if convertedNumber != nil {
+    print("convertedNumber contains some integer value.")
+}
+// "convertedNumber contains some integer value." 출력
+```
+
+한번 옵셔널이 값을 가지고 *있다고* 확신하면, 옵셔널의 이름 뒤에 느낌표(`!`)를 붙여서 그것의 기저값에 접근할 수 있습니다. 느낌표는 "나는 이 옵셔널은 확실히 값을 가지고 있다는 것을 알아; 그걸 사용해줘"라고 효과적으로 말합니다. 이것이 옵셔널 값의 강제 언래핑입니다:
+
+```swift
+if convertedNumber != nil {
+    print("convertedNumber has an integer value of \(convertedNumber!).")
+}
+// "convertedNumber has an integer value of 123." 출력
+```
+
+`if`문에 대한 더 자세한 것은 [Control Flow](https://docs.swift.org/swift-book/LanguageGuide/ControlFlow.html)를 보십시오..
+
+> 노트
+>
+> 존재하지 않는 옵셔널 값에 접근하기 위해 `!`를 사용하는 것은 런타임 오류를 일으킵니다. 항상 `!`를 사용하여 값을 강제 언래핑하기 전에 옵셔널이 `nil`이 아닌 값을 포함하고 있다는 것을 확실히 하십시오.
+
 ---
 
 _* cope : 대처하다_</br>
+_* exclamation point : 느낌표_</br>
 
 ---
 
