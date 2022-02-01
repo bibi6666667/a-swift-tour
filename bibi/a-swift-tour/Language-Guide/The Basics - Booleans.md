@@ -102,10 +102,12 @@ if i == 1 {
 
 ## 단어 정리
 
+- boolean 불. 불의.
 - refer to ...를 나타내다
 - concise 간결한
 - readable 읽기 쉬운
 - substitute 대신하다
 - comparision 비교
 - intention 의도
+- as soon as ... 하자마자.
 
