@@ -398,3 +398,23 @@ The Swift Programming Language 를 해석하며 정리한 영단어/숙어, 영�
     - `pi equals 3.14159, and is inferred to be of type Double`  : pi는 3.14159와 같으며, Double타입의 것으로 추론됩니다.
 - combine 결합하다
 - in and of itself 그것 자체는
+
+
+
+### The Basics - Type Aliases
+
+- alias [에일리어스] 가명. 예명. 별칭. (부사) 일명 ..라고 불리는.
+- contextually 맥락적으로
+- refer to ... 나타내다
+
+
+
+
+### The Basics - Booleans
+
+- refer to ...를 나타내다
+- concise 간결한
+- readable 읽기 쉬운
+- substitute 대신하다
+- comparision 비교
+- intention 의도
