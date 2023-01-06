@@ -1,0 +1,135 @@
+{
+  "main": {
+    "id": "856c3967e8542d06",
+    "type": "split",
+    "children": [
+      {
+        "id": "0ff5da1d518d4bc4",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Language-Guide/Closures/Closures.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5cfd61f91480c3fb",
+    "type": "split",
+    "children": [
+      {
+        "id": "4ad65aee03a52504",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "868be31fdbe58f6b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "9dbb84854522aed8",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "d74f43de90861c67",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6d0a3ad3df0288e8",
+    "type": "split",
+    "children": [
+      {
+        "id": "eb0b19ad7bf9dbfa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "059ba4b2d7947949",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Language-Guide/Closures/Closures.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e4f4a07bb8681a40",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Language-Guide/Closures/Closures.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f163077deb5fc3b8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "d1dc2a60921d3ecf",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Language-Guide/Closures/Closures.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "0ff5da1d518d4bc4",
+  "lastOpenFiles": [
+    "Language-Guide/무제노트.md"
+  ]
+}
