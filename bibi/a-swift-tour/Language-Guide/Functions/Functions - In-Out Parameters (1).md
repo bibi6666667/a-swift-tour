@@ -1,4 +1,4 @@
-# Functions - In-Out Parameters
+# Functions - In-Out Parameters (1)
 
 > https://docs.swift.org/swift-book/LanguageGuide/Functions.html#:~:text=the%20variadic%20parameter.-,In%2DOut%20Parameters,-Function%20parameters%20are
 

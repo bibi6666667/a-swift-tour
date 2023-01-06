@@ -4,7 +4,9 @@
 
 > ### Debugging with Assertions
 >
-> You write an assertion by calling the [`assert(_:_:file:line:)`](https://developer.apple.com/documentation/swift/1541112-assert) function from the Swift standard library. You pass this function an expression that evaluates to `true` or `false` and a message to display if the result of the condition is `false`. For example:
+> You write an assertion by calling the [`assert(_:_:file:line:)`](https://developer.apple.com/documentation/swift/1541112-assert) function from the Swift standard library. 
+>
+> You pass this function an expression that evaluates to `true` or `false` and a message to display if the result of the condition is `false`. For example:
 >
 > ``` swift
 > let age = -3
@@ -24,11 +26,11 @@
 >
 > ``` swift
 > if age > 10 {
->     print("You can ride the roller-coaster or the ferris wheel.")
+>  print("You can ride the roller-coaster or the ferris wheel.")
 > } else if age >= 0 {
->     print("You can ride the ferris wheel.")
+>  print("You can ride the ferris wheel.")
 > } else {
->     assertionFailure("A person's age can't be less than zero.")
+>  assertionFailure("A person's age can't be less than zero.")
 > }
 > ```
 >
