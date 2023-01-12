@@ -4,12 +4,12 @@
 **🐭 [bibi](https://github.com/bibi6666667) 가 해석한 문서입니다.**
 
 스위프트 공식 문서인 [The Swift Programming Language Guide](https://docs.swift.org/swift-book/#) 중 ,
-- WELCOME TO SWIFT
-- LANGUAGE GUIDE - The Basics
+- [WELCOME TO SWIFT](https://docs.swift.org/swift-book/)
+- [LANGUAGE GUIDE - The Basics](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html)
 
-을 번역한 문서입니다.
+의 한국어 번역 문서입니다.
 
-개인적으로 학습하며 번역한 문서라 어색한 부분 및 오역이 있을 수 있습니다. 발견 후 알려주시면 확인 후 수정하겠습니다🙏
+개인적으로 학습하며 번역한 문서라 일부 어색한 부분 및 오역이 있을 수 있습니다. 발견 후 알려주시면 확인 후 수정하겠습니다. 감사합니다😊
 
 
 
